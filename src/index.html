@@ -5,101 +5,15 @@
   <title>AgeCalc by Jeff Stein</title>
   <style>
     table {width:100%;}
-    th {text-align: center;}
+    table, tr, th, td {border-collapse: separate; border: 1px ridge #ccc;}
+    th, td {padding:4px;}
+    th {text-align: center; background: #eee;}
     td {text-align: left;}
     td.r {text-align: right;}
   </style>
-  <script src="lib/pretty.js"></script>
+  <script src="lib/pretty-jds.js"></script>
   <script src="lib/humane.js"></script>
-  <script>
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
-    var now = new Date(), life = [], elapsed = [], nowMs = now.getTime(), timeElapsed = 0;
-    console.log('now: ', now);
-    console.log('nowMs: ', nowMs);
-
-    var when = new Date();
-    console.log('when: ', when);
-    var time = new Date().getTime();
-    console.log('time: ', time);
-    var date = new Date(time);
-    console.log('date: ', date);
-    console.log(date.toString()); // Wed Jan 12 2011 12:42:46 GMT-0800 (PST)
-
-    life.birth = new Date('October 4, 1946 12:34:56');
-    console.log('life.birth: ', life.birth);
-
-    life.chris = {};
-    life.chris.married = new Date('September 16, 1967 12:34:56');
-    console.log('life.chris.married: ', life.chris.married);
-    life.chris.divorced = new Date('September 20, 1979 12:34:56');
-    console.log('life.chris.divorced: ', life.chris.divorced);
-
-    life.tim = {};
-    life.tim.begin = new Date(1988,05,30,12,34,56);
-    console.log('life.tim.begin: ', life.tim.begin);
-    life.tim.end = new Date(2009,05,30,12,34,56);
-    console.log('life.tim.end: ', life.tim.end);
-
-    var dateFormat = {};
-    dateFormat.masks = {
-        "default":      "ddd mmm dd yyyy HH:MM:ss",
-        shortDate:      "m/d/yy",
-        mediumDate:     "mmm d, yyyy",
-        longDate:       "mmmm d, yyyy",
-        fullDate:       "dddd, mmmm d, yyyy",
-        shortTime:      "h:MM TT",
-        mediumTime:     "h:MM:ss TT",
-        longTime:       "h:MM:ss TT Z",
-        isoDate:        "yyyy-mm-dd",
-        isoTime:        "HH:MM:ss",
-        isoDateTime:    "yyyy-mm-dd'T'HH:MM:ss",
-        isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
-    };
-    console.log('dateFormat: ', dateFormat);
-    var f = dateFormat.masks.isoDateTime; // set default date/time format
-    console.log('f: ', f);
-
-    /** fDate function
-    params...
-    a: start date & time
-    b: end date & time
-    f: date & time format (optional)
-    */
-    var fDate = function (a, f) {
-      console.log('START fDate function...');
-      if (f==='ms') {
-        return new Date(a).getTime();
-      } else if (f==='iso') {
-        return new Date(a).toISOString();
-      } else {
-        return new Date(a);
-      }
-    };
-
-    var fElapsed = function (a, b, f) {
-      console.log('START fElapsed function...');
-      if (a===b) {
-        console.log('same date, no time elapsed');
-        timeElapsed = 0;
-      } else if (a>b) {
-        console.log('since b, X time elapsed until a');
-        timeElapsed = a-b;
-      } else {
-        console.log('since a, X time elapsed until b');
-        timeElapsed = b-a;
-      }
-      // console.log('timeElapsed: ', timeElapsed);
-      if (f==='ms') {
-        return new Date(timeElapsed).getTime();
-      } else if (f==='iso') {
-        return new Date(timeElapsed).toISOString();
-      } else {
-        return new Date(timeElapsed);
-      }
-
-    };
-
-  </script>
+  <script src="js/scripts.js"></script>
 </head>
 <body>
   <header>
@@ -108,70 +22,72 @@
   </header>
   <div>
   <h2>Susan Sarandon</h2>
-  <ol>
-    <li>humane: <script>document.write(humane_date(now))</script></li>
-    <li>pretty: <script>document.write(prettyDate(now))</script></li>
-  </ol>
-
   <table>
-  <tbody>
-  <tr>
-    <th>Event</th>
-    <th>Date (ms)</th>
-    <th>Date (ISO)</th>
-    <th>Date (UTC)</th>
-    <th>Elapsed until now (ms)</th>
-    <th>Elapsed until now (pretty)</th>
-  </tr>
-  <tr>
-    <td>Birth</td>
-    <td><script>document.write( fDate(life.birth, 'ms') );</script></td>
-    <td><script>document.write( fDate(life.birth, 'iso') );</script></td>
-    <td><script>document.write( fDate(life.birth) );</script></td>
-    <td><script>document.write( fElapsed(life.birth, now, 'ms') );</script></td>
-    <td><script>document.write( fElapsed(life.birth, now) );</script></td>
-  </tr>
-  <tr>
-    <td>Chris Sarandon</td>
-    <td><script>document.write( fDate(life.chris.married, 'ms') );</script></td>
-    <td><script>document.write( fDate(life.chris.married, 'iso') );</script></td>
-    <td><script>document.write( fDate(life.chris.married) );</script></td>
-    <td><script>document.write( fElapsed(life.chris.married, now, 'ms') );</script></td>
-    <td><script>document.write( fElapsed(life.chris.married, now) );</script></td>
-  </tr>
-  <tr>
-    <td>Chris Sarandon</td>
-    <td><script>document.write( fDate(life.chris.divorced, 'ms') );</script></td>
-    <td><script>document.write( fDate(life.chris.divorced, 'iso') );</script></td>
-    <td><script>document.write( fDate(life.chris.divorced) );</script></td>
-    <td><script>document.write( fElapsed(life.chris.divorced, now, 'ms') );</script></td>
-    <td><script>document.write( fElapsed(life.chris.divorced, now) );</script></td>
-  </tr>
-  <tr>
-    <td>Tim Robbins</td>
-    <td><script>document.write( fDate(life.tim.begin, 'ms') );</script></td>
-    <td><script>document.write( fDate(life.tim.begin, 'iso') );</script></td>
-    <td><script>document.write( fDate(life.tim.begin) );</script></td>
-    <td><script>document.write( fElapsed(life.tim.begin, now, 'ms') );</script></td>
-    <td><script>document.write( fElapsed(life.tim.begin, now) );</script></td>
-  </tr>
-  <tr>
-    <td>Tim Robbins</td>
-    <td><script>document.write( fDate(life.tim.end, 'ms') );</script></td>
-    <td><script>document.write( fDate(life.tim.end, 'iso') );</script></td>
-    <td><script>document.write( fDate(life.tim.end) );</script></td>
-    <td><script>document.write( fElapsed(life.tim.end, now, 'ms') );</script></td>
-    <td><script>document.write( fElapsed(life.tim.end, now) );</script></td>
-  </tr>
-  <tr>
-    <td>Now</td>
-    <td><script>document.write( fDate(now, 'ms') );</script></td>
-    <td><script>document.write( fDate(now, 'iso') );</script></td>
-    <td><script>document.write( fDate(now) );</script></td>
-    <td><script>document.write( fElapsed(now, now, 'ms') );</script></td>
-    <td><script>document.write( fElapsed(now, now) );</script></td>
-  </tr>
-  </tbody>
+    <tbody>
+      <tr>
+        <th>Event</th>
+        <th>Date (ms)</th>
+        <th>Date (ISO)</th>
+        <th>Date (UTC)</th>
+        <th>Elapsed until now (ms)</th>
+        <th>Elapsed until now (pretty)</th>
+        <th>Elapsed (humane)</th>
+      </tr>
+      <tr>
+        <td>Birth</td>
+        <td><script>document.write( fDate(life.birth, 'ms') );</script></td>
+        <td><script>document.write( fDate(life.birth, 'iso') );</script></td>
+        <td><script>document.write( fDate(life.birth) );</script></td>
+        <td><script>document.write( fElapsed(life.birth, now, 'ms') );</script></td>
+        <td><script>document.write( fElapsed(life.birth, now) );</script></td>
+        <td><script>document.write( humane_date( fDate(life.birth, 'iso') ) )</script></td>
+      </tr>
+      <tr>
+        <td>Chris Sarandon</td>
+        <td><script>document.write( fDate(life.chris.married, 'ms') );</script></td>
+        <td><script>document.write( fDate(life.chris.married, 'iso') );</script></td>
+        <td><script>document.write( fDate(life.chris.married) );</script></td>
+        <td><script>document.write( fElapsed(life.chris.married, now, 'ms') );</script></td>
+        <td><script>document.write( fElapsed(life.chris.married, now) );</script></td>
+        <td><script>document.write( humane_date( fDate(life.chris.married, 'iso') ) )</script></td>
+      </tr>
+      <tr>
+        <td>Chris Sarandon</td>
+        <td><script>document.write( fDate(life.chris.divorced, 'ms') );</script></td>
+        <td><script>document.write( fDate(life.chris.divorced, 'iso') );</script></td>
+        <td><script>document.write( fDate(life.chris.divorced) );</script></td>
+        <td><script>document.write( fElapsed(life.chris.divorced, now, 'ms') );</script></td>
+        <td><script>document.write( fElapsed(life.chris.divorced, now) );</script></td>
+        <td><script>document.write( humane_date( fDate(life.chris.divorced, 'iso') ) )</script></td>
+      </tr>
+      <tr>
+        <td>Tim Robbins</td>
+        <td><script>document.write( fDate(life.tim.begin, 'ms') );</script></td>
+        <td><script>document.write( fDate(life.tim.begin, 'iso') );</script></td>
+        <td><script>document.write( fDate(life.tim.begin) );</script></td>
+        <td><script>document.write( fElapsed(life.tim.begin, now, 'ms') );</script></td>
+        <td><script>document.write( fElapsed(life.tim.begin, now) );</script></td>
+        <td><script>document.write( humane_date( fDate(life.tim.begin, 'iso') ) )</script></td>
+      </tr>
+      <tr>
+        <td>Tim Robbins</td>
+        <td><script>document.write( fDate(life.tim.end, 'ms') );</script></td>
+        <td><script>document.write( fDate(life.tim.end, 'iso') );</script></td>
+        <td><script>document.write( fDate(life.tim.end) );</script></td>
+        <td><script>document.write( fElapsed(life.tim.end, now, 'ms') );</script></td>
+        <td><script>document.write( fElapsed(life.tim.end, now) );</script></td>
+        <td><script>document.write( humane_date( fDate(life.tim.end, 'iso') ) )</script></td>
+      </tr>
+      <tr>
+        <td>Now</td>
+        <td><script>document.write( fDate(now, 'ms') );</script></td>
+        <td><script>document.write( fDate(now, 'iso') );</script></td>
+        <td><script>document.write( fDate(now) );</script></td>
+        <td><script>document.write( fElapsed(now, now, 'ms') );</script></td>
+        <td><script>document.write( fElapsed(now, now) );</script></td>
+        <td><script>document.write( humane_date( fDate(now, 'iso') ) )</script></td>
+      </tr>
+    </tbody>
   </table>
   </div>
   <footer>
