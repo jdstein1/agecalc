@@ -1,4 +1,16 @@
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+/*
+Reference
+
+JS Date API
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+
+Moment.js
+
+Countdown.js
+http://countdownjs.org/demo.html
+
+*/
+
     var now = new Date(), life = [], elapsed = [], nowMs = now.getTime(), t = 0;
     // console.log('now: ', now);
     // console.log('nowMs: ', nowMs);
@@ -82,14 +94,81 @@
       }
       console.log('t: ', t);
 
+      var ints = {};
+      var abso = {};
+      var rems = {};
+      var divs = {
+        yy:1000*60*60*24*365, // 31,536,000,000
+        mo:1000*60*60*24*(365/12), // 
+        wk:1000*60*60*24*7, // 604,800,000
+        dd:1000*60*60*24, // 86,400,000
+        hh:1000*60*60, // 3,600,000
+        mm:1000*60, // 60,000
+        ss:1000, // 1000
+        ms:1 // 1000
+      };
+
+      ints['yy'] = t/divs.yy;
+      abso['yy'] = Math.trunc( ints.yy );
+      rems['yy'] = t % divs.yy;
+      // console.log('ints.yy: ', ints.yy);
+      // console.log('abso.yy: ', abso.yy);
+      // console.log('rems.yy: ', rems.yy);
+
+      ints['mo'] = rems.yy/divs.mo;
+      abso['mo'] = Math.trunc( ints.mo );
+      rems['mo'] = rems.yy % divs.mo;
+
+      ints['wk'] = rems.mo/divs.wk;
+      abso['wk'] = Math.trunc( ints.wk );
+      rems['wk'] = rems.mo % divs.wk;
+
+      ints['dd'] = rems.wk/divs.dd;
+      abso['dd'] = Math.trunc( ints.dd );
+      rems['dd'] = rems.wk % divs.dd;
+
+      ints['hh'] = rems.dd/divs.hh;
+      abso['hh'] = Math.trunc( ints.dd );
+      rems['hh'] = rems.dd % divs.hh;
+
+      ints['mm'] = rems.hh/divs.mm;
+      abso['mm'] = Math.trunc( ints.hh );
+      rems['mm'] = rems.hh % divs.mm;
+
+      ints['ss'] = rems.mm/divs.ss;
+      abso['ss'] = Math.trunc( ints.mm );
+      rems['ss'] = rems.mm % divs.ss;
+
+      ints['ms'] = rems.ss/divs.ms;
+      abso['ms'] = Math.trunc( ints.ss );
+      rems['ms'] = rems.ss % divs.ms;
+
+      var remainder = t % 1000;
+
+      // console.log('ints: ', ints);
+      // console.log('abso: ', abso);
+      console.log('rems: ', rems);
+      console.log('remainder: ', remainder);
+      console.log('****************************');
+
+      var raw = ''+t+'';
+      var pretty = '<ul>'+
+        // '<li>t:'+t+'</li>'+
+        '<li>'+abso.yy+' years</li>'+
+        '<li>'+abso.mo+' months</li>'+
+        '<li>'+abso.wk+' weeks</li>'+
+        '<li>'+abso.dd+' days</li>'+
+        '<li>'+abso.hh+' hours</li>'+
+        '<li>'+abso.mm+' min</li>'+
+        '<li>'+abso.ss+' ss</li>'+
+        '<li>'+abso.ms+' ms</li>'+
+        '</ul>';
 
 
       if (f==='ms') {
-        return t;
-      } else if (f==='iso') {
-        return new Date(t).toISOString();
+        return raw;
       } else {
-        return new Date(t);
+        return pretty;
       }
 
     };
