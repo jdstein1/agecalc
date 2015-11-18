@@ -42,56 +42,83 @@
       <div class="jumbotron">
         <h1>AgeCalc</h1>
         <h2>
-          <span class="glyphicon glyphicon-hourglass"></span>
-          <!-- <span class="glyphicon glyphicon-arrow-right"></span> -->
-          <!-- <span class="glyphicon glyphicon-random"></span> -->
-          <span class="glyphicon glyphicon-resize-horizontal"></span>
-          <!-- <span class="glyphicon glyphicon-chevron-right"></span> -->
+          <!-- <span class="glyphicon glyphicon-hourglass"></span> -->
+          <span class="glyphicon glyphicon-time text-success" style="transform:rotate(180deg); font-size:1.5em;"></span>
           <!-- <span class="glyphicon glyphicon-circle-arrow-right"></span> -->
-          <!-- <span class="glyphicon glyphicon-triangle-right"></span> -->
-          <span class="glyphicon glyphicon-time"></span>
+          <!-- <span class="glyphicon glyphicon-random"></span> -->
+          <!-- <span class="glyphicon glyphicon-resize-horizontal"></span> -->
+          <!-- <span class="glyphicon glyphicon-arrow-right"></span> -->
+          <span class="glyphicon glyphicon-triangle-right text-primary" style="margin:0 -0.4em; top:-0.15em;"></span>
+          <!-- <span class="glyphicon glyphicon-chevron-right"></span> -->
+          <span class="glyphicon glyphicon-time text-danger" style="font-size:1.5em;"></span>
         </h2>
         <p class="lead">Compare dates to learn ages and time spans.</p>
         <!-- <p><a class="btn btn-lg btn-success" href="#"><span class="glyphicon glyphicon-time"></span> Clock</a></p> -->
       </div>
 
-      <div class="row">
-        <div class="col-sm-12">
-          <h4>Find time span</h4>
-        </div>
-      </div>
+      <div class="well">
 
       <div class="row">
-        <div class="col-sm-6">
-          <div class="input-group">
-            <div class="input-group-btn">
-                <button class="btn btn-success">Start</button>
-            </div>
+          <h4 class="text-center">Find time span</h4>
+        <div class="col-sm-5">
+          <!-- <label for="time_start">Start</label> -->
+          <div class="input-group btn-block">
+            <span class="input-group-addon" id=""><span class="glyphicon glyphicon-export"></span></span>
+            <!-- <div class="input-group-btn">
+              <button class="btn btn-success"><span class="glyphicon glyphicon-export"></span></button>
+            </div> -->
             <input type="date" class="form-control" name="time_start" id="time_start" value="1983-11-06">
           </div>
-          <div class="input-group">
-            <div class="input-group-btn">
-                <button class="btn btn-danger">End</button>
-            </div>
+          <!-- <label for="time_end">End</label> -->
+          <div class="input-group btn-block">
+            <span class="input-group-addon" id=""><span class="glyphicon glyphicon-import"></span></span>
+            <!-- <div class="input-group-btn">
+              <button class="btn btn-danger"><span class="glyphicon glyphicon-import"></span></button>
+            </div> -->
             <input type="date" class="form-control" name="time_end" id="time_end" value="2011-05-24">
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="input-group">
+        <div class="col-sm-2">
+          <!-- <label for="">Actions</label> -->
+          <!-- <div class="btn-group btn-group-justified" role="group"> -->
+            <!-- <div class="btn-group" role="group"> -->
+              <button type="button" class="btn btn-primary btn-block" id="calculate">
+                Calculate
+                <span class="glyphicon glyphicon-random"></span>
+              </button>
+              <button type="button" class="btn btn-info btn-block" id="autofill">
+                Autofill
+                <span class="glyphicon glyphicon-check"></span>
+              </button>
+              <button type="button" class="btn btn-warning btn-block" id="reset">
+                Reset
+                <span class="glyphicon glyphicon-repeat" style="transform:scale(-1, 1);"></span>
+              </button>
+            <!-- </div> -->
+          <!-- </div> -->
+        </div>
+        <div class="col-sm-5">
+          <div class="input-group btn-block">
+            <!-- <label for="resultms">Milliseconds</label> -->
+            <input type="text" class="form-control" name="resultms" id="resultms" value="">
+            <span class="input-group-addon" id="">ms</span>
+          </div>
+          <div class="input-group btn-block">
+            <!-- <label for="result">Human Time</label> -->
             <input type="text" class="form-control" name="result" id="result" value="">
           </div>
         </div>
       </div>
-
-      <!-- <div class="row">
-        <div class="col-sm-2">
-          <div class="btn-group btn-group-justified" role="group">
-            <div class="btn-group" role="group">
-              <button type="button" class="btn btn-default">Reset</button>
-            </div>
-          </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="text-center" id="test">test</h2>
         </div>
-      </div> -->
+      </div>
+
+      </div>
+
+      <br>
+      <br>
 
       <div class="footer">
         <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
@@ -129,12 +156,12 @@
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='https://www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
+      // (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      // function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      // e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      // e.src='https://www.google-analytics.com/analytics.js';
+      // r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      // ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
   </body>
 </html>
