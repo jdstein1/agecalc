@@ -3,37 +3,79 @@ $(function() {
   // Handler for .ready() called.
 
   var t = 0;
-  var date0 = new Date(t);
-  console.log('date0: ', date0);
 
   var makeISODate = function (d) {
-    console.log('d: ', d);
-    var jhdf = d.toISOString().slice(0,10);
-    return jhdf;
+    console.log('START makeISODate d: ', d);
+    var jhdf = new Date(d);
+    console.log('jhdf: ', jhdf);
+    var ergv = jhdf.toISOString().slice(0,10);
+    console.log('ergv: ', ergv);
+    return ergv;
   };
-  var isoDate0 = makeISODate(date0);
 
-  // var date1 = '1983-11-06';
+  var now = new Date();
+  console.log('now: ', now);
+  var isoNow = makeISODate(now);
+  console.log('isoNow: ', isoNow);
+
+  var date0 = new Date(t); // The Computer Age begins
+  // console.log('date0: ', date0);
+  var isoDate0 = makeISODate(date0);
+  // console.log('isoDate0: ', isoDate0);
+
+  var date1 = '1984-10-26'; // Terminator released
   // console.log('date1: ', date1);
-  // var isoDate1 = makeISODate(date1);
+  var isoDate1 = makeISODate(date1);
   // console.log('isoDate1: ', isoDate1);
 
-  // var date2 = '2011-05-24';
+  var date2 = 'Aug 29 1997'; // Judgment Day
   // console.log('date2: ', date2);
-  // var isoDate2 = makeISODate(date2);
+  var isoDate2 = makeISODate(date2);
   // console.log('isoDate2: ', isoDate2);
+
+  var date3 = 'July 3, 1991'; // Terminator 2: Judgment Day released
+  // console.log('date3: ', date3);
+  var isoDate3 = makeISODate(date3);
+  // console.log('isoDate3: ', isoDate3);
 
   var $lorem = $('<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore molestias amet nihil saepe, molestiae, aliquid recusandae in eaque facilis nobis minima fuga voluptate architecto corporis ullam autem est, quia incidunt!</p>');
 
   $('div.lorem').append($lorem);
 
+  var msg = {};
+  msg['same'] = "The dates are the same!";
+  msg['judg'] = "Judgement Day approaches...";
+  msg['diff'] = {};
+  msg['diff']['big'] = "Those dates are pretty far apart...";
+  msg['diff']['small'] = "Not much time betwen those dats...";
+
+  var $header = $('#header');
+  $header.load( "includes/header.html", function() {
+    console.log( "header loaded..." );
+  });
+
+  var $footer = $('#footer');
+  $footer.load( "includes/footer.html", function() {
+    console.log( "footer loaded..." );
+  });
+
+  // inputs
   var $start = $('#time_start');
   var $end = $('#time_end');
   var $result = $('#result');
   var $resultms = $('#resultms');
-  var $test = $('#test');
-  var $reset = $('#reset');
-  var $calculate = $('#calculate');
+
+  // buttons
+  var $btnAuto = $('.btn#auto');
+  var $btnAdd = $('.btn#add');
+  var $btnReset = $('.btn#reset');
+  var $btnClear = $('.btn#clear');
+  var $btnCalc = $('.btn#calc');
+
+  $('#calendar_time_start').hide();
+  $('#help_time_start').hide();
+  $('#calendar_time_end').hide();
+  $('#help_time_end').hide();
 
   var ints = {};
   var abso = {};
@@ -49,9 +91,21 @@ $(function() {
     yy:1000*60*60*24*365       // 31,536,000,000 ms/yr
   };
 
+// http://stackoverflow.com/questions/1267283/how-can-i-create-a-zerofilled-value-using-javascript
+function zeroPad (num, numZeros) {
+    var an = Math.abs (num);
+    var digitCount = 1 + Math.floor (Math.log (an) / Math.LN10);
+    if (digitCount >= numZeros) {
+        return num;
+    }
+    var zeroString = Math.pow (10, numZeros - digitCount).toString ().substr (1);
+    return num < 0 ? '-' + zeroString + an : zeroString + an;
+}
+
   var elapsed = function (a, b, f) {
     // elapsed
-    console.log('START elapsed function...');
+    console.log('START elapsed');
+
     if (a===b) {
       console.log('same date, no time elapsed');
       t = 0;
@@ -110,23 +164,39 @@ $(function() {
     var time = {};
 
     time['ms'] = ''+t+'';
-    console.log('time.ms: ', time.ms);
+    // console.log('time.ms: ', time.ms);
 
     time['pretty'] = '';
+    time['raw'] = {};
 
-    console.log('abso: ', abso);
-    console.log('Object.keys(abso).length: ', Object.keys(abso).length);
+    // console.log('abso: ', abso);
+    // console.log('Object.keys(abso).length: ', Object.keys(abso).length);
     var holder = [];
+    var holderRaw = {};
     var keys = Object.keys(abso);
     for (var i = 0; i < keys.length; i++) {
 
       if (abso[keys[i]]>0) {
-        holder.push(abso[keys[i]]+'-'+keys[i]);
+        holder.push(zeroPad(abso[keys[i]],2)+''+keys[i]);
+        holderRaw[keys[i]] = zeroPad(abso[keys[i]],2);
+        $('.datetime-display.raw').find('#result'+keys[i]).val( zeroPad(abso[keys[i]],2) );
+      } else {
+        $('.datetime-display.raw').find('#result'+keys[i]).val('00');
+        // $('.datetime-display.raw').find('#result'+keys[i]).hide();
       }
       // console.log('Object.keys(abso)[i]', Object.keys(abso)[i]);
       // console.log('holder: ', holder);
+      // console.log('holderRaw: ', holderRaw);
     };
-    time.pretty = holder.toString().replace(/,/g, ': ');
+    if (holder.length < 1) {
+      // console.log('holder.length < 1');
+      time.pretty = msg.same;
+      time.raw = msg.same;
+    } else {
+      // console.log('holder.length > 0');
+      time.pretty = holder.toString().replace(/,/g, ' ');
+      time.raw = holderRaw;
+    }
     // time.pretty = +abso.yy+'y '+
     //   +abso.mo+'M '+
     //   +abso.wk+'w '+
@@ -136,10 +206,9 @@ $(function() {
     //   +abso.ss+'s '+
     //   +abso.ms+'ms' ;
     console.log('time: ', time);
-    console.log('time.pretty: ', time.pretty);
-    console.log('time.ms: ', time.ms);
+    // console.log('time.pretty: ', time.pretty);
+    // console.log('time.ms: ', time.ms);
 
-    $test.html(time.pretty);
     $resultms.val(time.ms);
     $result.val(time.pretty);
 
@@ -147,39 +216,70 @@ $(function() {
 
   };
 
-  var reset = function () {
+  var reset = function (params) {
     // reset fields
-    $start.val(isoDate0);
-    $end.val(isoDate0);
-    $resultms.val(0);
-    $result.val(0);
+    console.log('START reset');
+
+    if (!params || params.target) {
+      // if optional params is undefined or an event target
+      params = [isoDate0,isoNow];
+    } else {
+      // if optional params are passed
+      params = params;
+      console.log('params.length: ', params.length);
+      if (params.length < 2) {
+        params[1] = params[0];
+      }
+    }
+    console.log('params: ', params);
+
+    $start.val( params[0] );
+    $end.val( params[1] );
+    
+    calc();
+    console.log('######################');
 
   };
-  $reset.on('click', reset);
+
+  var clear = function () {
+    // clear fields
+    console.log('START clear');
+
+    reset([isoDate0]);
+
+  };
 
   var autofill = function () {
     // autofill fields
+    console.log('START autofill');
 
     reset();
 
-    $start.val(date1ISO);
-    $end.val(date2ISO);
+    $start.val(isoDate1);
+    $end.val(isoDate2);
+    calc();
+
+  };
+
+  var add = function () {
+    // add fields
+    console.log('START add');
 
   };
 
   var calc = function () {
-    console.log('START calc');
     // calculate
+    console.log('START calc');
 
     if ($start.val()) {
-      console.log( '$start: ', $start.val() );
+      // console.log( '$start: ', $start.val() );
       var start = new Date( $start.val() ).getTime();
-      console.log( 'start: ', start );
+      // console.log( 'start: ', start );
 
       if ($end.val()) {
-        console.log( '$end: ', $end.val() );
+        // console.log( '$end: ', $end.val() );
         var end = new Date( $end.val() ).getTime();
-        console.log( 'end: ', end );
+        // console.log( 'end: ', end );
 
         // var resultms = end - start;
         // console.log( 'resultms: ', resultms );
@@ -191,14 +291,19 @@ $(function() {
         // console.log( 'result: ', result );
         // $result.val(result);
 
-
       }
       
     }
 
   };
-  calc();
-  $calculate.on('click', calc);
+  calc(); // immediately execute "calc" function.
+
+  // button bindings
+  $btnReset.on('click', reset);
+  $btnClear.on('click', clear);
+  $btnAuto.on('click', autofill);
+  $btnAdd.on('click', add);
+  $btnCalc.on('click', calc);
 
   // $start.on('change', calc);
   // $end.on('change', calc);

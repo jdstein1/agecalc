@@ -26,113 +26,154 @@
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
     
     <div class="container-fluid">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="test.html">Test</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">agecalc</h3>
-      </div>
 
-      <div class="jumbotron">
+      <header id="header"></header>
+
+      <div class="jumbotron text-center">
         <h1>AgeCalc</h1>
         <h2>
           <!-- <span class="glyphicon glyphicon-hourglass"></span> -->
-          <span class="glyphicon glyphicon-time text-success" style="transform:rotate(180deg); font-size:1.5em;"></span>
+          <span class="glyphicon glyphicon-time text-success" style="transform:rotate(0deg); font-size:1.5em;"></span>
           <!-- <span class="glyphicon glyphicon-circle-arrow-right"></span> -->
           <!-- <span class="glyphicon glyphicon-random"></span> -->
           <!-- <span class="glyphicon glyphicon-resize-horizontal"></span> -->
           <!-- <span class="glyphicon glyphicon-arrow-right"></span> -->
-          <span class="glyphicon glyphicon-triangle-right text-primary" style="margin:0 -0.4em; top:-0.15em;"></span>
+          <span class="glyphicon glyphicon-triangle-right" style="margin:0 -0.4em; top:-0.2em;"></span>
           <!-- <span class="glyphicon glyphicon-chevron-right"></span> -->
-          <span class="glyphicon glyphicon-time text-danger" style="font-size:1.5em;"></span>
+          <span class="glyphicon glyphicon-time text-danger" style="transform:rotate(180deg); font-size:1.5em;"></span>
         </h2>
         <p class="lead">Compare dates to learn ages and time spans.</p>
         <!-- <p><a class="btn btn-lg btn-success" href="#"><span class="glyphicon glyphicon-time"></span> Clock</a></p> -->
       </div>
 
-      <div class="well">
+      <div class="well well-sm">
 
-      <div class="row">
+      <form action="">
+
+        <div class="row">
           <h4 class="text-center">Find time span</h4>
-        <div class="col-sm-5">
-          <!-- <label for="time_start">Start</label> -->
-          <div class="input-group btn-block">
-            <span class="input-group-addon" id=""><span class="glyphicon glyphicon-export"></span></span>
-            <!-- <div class="input-group-btn">
-              <button class="btn btn-success"><span class="glyphicon glyphicon-export"></span></button>
-            </div> -->
-            <input type="date" class="form-control" name="time_start" id="time_start" value="1983-11-06">
+          <div class="col-sm-4">
+            <!-- <label for="time_start">Start</label> -->
+            <div class="input-group">
+              <span class="input-group-addon text-muted" id="">From</span>
+              <input type="date" class="form-control" name="time_start" id="time_start" value="">
+              <span class="input-group-addon glyphicon glyphicon-calendar" id="calendar_time_start"></span>
+              <span class="input-group-addon" id="help_time_start">?</span>
+            </div>
+            <!-- <label for="time_end">End</label> -->
+            <div class="input-group">
+              <span class="input-group-addon text-muted" id="">Until</span>
+              <input type="date" class="form-control" name="time_end" id="time_end" value="">
+              <span class="input-group-addon glyphicon glyphicon-calendar" id="calendar_time_end"></span>
+              <span class="input-group-addon" id="help_time_end">?</span>
+            </div>
           </div>
-          <!-- <label for="time_end">End</label> -->
-          <div class="input-group btn-block">
-            <span class="input-group-addon" id=""><span class="glyphicon glyphicon-import"></span></span>
-            <!-- <div class="input-group-btn">
-              <button class="btn btn-danger"><span class="glyphicon glyphicon-import"></span></button>
-            </div> -->
-            <input type="date" class="form-control" name="time_end" id="time_end" value="2011-05-24">
+          <div class="col-sm-1">
+            <!-- <div class="btn-group"> -->
+              <button type="button" class="btn btn-lg btn-primary margin-t-05" id="calc">
+                <span class="glyphicon glyphicon-random"></span>
+              </button>
+            <!-- </div> -->
+          </div>
+          <div class="col-sm-5">
+            <div class="input-group">
+              <span class="input-group-addon" id="">Elapsed</span>
+              <!-- <label for="resultms">Milliseconds</label> -->
+              <input type="text" class="form-control" name="resultms" id="resultms" value="">
+              <span class="input-group-addon" id="">ms</span>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon" id="">Elapsed</span>
+              <!-- <label for="result">Human Time</label> -->
+              <input type="text" class="form-control" name="result" id="result" value="">
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="btn-group">
+              <button type="button" class="btn btn-success" id="add">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+              <button type="button" class="btn btn-info" id="auto">
+                <span class="glyphicon glyphicon-check"></span>
+              </button>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-warning" id="reset">
+                <span class="glyphicon glyphicon-repeat" style="transform:scale(-1, 1);"></span>
+              </button>
+              <button type="button" class="btn btn-danger" id="clear">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </div>
           </div>
         </div>
-        <div class="col-sm-2">
-          <!-- <label for="">Actions</label> -->
-          <!-- <div class="btn-group btn-group-justified" role="group"> -->
-            <!-- <div class="btn-group" role="group"> -->
-              <button type="button" class="btn btn-primary btn-block" id="calculate">
+
+        <div class="row margin-t-05 datetime-display raw">
+          <div class="col-sm-12">
+            <div class="input-group input-group-lg btn-block">
+              <input type="text" readonly placeholder="x" class="form-control text-center" name="resultyy" id="resultyy" value="">
+              <span class="input-group-addon text-muted" id="">y</span>
+              <input type="text" readonly placeholder="x" class="form-control text-center" name="resultmo" id="resultmo" value="">
+              <span class="input-group-addon text-muted" id="">M</span>
+              <input type="text" readonly placeholder="x" class="form-control text-center" name="resultwk" id="resultwk" value="">
+              <span class="input-group-addon text-muted" id="">w</span>
+              <input type="text" readonly placeholder="x" class="form-control text-center" name="resultdd" id="resultdd" value="">
+              <span class="input-group-addon text-muted" id="">d</span>
+              <input type="text" readonly placeholder="x" class="form-control text-center" name="resulthh" id="resulthh" value="">
+              <span class="input-group-addon text-muted" id="">h</span>
+              <input type="text" readonly placeholder="x" class="form-control text-center" name="resultmm" id="resultmm" value="">
+              <span class="input-group-addon text-muted" id="">m</span>
+              <input type="text" readonly placeholder="x" class="form-control text-center" name="resultss" id="resultss" value="">
+              <span class="input-group-addon text-muted" id="">s</span>
+              <input type="text" readonly placeholder="x" class="form-control text-center" name="resultms" id="resultms" value="">
+              <span class="input-group-addon text-muted" id="">ms</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row margin-t-10">
+          <div class="col-sm-12">
+            <!-- <div class="btn-group"> -->
+              <button type="button" class="btn btn-primary" id="calc">
                 Calculate
                 <span class="glyphicon glyphicon-random"></span>
               </button>
-              <button type="button" class="btn btn-info btn-block" id="autofill">
+              <button type="button" class="btn btn-info" id="auto">
                 Autofill
                 <span class="glyphicon glyphicon-check"></span>
               </button>
-              <button type="button" class="btn btn-warning btn-block" id="reset">
+              <button type="button" class="btn btn-success" id="add">
+                Add
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+              <button type="button" class="btn btn-warning" id="reset">
                 Reset
                 <span class="glyphicon glyphicon-repeat" style="transform:scale(-1, 1);"></span>
               </button>
+              <button type="button" class="btn btn-danger" id="clear">
+                Clear
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
             <!-- </div> -->
-          <!-- </div> -->
-        </div>
-        <div class="col-sm-5">
-          <div class="input-group btn-block">
-            <!-- <label for="resultms">Milliseconds</label> -->
-            <input type="text" class="form-control" name="resultms" id="resultms" value="">
-            <span class="input-group-addon" id="">ms</span>
-          </div>
-          <div class="input-group btn-block">
-            <!-- <label for="result">Human Time</label> -->
-            <input type="text" class="form-control" name="result" id="result" value="">
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <h2 class="text-center" id="test">test</h2>
-        </div>
-      </div>
+
+        </form>
 
       </div>
 
-      <br>
-      <br>
+      <footer id="footer"></footer>
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
     </div>
     
-
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
     
     <!-- build:js(.) scripts/plugins.js -->
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
@@ -149,7 +190,6 @@
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
     <!-- endbuild -->
     
-
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
