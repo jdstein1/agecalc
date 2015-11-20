@@ -4,39 +4,43 @@ $(function() {
 
   var t = 0;
 
-  var makeISODate = function (d) {
-    console.log('START makeISODate d: ', d);
-    var jhdf = new Date(d);
-    console.log('jhdf: ', jhdf);
-    var ergv = jhdf.toISOString().slice(0,10);
-    console.log('ergv: ', ergv);
-    return ergv;
+  var makeDateObj = function (d) {
+    console.log( 'START makeDateObj d: ', d );
+    // console.log( '(new Date(d)).toJSON(): ', (new Date(d)).toJSON() );
+    var t = {};
+    t['ms'] = Date.parse(d);
+    // console.log( 't.ms: ', t.ms );
+    t['iso'] = (new Date(t.ms)).toJSON();
+    // console.log( 't.iso: ', t.iso );
+    // console.log( 't.iso.split(\'T\'): ', t.iso.split('T') );
+    t['isodate'] = t.iso.slice(0,10);
+    // console.log( 't.isodate: ', t.isodate );
+    t['isotime'] = t.iso.slice(11);
+    // console.log( 't.isotime: ', t.isotime );
+    t['local'] = new Date(t.iso); // t.local time
+    // console.log( 't.local: ', t.local );
+    // t['iso'] = t.local.toISOString();
+    // console.log( 't.iso: ', t.iso );
+    t['utc'] = t.local.toUTCString();
+    // console.log( 't.utc: ', t.utc );
+    console.log( 't: ', t );
+    return t;
   };
 
   var now = new Date();
-  console.log('now: ', now);
-  var isoNow = makeISODate(now);
-  console.log('isoNow: ', isoNow);
+  var oNow = makeDateObj(now);
 
   var date0 = new Date(t); // The Computer Age begins
-  // console.log('date0: ', date0);
-  var isoDate0 = makeISODate(date0);
-  // console.log('isoDate0: ', isoDate0);
+  var oDate0 = makeDateObj(date0);
 
   var date1 = '1984-10-26'; // Terminator released
-  // console.log('date1: ', date1);
-  var isoDate1 = makeISODate(date1);
-  // console.log('isoDate1: ', isoDate1);
+  var oDate1 = makeDateObj(date1);
 
   var date2 = 'Aug 29 1997'; // Judgment Day
-  // console.log('date2: ', date2);
-  var isoDate2 = makeISODate(date2);
-  // console.log('isoDate2: ', isoDate2);
+  var oDate2 = makeDateObj(date2);
 
   var date3 = 'July 3, 1991'; // Terminator 2: Judgment Day released
-  // console.log('date3: ', date3);
-  var isoDate3 = makeISODate(date3);
-  // console.log('isoDate3: ', isoDate3);
+  var oDate3 = makeDateObj(date3);
 
   var $lorem = $('<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore molestias amet nihil saepe, molestiae, aliquid recusandae in eaque facilis nobis minima fuga voluptate architecto corporis ullam autem est, quia incidunt!</p>');
 
@@ -99,26 +103,26 @@ function zeroPad (num, numZeros) {
 
   var elapsed = function (a, b, f) {
     // elapsed
-    console.log('START elapsed');
+    console.log( 'START elapsed' );
 
     if (a===b) {
-      console.log('same date, no time elapsed');
+      console.log( 'same date, no time elapsed' );
       t = 0;
     } else if (a>b) {
-      console.log('since b, X time elapsed until a');
+      console.log( 'since b, X time elapsed until a' );
       t = a-b;
     } else {
-      console.log('since a, X time elapsed until b');
+      console.log( 'since a, X time elapsed until b' );
       t = b-a;
     }
-    console.log('t: ', t);
+    console.log( 't: ', t );
 
     ints['yy'] = t/divs.yy;
     abso['yy'] = Math.trunc( ints.yy );
     rems['yy'] = t % divs.yy;
-    // console.log('ints.yy: ', ints.yy);
-    // console.log('abso.yy: ', abso.yy);
-    // console.log('rems.yy: ', rems.yy);
+    // console.log( 'ints.yy: ', ints.yy );
+    // console.log( 'abso.yy: ', abso.yy );
+    // console.log( 'rems.yy: ', rems.yy );
 
     ints['mo'] = rems.yy/divs.mo;
     abso['mo'] = Math.trunc( ints.mo );
@@ -150,22 +154,22 @@ function zeroPad (num, numZeros) {
 
     var remainder = t % 1000;
 
-    // console.log('ints: ', ints);
-    // console.log('abso: ', abso);
-    // console.log('rems: ', rems);
-    // console.log('remainder: ', remainder);
-    // console.log('****************************');
+    // console.log( 'ints: ', ints );
+    // console.log( 'abso: ', abso );
+    // console.log( 'rems: ', rems );
+    // console.log( 'remainder: ', remainder );
+    // console.log( '****************************' );
 
     var time = {};
 
     time['ms'] = ''+t+'';
-    // console.log('time.ms: ', time.ms);
+    // console.log( 'time.ms: ', time.ms );
 
     time['pretty'] = '';
     time['raw'] = {};
 
-    // console.log('abso: ', abso);
-    // console.log('Object.keys(abso).length: ', Object.keys(abso).length);
+    // console.log( 'abso: ', abso );
+    // console.log( 'Object.keys(abso).length: ', Object.keys(abso).length );
     var holder = [];
     var holderRaw = {};
     var keys = Object.keys(abso);
@@ -179,16 +183,16 @@ function zeroPad (num, numZeros) {
         $('.datetime-display.raw').find('#result'+keys[i]).val('00');
         // $('.datetime-display.raw').find('#result'+keys[i]).hide();
       }
-      // console.log('Object.keys(abso)[i]', Object.keys(abso)[i]);
-      // console.log('holder: ', holder);
-      // console.log('holderRaw: ', holderRaw);
+      // console.log( 'Object.keys(abso)[i]', Object.keys(abso)[i] );
+      // console.log( 'holder: ', holder );
+      // console.log( 'holderRaw: ', holderRaw );
     };
     if (holder.length < 1) {
-      // console.log('holder.length < 1');
+      // console.log( 'holder.length < 1' );
       time.pretty = msg.same;
       time.raw = msg.same;
     } else {
-      // console.log('holder.length > 0');
+      // console.log( 'holder.length > 0' );
       time.pretty = holder.toString().replace(/,/g, ' ');
       time.raw = holderRaw;
     }
@@ -200,9 +204,9 @@ function zeroPad (num, numZeros) {
     //   +abso.mm+'m '+
     //   +abso.ss+'s '+
     //   +abso.ms+'ms' ;
-    console.log('time: ', time);
-    // console.log('time.pretty: ', time.pretty);
-    // console.log('time.ms: ', time.ms);
+    console.log( 'time: ', time );
+    // console.log( 'time.pretty: ', time.pretty );
+    // console.log( 'time.ms: ', time.ms );
 
     $resultms.val(time.ms);
     $result.val(time.pretty);
@@ -213,58 +217,58 @@ function zeroPad (num, numZeros) {
 
   var reset = function (params) {
     // reset fields
-    console.log('START reset');
+    console.log( 'START reset' );
 
     if (!params || params.target) {
       // if optional params is undefined or an event target
-      params = [isoDate0,isoNow];
+      params = [oDate0.isodate,oNow.isodate];
     } else {
       // if optional params are passed
       params = params;
-      console.log('params.length: ', params.length);
+      console.log( 'params.length: ', params.length );
       if (params.length < 2) {
         params[1] = params[0];
       }
     }
-    console.log('params: ', params);
+    console.log( 'params: ', params );
 
     $start.val( params[0] );
     $end.val( params[1] );
     
     calc();
-    console.log('######################');
+    console.log( '######################' );
 
   };
 
   var clear = function () {
     // clear fields
-    console.log('START clear');
+    console.log( 'START clear' );
 
-    reset([isoDate0]);
+    reset([oDate0.isodate]);
 
   };
 
   var autofill = function () {
     // autofill fields
-    console.log('START autofill');
+    console.log( 'START autofill' );
 
     reset();
 
-    $start.val(isoDate1);
-    $end.val(isoDate2);
+    $start.val(oDate1.isodate);
+    $end.val(oDate2.isodate);
     calc();
 
   };
 
   var add = function () {
     // add fields
-    console.log('START add');
+    console.log( 'START add' );
 
   };
 
   var calc = function () {
     // calculate
-    console.log('START calc');
+    console.log( 'START calc' );
 
     if ($start.val()) {
       // console.log( '$start: ', $start.val() );
@@ -274,7 +278,6 @@ function zeroPad (num, numZeros) {
       if ($end.val()) {
         // console.log( '$end: ', $end.val() );
         var end = new Date( $end.val() ).getTime();
-        // console.log( 'end: ', end );
 
         elapsed(start, end, null);
 
