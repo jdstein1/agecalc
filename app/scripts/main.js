@@ -72,23 +72,18 @@ $(function() {
   var $btnClear = $('.btn#clear');
   var $btnCalc = $('.btn#calc');
 
-  $('#calendar_time_start').hide();
-  $('#help_time_start').hide();
-  $('#calendar_time_end').hide();
-  $('#help_time_end').hide();
-
   var ints = {};
   var abso = {};
   var rems = {};
   var divs = {
-    ms:1,                      // 1 ms/ms
-    ss:1000,                   // 1000 ms/ses
-    mm:1000*60,                // 60,000 ms/min
-    hh:1000*60*60,             // 3,600,000 ms/hr
-    dd:1000*60*60*24,          // 86,400,000 ms/day
-    wk:1000*60*60*24*7,        // 604,800,000 ms/wk
-    mo:1000*60*60*24*(365/12), // 2,628,000,000 ms/mo
-    yy:1000*60*60*24*365       // 31,536,000,000 ms/yr
+    ms:1,                           // 1 ms/ms
+    ss:1000,                        // 1000 ms/ses
+    mm:1000*60,                     // 60,000 ms/min
+    hh:1000*60*60,                  // 3,600,000 ms/hr
+    dd:1000*60*60*24,               // 86,400,000 ms/day
+    wk:1000*60*60*24*7,             // 604,800,000 ms/wk
+    mo:1000*60*60*24*(365.2425/12), // 2,628,000,000 ms/mo
+    yy:1000*60*60*24*365.2425       // 31,536,000,000 ms/yr
   };
 
 // http://stackoverflow.com/questions/1267283/how-can-i-create-a-zerofilled-value-using-javascript
@@ -281,15 +276,7 @@ function zeroPad (num, numZeros) {
         var end = new Date( $end.val() ).getTime();
         // console.log( 'end: ', end );
 
-        // var resultms = end - start;
-        // console.log( 'resultms: ', resultms );
-        // $resultms.val(resultms);
-
         elapsed(start, end, null);
-
-        // var result = end - start;
-        // console.log( 'result: ', result );
-        // $result.val(result);
 
       }
       

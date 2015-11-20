@@ -2,7 +2,7 @@
 <html class="no-js" lang="">
   <head>
     <meta charset="utf-8">
-    <title>agecalc</title>
+    <title>AgeCalc</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,50 +20,66 @@
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
-    
+
   </head>
   <body>
+
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
     
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="index.html">Home</a></li>
-          <li class="active"><a href="about.html">About</a></li>
-          <li><a href="test.html">Test</a></li>
-        </ul>
-        <h3 class="text-muted">agecalc</h3>
-      </div>
+    <div class="container-fluid">
 
-      <div class="row marketing">
+      <header id="header"></header>
+
+      <div class="row container center-block">
+
         <div class="col-lg-6">
+
+          <h3>About</h3>
 
           <p class="lead">Use AgeCalc to compare dates and learn time spans.</p>
 
-          <h4><a href="https://html5boilerplate.com/">HTML5 Boilerplate</a></h4>
-          <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
+          <p>Computers count time in milliseconds since the dawn of 1970.  JavaScript has built-in methods to get the date and time that correspond to that number of milliseconds.  Translating milliseconds to a time span based upon the Gregorian Calendar is, however, not simple math.  A year is not 365 days: it is 365 days for three years and then 366 days (give or take some leap seconds).  A month is not 4 weeks, nor is it 30 days: it is exactly 4 weeks once a year in 3 out of 4 years, otherwise it is 30 days, sometimes 31 days, and 29 days 1/4 of 1/12 of the time.</p>
 
-          <h4><a href="http://libsass.org/">Sass</a></h4>
-          <p>Sass is a mature, stable, and powerful professional grade CSS extension language.</p>
-          
+          <p>AgeCalc could use a third party library to compare dates and calculate time spans with pinpoint accuracy.  Instead, AgeCalc will develop that functionality over time.  At the moment it uses over-simplified math to produce approximate time span lengths.  AgeCalc could use these approximate numbers to display human-friendly, natural-language descriptions for time spans.  This may be added in the future.</p>
 
-          <h4><a href="http://getbootstrap.com/">Bootstrap</a></h4>
-          <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
-
-          <h4><a href="http://modernizr.com/">Modernizr</a></h4>
-          <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
-          
         </div>
+
       </div>
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+      <div class="row container center-block">
+
+        <div class="col-lg-6">
+
+          <h3>Resources</h3>
+
+          <p>AgeCalc uses the following third party libraries:</p>
+
+          <div class="well">
+
+            <h4><a href="https://html5boilerplate.com/">HTML5 Boilerplate</a></h4>
+            <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
+
+            <h4><a href="http://libsass.org/">Sass</a></h4>
+            <p>Sass is a mature, stable, and powerful professional grade CSS extension language.</p>
+            
+
+            <h4><a href="http://getbootstrap.com/">Bootstrap</a></h4>
+            <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
+
+            <h4><a href="http://modernizr.com/">Modernizr</a></h4>
+            <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
+            
+          </div>
+
+        </div>
+
       </div>
+
+      <footer id="footer"></footer>
+
     </div>
-    
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -72,7 +88,6 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    
     <!-- build:js(.) scripts/plugins.js -->
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
@@ -87,7 +102,6 @@
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
     <!-- endbuild -->
-    
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
