@@ -1,10 +1,78 @@
 .margin-t-05 {margin-top: 0.5em;}
 .margin-t-10 {margin-top: 1.0em;}
 .datetime-display {
-//  .input-group-addon {
-//    max-width: 2em;
-//    white-space: nowrap;
-//    text-overflow: ellipsis;
-//    overflow: hidden;
-//  }
+  display:block;
+  td {
+    color:#333;background:#ccc; position: relative; 
+    /*border-collapse: separate; border: 1px grey solid;*/
+  }
+  td:first-of-type {border-radius: 0.5em 0 0 0.5em;}
+  td:last-of-type {border-radius: 0 0.5em 0.5em 0;}
+  .ac-val, .ac-key {
+    white-space: nowrap;
+    /* text-overflow: ellipsis;*/
+    overflow: hidden;
+    /*float: left;*/
+    text-align: right;
+    /*display:inline-block;*/
+    /*padding: 0;*/
+    /*text-align: right;*/
+    /*color:#999;background:#333;*/
+    background: transparent;
+    border:0;
+  }
+  .ac-val+.ac-key {}
+  .ac-val {
+    position: relative;
+    width: 100%;
+    color:#f00;
+    /*width: 100%;*/
+    font-size: 1.75em;
+    padding-right: 1.5em;
+    /*padding-top: 0.5em;*/
+    /*font-family: 'Orbitron', monospace, sans-serif;*/
+    /*font-family: 'Roboto', sans-serif;*/
+    /*font-family: 'Ubuntu Mono', monospace;*/
+    /*font-family: 'PT Mono', monospace;*/
+    font-family: 'Exo', sans-serif;
+    /*font-family: 'Oswald', sans-serif;*/
+    /*font-family: 'Ek Mukta', sans-serif;*/
+    /*font-family: 'Quantico', sans-serif;*/
+  }
+  .ac-key {
+    position: absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:auto;
+    padding:0 1em;
+    border-right: 1px solid grey;
+    /*line-height: 1;*/
+    /*padding-left: 0.25em;*/
+    /*padding-right: 0.25em;*/
+    i {
+      /*display: none;*/
+      font-style: normal;
+    }
+  }
+}
+.jumbotron {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7aafcc+0,ccecff+100 */
+  background: rgb(127,191,255); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(127,191,255,1) 0%, rgba(204,236,255,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(127,191,255,1) 0%,rgba(204,236,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(127,191,255,1) 0%,rgba(204,236,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7aafcc', endColorstr='#ccecff',GradientType=0 ); /* IE6-9 */
+}
+#icon {
+  .icon-box {
+    position:relative;
+    /*background:#fed;*/
+    font-size:2em;
+  }
+  .icon-words {font-size:1.8em;}
+  .icon-glyph {font-size:1em; margin:0 -0.4em;}
+}
+.shadow-bottom {
+  box-shadow:0 0.25em 1em 0 rgba(0,0,0,0.25);
 }

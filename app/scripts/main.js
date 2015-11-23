@@ -7,25 +7,29 @@ $(function() {
   var makeDateObj = function (d) {
     console.log( 'START makeDateObj d: ', d );
     // console.log( '(new Date(d)).toJSON(): ', (new Date(d)).toJSON() );
-    var t = {};
-    t['ms'] = Date.parse(d);
-    // console.log( 't.ms: ', t.ms );
-    t['iso'] = (new Date(t.ms)).toJSON();
-    // console.log( 't.iso: ', t.iso );
-    // console.log( 't.iso.split(\'T\'): ', t.iso.split('T') );
-    t['isodate'] = t.iso.slice(0,10);
-    // console.log( 't.isodate: ', t.isodate );
-    t['isotime'] = t.iso.slice(11);
-    // console.log( 't.isotime: ', t.isotime );
-    t['local'] = new Date(t.iso); // t.local time
-    // console.log( 't.local: ', t.local );
-    // t['iso'] = t.local.toISOString();
-    // console.log( 't.iso: ', t.iso );
-    t['utc'] = t.local.toUTCString();
-    // console.log( 't.utc: ', t.utc );
-    console.log( 't: ', t );
-    return t;
+    var x = {};
+    x['ms'] = Date.parse(d);
+    // console.log( 'x.ms: ', x.ms );
+    x['iso'] = (new Date(x.ms)).toJSON();
+    // console.log( 'x.iso: ', x.iso );
+    // console.log( 'x.iso.split(\'T\'): ', x.iso.split('T') );
+    x['isodate'] = x.iso.slice(0,10);
+    // console.log( 'x.isodate: ', x.isodate );
+    x['isotime'] = x.iso.slice(11);
+    // console.log( 'x.isotime: ', x.isotime );
+    x['local'] = new Date(x.iso); // x.local time
+    // console.log( 'x.local: ', x.local );
+    // x['iso'] = x.local.toISOString();
+    // console.log( 'x.iso: ', x.iso );
+    x['utc'] = x.local.toUTCString();
+    // console.log( 'x.utc: ', x.utc );
+    console.log( 'x: ', x );
+    return x;
   };
+
+  // set up default dates
+  // all formats allowed
+  // makeDateObj func wil convert them
 
   var now = new Date();
   var oNow = makeDateObj(now);
@@ -51,7 +55,7 @@ $(function() {
   msg['judg'] = "Judgement Day approaches...";
   msg['diff'] = {};
   msg['diff']['big'] = "Those dates are pretty far apart...";
-  msg['diff']['small'] = "Not much time betwen those dats...";
+  msg['diff']['small'] = "Not much time betwen those dates...";
 
   var $header = $('#header');
   $header.load( "includes/header.html", function() {
@@ -61,6 +65,11 @@ $(function() {
   var $footer = $('#footer');
   $footer.load( "includes/footer.html", function() {
     console.log( "footer loaded..." );
+  });
+
+  var $icon = $('#icon');
+  $icon.load( "includes/icon.html", function() {
+    console.log( "icon loaded..." );
   });
 
   // inputs
@@ -76,19 +85,19 @@ $(function() {
   var $btnClear = $('.btn#clear');
   var $btnCalc = $('.btn#calc');
 
-  var ints = {};
-  var abso = {};
-  var rems = {};
+  var ints = {}; // integer time span
+  var abso = {}; // absolute time spans
+  var rems = {}; // remainder time spans
   var divs = {
     ms:1,                           // 1 ms/ms
-    ss:1000,                        // 1000 ms/ses
-    mm:1000*60,                     // 60,000 ms/min
-    hh:1000*60*60,                  // 3,600,000 ms/hr
-    dd:1000*60*60*24,               // 86,400,000 ms/day
-    wk:1000*60*60*24*7,             // 604,800,000 ms/wk
-    mo:1000*60*60*24*(365.2425/12), // 2,628,000,000 ms/mo
-    yy:1000*60*60*24*365.2425       // 31,536,000,000 ms/yr
-  };
+    s:1000,                        // 1000 ms/ses
+    m:1000*60,                     // 60,000 ms/min
+    h:1000*60*60,                  // 3,600,000 ms/hr
+    d:1000*60*60*24,               // 86,400,000 ms/day
+    w:1000*60*60*24*7,             // 604,800,000 ms/wk
+    M:1000*60*60*24*(365.2425/12), // 2,628,000,000 ms/mo
+    y:1000*60*60*24*365.2425       // 31,536,000,000 ms/yr
+  }; // time span divisions
 
 // http://stackoverflow.com/questions/1267283/how-can-i-create-a-zerofilled-value-using-javascript
 function zeroPad (num, numZeros) {
@@ -117,40 +126,37 @@ function zeroPad (num, numZeros) {
     }
     console.log( 't: ', t );
 
-    ints['yy'] = t/divs.yy;
-    abso['yy'] = Math.trunc( ints.yy );
-    rems['yy'] = t % divs.yy;
-    // console.log( 'ints.yy: ', ints.yy );
-    // console.log( 'abso.yy: ', abso.yy );
-    // console.log( 'rems.yy: ', rems.yy );
+    ints['y'] = t/divs.y;
+    abso['y'] = Math.trunc( ints.y );
+    rems['y'] = t % divs.y;
 
-    ints['mo'] = rems.yy/divs.mo;
-    abso['mo'] = Math.trunc( ints.mo );
-    rems['mo'] = rems.yy % divs.mo;
+    ints['M'] = rems.y/divs.M;
+    abso['M'] = Math.trunc( ints.M );
+    rems['M'] = rems.y % divs.M;
 
-    ints['wk'] = rems.mo/divs.wk;
-    abso['wk'] = Math.trunc( ints.wk );
-    rems['wk'] = rems.mo % divs.wk;
+    ints['w'] = rems.M/divs.w;
+    abso['w'] = Math.trunc( ints.w );
+    rems['w'] = rems.M % divs.w;
 
-    ints['dd'] = rems.wk/divs.dd;
-    abso['dd'] = Math.trunc( ints.dd );
-    rems['dd'] = rems.wk % divs.dd;
+    ints['d'] = rems.w/divs.d;
+    abso['d'] = Math.trunc( ints.d );
+    rems['d'] = rems.w % divs.d;
 
-    ints['hh'] = rems.dd/divs.hh;
-    abso['hh'] = Math.trunc( ints.dd );
-    rems['hh'] = rems.dd % divs.hh;
+    ints['h'] = rems.d/divs.h;
+    abso['h'] = Math.trunc( ints.d );
+    rems['h'] = rems.d % divs.h;
 
-    ints['mm'] = rems.hh/divs.mm;
-    abso['mm'] = Math.trunc( ints.hh );
-    rems['mm'] = rems.hh % divs.mm;
+    ints['m'] = rems.h/divs.m;
+    abso['m'] = Math.trunc( ints.h );
+    rems['m'] = rems.h % divs.m;
 
-    ints['ss'] = rems.mm/divs.ss;
-    abso['ss'] = Math.trunc( ints.mm );
-    rems['ss'] = rems.mm % divs.ss;
+    ints['s'] = rems.m/divs.s;
+    abso['s'] = Math.trunc( ints.m );
+    rems['s'] = rems.m % divs.s;
 
-    ints['ms'] = rems.ss/divs.ms;
-    abso['ms'] = Math.trunc( ints.ss );
-    rems['ms'] = rems.ss % divs.ms;
+    ints['ms'] = rems.s/divs.ms;
+    abso['ms'] = Math.trunc( ints.s );
+    rems['ms'] = rems.s % divs.ms;
 
     var remainder = t % 1000;
 
@@ -176,16 +182,31 @@ function zeroPad (num, numZeros) {
     for (var i = 0; i < keys.length; i++) {
 
       if (abso[keys[i]]>0) {
-        holder.push(zeroPad(abso[keys[i]],2)+''+keys[i]);
-        holderRaw[keys[i]] = zeroPad(abso[keys[i]],2);
-        $('.datetime-display.raw').find('#result'+keys[i]).val( zeroPad(abso[keys[i]],2) );
+
+        if (keys[i]==='ms') {
+          holder.push(zeroPad(abso[keys[i]],4)+''+keys[i]);
+          holderRaw[keys[i]] = zeroPad(abso[keys[i]],4);
+          $('.datetime-display.raw').find('#result'+keys[i]).html( zeroPad(abso[keys[i]],4) );
+        } else {
+          holder.push(zeroPad(abso[keys[i]],2)+''+keys[i]+' :');
+          holderRaw[keys[i]] = zeroPad(abso[keys[i]],2);
+          $('.datetime-display.raw').find('#result'+keys[i]).html( zeroPad(abso[keys[i]],2) );
+        }
+
       } else {
-        $('.datetime-display.raw').find('#result'+keys[i]).val('00');
-        // $('.datetime-display.raw').find('#result'+keys[i]).hide();
+
+        if (keys[i]==='ms') {
+          $('.datetime-display.raw').find('#result'+keys[i]).html('0000');
+          // $('.datetime-display.raw').find('#result'+keys[i]).hide();
+        } else {
+          $('.datetime-display.raw').find('#result'+keys[i]).html('00');
+          // $('.datetime-display.raw').find('#result'+keys[i]).hide();
+        }
+
       }
-      // console.log( 'Object.keys(abso)[i]', Object.keys(abso)[i] );
-      // console.log( 'holder: ', holder );
-      // console.log( 'holderRaw: ', holderRaw );
+      console.log( 'Object.keys(abso)[i]', Object.keys(abso)[i] );
+      console.log( 'holder: ', holder );
+      console.log( 'holderRaw: ', holderRaw );
     };
     if (holder.length < 1) {
       // console.log( 'holder.length < 1' );
@@ -196,13 +217,13 @@ function zeroPad (num, numZeros) {
       time.pretty = holder.toString().replace(/,/g, ' ');
       time.raw = holderRaw;
     }
-    // time.pretty = +abso.yy+'y '+
-    //   +abso.mo+'M '+
-    //   +abso.wk+'w '+
-    //   +abso.dd+'d '+
-    //   +abso.hh+'h '+
-    //   +abso.mm+'m '+
-    //   +abso.ss+'s '+
+    // time.pretty = +abso.y+'y '+
+    //   +abso.M+'M '+
+    //   +abso.w+'w '+
+    //   +abso.d+'d '+
+    //   +abso.h+'h '+
+    //   +abso.m+'m '+
+    //   +abso.s+'s '+
     //   +abso.ms+'ms' ;
     console.log( 'time: ', time );
     // console.log( 'time.pretty: ', time.pretty );
