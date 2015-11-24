@@ -17,9 +17,6 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    <!-- build:js scripts/vendor/modernizr.js -->
-    <!-- <script src="bower_components/modernizr/modernizr.js"></script> -->
-    <!-- endbuild -->
     
   </head>
   <body>
@@ -42,144 +39,107 @@
 
         <div class="well well-sm">
 
-          <div class="row">
+          <div class="intervals">
+            <div class="row interval" id="interval_00">
+              <div class="col-sm-6">
+                <div class="input-group">
+                  <span class="input-group-addon text-muted" id="">From</span>
+                  <input type="date" class="form-control" name="time_start" id="time_start" value="">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" id="">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="input-group">
+                  <span class="input-group-addon text-muted" id="">Until</span>
+                  <input type="date" class="form-control" name="time_end" id="time_end" value="">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" id="">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+<div class="margin-t-05">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#milliseconds" aria-controls="milliseconds" role="tab" data-toggle="tab">Milliseconds</a></li>
+    <li role="presentation" class=""><a href="#pretty" aria-controls="pretty" role="tab" data-toggle="tab">Pretty</a></li>
+    <li role="presentation" class=""><a href="#full" aria-controls="full" role="tab" data-toggle="tab">Raw</a></li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="milliseconds">
+      <!-- <p>Milliseconds</p> -->
+      <div class="datetime-display milli">
+        <div class="input-group">
+          <input type="text" class="form-control text-center" name="resultms" id="resultms" value="">
+          <span class="input-group-addon" id="">ms</span>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="pretty">
+      <!-- <p>Pretty</p> -->
+      <div class="datetime-display pretty">
+        <div class="input-group">
+          <input type="text" class="form-control text-center" name="result" id="result" value="">
+          <span class="input-group-addon" id="">time</span>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="full">
+      <!-- <p>Raw</p> -->
+      <div class="datetime-display full">
+        <div id="table"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <!-- <div class="row margin-t-05">
             <div class="col-sm-4">
-              <!-- <label for="time_start">Start</label> -->
               <div class="input-group">
-                <span class="input-group-addon text-muted" id="">From</span>
-                <input type="date" class="form-control" name="time_start" id="time_start" value="">
-                <!-- <span class="input-group-addon glyphicon glyphicon-calendar" id="calendar_time_start"></span> -->
-                <!-- <span class="input-group-addon" id="help_time_start">?</span> -->
-              </div>
-              <!-- <label for="time_end">End</label> -->
-              <div class="input-group">
-                <span class="input-group-addon text-muted" id="">Until</span>
-                <input type="date" class="form-control" name="time_end" id="time_end" value="">
-                <!-- <span class="input-group-addon glyphicon glyphicon-calendar" id="calendar_time_end"></span> -->
-                <!-- <span class="input-group-addon" id="help_time_end">?</span> -->
-              </div>
-            </div>
-            <div class="col-sm-2">
-              <!-- <div class="btn-group"> -->
-                <button type="button" class="btn btn-lg btn-block btn-primary margin-t-05" id="calc">
-                  <span class="glyphicon glyphicon-random"></span>
-                </button>
-              <!-- </div> -->
-            </div>
-            <div class="col-sm-6">
-              <div class="input-group">
-                <!-- <span class="input-group-addon" id="">Elapsed</span> -->
-                <!-- <label for="resultms">Milliseconds</label> -->
                 <input type="text" class="form-control text-center" name="resultms" id="resultms" value="">
                 <span class="input-group-addon" id="">ms</span>
               </div>
-              <!-- <div class="input-group"> -->
-                <!-- <span class="input-group-addon" id="">Elapsed</span> -->
-                <!-- <label for="result">Human Time</label> -->
-                <input type="text" class="form-control text-center" name="result" id="result" value="">
-                <!-- <span class="input-group-addon" id=""></span> -->
-              <!-- </div> -->
             </div>
-            <!-- <div class="col-sm-2">
-              <div class="btn-group">
-                <button type="button" class="btn btn-success" id="add">
-                  <span class="glyphicon glyphicon-plus"></span>
-                </button>
-                <button type="button" class="btn btn-info" id="auto">
-                  <span class="glyphicon glyphicon-check"></span>
-                </button>
+            <div class="col-sm-8">
+              <div class="input-group">
+                <input type="text" class="form-control text-center" name="result" id="result" value="">
+                <span class="input-group-addon" id="">time</span>
               </div>
-              <div class="btn-group">
-                <button type="button" class="btn btn-warning" id="reset">
-                  <span class="glyphicon glyphicon-repeat" style="transform:scale(-1, 1);"></span>
-                </button>
-                <button type="button" class="btn btn-danger" id="clear">
-                  <span class="glyphicon glyphicon-remove"></span>
-                </button>
-              </div>
-            </div> -->
-          </div>
+            </div>
+          </div> -->
 
-          <div class="row margin-t-05 datetime-display raw">
-            <!-- <div class="col-sm-12"> -->
-              <!-- <div class="input-group input-group-lg btn-block"> -->
-<table width="auto">
-  <tbody>
-    <tr>
-      <td>
-        <div class="ac-val" name="resulty" id="resulty" value=""></div>
-        <!-- <input type="text" placeholder="xx" class="ac-val" name="resulty" id="resulty" value=""> -->
-        <span class="ac-key text-muted" id=""><i>yy</i></span>
-      </td>
-      <td>
-        <div class="ac-val" name="resultM" id="resultM" value=""></div>
-        <!-- <input type="text" placeholder="xx" class="ac-val" name="resultM" id="resultM" value=""> -->
-        <span class="ac-key text-muted" id=""><i>MM</i></span>
-      </td>
-      <td>
-        <div class="ac-val" name="resultw" id="resultw" value=""></div>
-        <!-- <input type="text" placeholder="xx" class="ac-val" name="resultw" id="resultw" value=""> -->
-        <span class="ac-key text-muted" id=""><i>ww</i></span>
-      </td>
-      <td>
-        <div class="ac-val" name="resultd" id="resultd" value=""></div>
-        <!-- <input type="text" placeholder="xx" class="ac-val" name="resultd" id="resultd" value=""> -->
-        <span class="ac-key text-muted" id=""><i>dd</i></span>
-      </td>
-      <td>
-        <div class="ac-val" name="resulth" id="resulth" value=""></div>
-        <!-- <input type="text" placeholder="xx" class="ac-val" name="resulth" id="resulth" value=""> -->
-        <span class="ac-key text-muted" id=""><i>hh</i></span>
-      </td>
-      <td>
-        <div class="ac-val" name="resultm" id="resultm" value=""></div>
-        <!-- <input type="text" placeholder="xx" class="ac-val" name="resultm" id="resultm" value=""> -->
-        <span class="ac-key text-muted" id=""><i>mm</i></span>
-      </td>
-      <td>
-        <div class="ac-val" name="results" id="results" value=""></div>
-        <!-- <input type="text" placeholder="xx" class="ac-val" name="results" id="results" value=""> -->
-        <span class="ac-key text-muted" id=""><i>ss</i></span>
-      </td>
-      <td>
-        <div class="ac-val" name="resultms" id="resultms" value=""></div>
-        <!-- <input type="text" placeholder="xxxx" class="ac-val" name="resultms" id="resultms" value=""> -->
-        <span class="ac-key text-muted" id=""><i>ms</i></span>
-      </td>
-    </tr>
-  </tbody>
-</table>
-              <!-- </div> -->
-            <!-- </div> -->
-          </div>
+          <!-- <div class="row margin-t-05 margin-b-05 datetime-display full">
+            <div class="col-sm-12">
+              <div id="table"></div>
+            </div>
+          </div> -->
 
-        </div>
-
-        <div class="well well-sm">
-
-          <div class="row">
-            <div class="col-sm-3">
-              <button type="button" class="btn btn-block btn-info" id="auto">
+          <div class="row margin-t-05">
+            <div class="col-sm-6">
+              <button type="button" class="btn btn-info" id="auto">
                 Autofill
                 <span class="glyphicon glyphicon-check"></span>
               </button>
-            </div>
-            <div class="col-sm-3">
-              <button type="button" class="btn btn-block btn-success" id="add">
-                Add
-                <span class="glyphicon glyphicon-plus"></span>
-              </button>
-            </div>
-            <div class="col-sm-3">
-              <button type="button" class="btn btn-block btn-warning" id="reset">
+              <button type="button" class="btn btn-warning" id="reset">
                 Reset
                 <span class="glyphicon glyphicon-repeat" style="transform:scale(-1, 1);"></span>
               </button>
-            </div>
-            <div class="col-sm-3">
-              <button type="button" class="btn btn-block btn-danger" id="clear">
+              <button type="button" class="btn btn-danger" id="clear">
                 Clear
                 <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </div>
+            <div class="col-sm-6 text-right">
+              <button type="button" class="btn btn-success" id="add">
+                Add Interval
+                <span class="glyphicon glyphicon-plus"></span>
               </button>
             </div>
           </div>
@@ -187,6 +147,14 @@
         </div>
 
       </form>
+
+      <!-- <div class="row">
+        <div class="col-sm-12">
+          <div id="buttons"></div>
+        </div>
+      </div> -->
+
+      <hr>
 
       <div class="lorem"></div>
       <div class="lorem"></div>
@@ -201,7 +169,7 @@
     
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <!-- <script src="/bower_components/modernizr/modernizr.js"></script> -->
+    <script src="/bower_components/modernizr/modernizr.js"></script>
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
@@ -218,7 +186,7 @@
     <!-- <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script> -->
     <!-- <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script> -->
     <!-- <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script> -->
-    <!-- <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script> -->
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
     <!-- endbuild -->
     
     <!-- build:js scripts/main.js -->

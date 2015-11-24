@@ -4,6 +4,31 @@ $(function() {
 
   var t = 0;
 
+  var $header = $('#header');
+  $header.load( "includes/header.html", function() {
+    console.log( "header loaded..." );
+  });
+
+  var $footer = $('#footer');
+  $footer.load( "includes/footer.html", function() {
+    console.log( "footer loaded..." );
+  });
+
+  var $table = $('#table');
+  $table.load( "includes/table.html", function() {
+    console.log( "table loaded..." );
+  });
+
+  var $buttons = $('#buttons');
+  // $buttons.load( "includes/buttons.html", function() {
+  //   console.log( "buttons loaded..." );
+  // });
+
+  var $icon = $('#icon');
+  $icon.load( "includes/icon.html", function() {
+    console.log( "icon loaded..." );
+  });
+
   var makeDateObj = function (d) {
     console.log( 'START makeDateObj d: ', d );
     // console.log( '(new Date(d)).toJSON(): ', (new Date(d)).toJSON() );
@@ -23,7 +48,7 @@ $(function() {
     // console.log( 'x.iso: ', x.iso );
     x['utc'] = x.local.toUTCString();
     // console.log( 'x.utc: ', x.utc );
-    console.log( 'x: ', x );
+    // console.log( 'x: ', x );
     return x;
   };
 
@@ -57,21 +82,6 @@ $(function() {
   msg['diff']['big'] = "Those dates are pretty far apart...";
   msg['diff']['small'] = "Not much time betwen those dates...";
 
-  var $header = $('#header');
-  $header.load( "includes/header.html", function() {
-    console.log( "header loaded..." );
-  });
-
-  var $footer = $('#footer');
-  $footer.load( "includes/footer.html", function() {
-    console.log( "footer loaded..." );
-  });
-
-  var $icon = $('#icon');
-  $icon.load( "includes/icon.html", function() {
-    console.log( "icon loaded..." );
-  });
-
   // inputs
   var $start = $('#time_start');
   var $end = $('#time_end');
@@ -98,6 +108,16 @@ $(function() {
     M:1000*60*60*24*(365.2425/12), // 2,628,000,000 ms/mo
     y:1000*60*60*24*365.2425       // 31,536,000,000 ms/yr
   }; // time span divisions
+  var labs = {
+    ms:"milliseconds",
+    s:"seconds",
+    m:"minutes",
+    h:"hours",
+    d:"days",
+    w:"weeks",
+    M:"months",
+    y:"years"
+  }; // time span labels
 
 // http://stackoverflow.com/questions/1267283/how-can-i-create-a-zerofilled-value-using-javascript
 function zeroPad (num, numZeros) {
@@ -172,7 +192,7 @@ function zeroPad (num, numZeros) {
     // console.log( 'time.ms: ', time.ms );
 
     time['pretty'] = '';
-    time['raw'] = {};
+    time['full'] = {};
 
     // console.log( 'abso: ', abso );
     // console.log( 'Object.keys(abso).length: ', Object.keys(abso).length );
@@ -181,42 +201,50 @@ function zeroPad (num, numZeros) {
     var keys = Object.keys(abso);
     for (var i = 0; i < keys.length; i++) {
 
+      console.log('keys[i]: ', keys[i]);
+      console.log('abso: ', abso);
+      // console.log('abso(keys[i]): ', abso(keys[i]));
+
       if (abso[keys[i]]>0) {
-
         if (keys[i]==='ms') {
-          holder.push(zeroPad(abso[keys[i]],4)+''+keys[i]);
+          holder.push(zeroPad(abso[keys[i]],4)+' '+labs[keys[i]]+'');
           holderRaw[keys[i]] = zeroPad(abso[keys[i]],4);
-          $('.datetime-display.raw').find('#result'+keys[i]).html( zeroPad(abso[keys[i]],4) );
+          $('.datetime-display.full').find('#result'+keys[i]).html( zeroPad(abso[keys[i]],4) );
         } else {
-          holder.push(zeroPad(abso[keys[i]],2)+''+keys[i]+' :');
+          holder.push(zeroPad(abso[keys[i]],2)+' '+labs[keys[i]]+' ');
           holderRaw[keys[i]] = zeroPad(abso[keys[i]],2);
-          $('.datetime-display.raw').find('#result'+keys[i]).html( zeroPad(abso[keys[i]],2) );
+          $('.datetime-display.full').find('#result'+keys[i]).html( zeroPad(abso[keys[i]],2) );
         }
-
       } else {
-
         if (keys[i]==='ms') {
-          $('.datetime-display.raw').find('#result'+keys[i]).html('0000');
-          // $('.datetime-display.raw').find('#result'+keys[i]).hide();
+          // holder.push('0000'+keys[i]+'');
+          // holderRaw[keys[i]] = 0000;
+          $('.datetime-display.full').find('#result'+keys[i]).html('0000');
+          // $('.datetime-display.full').find('#result'+keys[i]).hide();
         } else {
-          $('.datetime-display.raw').find('#result'+keys[i]).html('00');
-          // $('.datetime-display.raw').find('#result'+keys[i]).hide();
+          // holder.push('00'+keys[i]+'');
+          // holderRaw[keys[i]] = 00;
+          $('.datetime-display.full').find('#result'+keys[i]).html('00');
+          // $('.datetime-display.full').find('#result'+keys[i]).hide();
         }
-
       }
+
       console.log( 'Object.keys(abso)[i]', Object.keys(abso)[i] );
       console.log( 'holder: ', holder );
       console.log( 'holderRaw: ', holderRaw );
+
     };
+
     if (holder.length < 1) {
       // console.log( 'holder.length < 1' );
       time.pretty = msg.same;
-      time.raw = msg.same;
+      time.full = msg.same;
     } else {
       // console.log( 'holder.length > 0' );
       time.pretty = holder.toString().replace(/,/g, ' ');
-      time.raw = holderRaw;
+      time.full = holderRaw;
     }
+
     // time.pretty = +abso.y+'y '+
     //   +abso.M+'M '+
     //   +abso.w+'w '+
@@ -284,6 +312,12 @@ function zeroPad (num, numZeros) {
   var add = function () {
     // add fields
     console.log( 'START add' );
+    var $newinterval = $('<div class="row interval">$newinterval</div>');
+    var $colsm6 = $('<div class="col-sm-6">$colsm6</div>');
+    var $lastend = $('<div class="input-group">$lastend</div>');
+    var $newend = $('<div class="input-group">$newend</div>');
+    var $intervals = $('.intervals');
+    $newinterval.appendTo($intervals);
 
   };
 
@@ -316,7 +350,7 @@ function zeroPad (num, numZeros) {
   $btnAdd.on('click', add);
   $btnCalc.on('click', calc);
 
-  // $start.on('change', calc);
-  // $end.on('change', calc);
+  $start.on('change', calc);
+  $end.on('change', calc);
 
 });

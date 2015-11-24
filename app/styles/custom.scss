@@ -1,58 +1,97 @@
+/* Custom styles */
+
+/* .small {font-size:0.875em !important;} */
+
 .margin-t-05 {margin-top: 0.5em;}
+.margin-b-05 {margin-bottom: 0.5em;}
+
 .margin-t-10 {margin-top: 1.0em;}
-.datetime-display {
-  display:block;
-  td {
-    color:#333;background:#ccc; position: relative; 
-    /*border-collapse: separate; border: 1px grey solid;*/
+.margin-b-10 {margin-bottom: 1.0em;}
+
+.shadow-top {box-shadow:0 -0.25em 1em 0 rgba(0,0,0,0.25);}
+.shadow-bottom {box-shadow:0 0.25em 1em 0 rgba(0,0,0,0.25);}
+
+.nav-tabs+.tab-content {
+  margin:0.5em 0; padding:0.5em 0;
+}
+.tab-content{
+  .tab-pane {}
+}
+
+.datetime-display {}
+.datetime-display.milli {}
+.datetime-display.pretty {}
+.datetime-display.full {
+  th+td {
+    /* border-left:1px transparent solid; */
+    margin-left:1px;
   }
-  td:first-of-type {border-radius: 0.5em 0 0 0.5em;}
-  td:last-of-type {border-radius: 0 0.5em 0.5em 0;}
-  .ac-val, .ac-key {
-    white-space: nowrap;
-    /* text-overflow: ellipsis;*/
-    overflow: hidden;
-    /*float: left;*/
-    text-align: right;
-    /*display:inline-block;*/
-    /*padding: 0;*/
-    /*text-align: right;*/
-    /*color:#999;background:#333;*/
-    background: transparent;
-    border:0;
-  }
-  .ac-val+.ac-key {}
-  .ac-val {
+  td, th {
     position: relative;
-    width: 100%;
-    color:#f00;
-    /*width: 100%;*/
-    font-size: 1.75em;
-    padding-right: 1.5em;
-    /*padding-top: 0.5em;*/
-    /*font-family: 'Orbitron', monospace, sans-serif;*/
-    /*font-family: 'Roboto', sans-serif;*/
-    /*font-family: 'Ubuntu Mono', monospace;*/
-    /*font-family: 'PT Mono', monospace;*/
-    font-family: 'Exo', sans-serif;
-    /*font-family: 'Oswald', sans-serif;*/
-    /*font-family: 'Ek Mukta', sans-serif;*/
-    /*font-family: 'Quantico', sans-serif;*/
+    /* color: #999; */
+    /* background: #333; */
+    background: #ccc;
+    position: relative;
+    border-collapse: separate;
+    /* border-bottom: 2px grey solid; */
+    text-align: center;
+    vertical-align: baseline;
+    .ac-val, .ac-key {
+      position: relative;
+      width: auto;
+      white-space: nowrap;
+      /* text-overflow: ellipsis;*/
+      overflow: hidden;
+      /*float: left;*/
+      text-align: left;
+      vertical-align: baseline;
+      /*display:inline-block;*/
+      padding: 0;
+      /*padding:0 0.5em;*/
+      /*color:#999;background:#333;*/
+      background: transparent;
+      border:0;
+    }
+    .ac-val+.ac-key {}
+    .ac-val {
+      /*color:#0cf;*/
+      font-size: 3em;
+      text-align: right;
+      /*width: 100%;*/
+      /*padding-top: 0.5em;*/
+      /*font-family: 'Orbitron', monospace, sans-serif;*/
+      /*font-family: 'Roboto', sans-serif;*/
+      /*font-family: 'Ubuntu Mono', monospace;*/
+      /*font-family: 'PT Mono', monospace;*/
+      /*font-family: 'Exo', sans-serif;*/
+      /*font-family: 'Oswald', sans-serif;*/
+      /*font-family: 'Ek Mukta', sans-serif;*/
+      font-family: 'Quantico', sans-serif;
+    }
+    .ac-key {
+      /*text-align: left;*/
+      /*position: absolute;
+      top:auto;
+      right:0;
+      bottom:0.5em;
+      left:auto;*/
+      /*border-right: 1px solid white;*/
+      /*line-height: 1;*/
+      /*padding-left: 0.25em;*/
+      /*padding-right: 0.25em;*/
+      i {
+        /*display: none;*/
+        font-style: normal;
+      }
+    }
   }
-  .ac-key {
-    position: absolute;
-    top:0;
-    right:0;
-    bottom:0;
-    left:auto;
-    padding:0 1em;
-    border-right: 1px solid grey;
-    /*line-height: 1;*/
-    /*padding-left: 0.25em;*/
-    /*padding-right: 0.25em;*/
-    i {
-      /*display: none;*/
-      font-style: normal;
+  td {
+    border-radius: 3px 0 0 3px;
+  }
+  th {
+    border-radius: 0 3px 3px 0;
+    .ac-key {
+      border-right:0;
     }
   }
 }
@@ -72,7 +111,4 @@
   }
   .icon-words {font-size:1.8em;}
   .icon-glyph {font-size:1em; margin:0 -0.4em;}
-}
-.shadow-bottom {
-  box-shadow:0 0.25em 1em 0 rgba(0,0,0,0.25);
 }
