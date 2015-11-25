@@ -309,14 +309,15 @@ function zeroPad (num, numZeros) {
 
   };
 
+  var $newinterval = $('<div class="row interval">$newinterval</div>');
+  var $colsm6 = $('<div class="col-sm-6">$colsm6</div>');
+  var $lastend = $('<div class="input-group">$lastend</div>');
+  var $newend = $('<div class="input-group">$newend</div>');
+  var $intervals = $('.intervals');
+
   var add = function () {
     // add fields
     console.log( 'START add' );
-    var $newinterval = $('<div class="row interval">$newinterval</div>');
-    var $colsm6 = $('<div class="col-sm-6">$colsm6</div>');
-    var $lastend = $('<div class="input-group">$lastend</div>');
-    var $newend = $('<div class="input-group">$newend</div>');
-    var $intervals = $('.intervals');
     $newinterval.appendTo($intervals);
 
   };

@@ -18,19 +18,23 @@
   .tab-pane {}
 }
 
+.intervals {
+  .interval-dates {
+    .interval {}
+  }
+  .interval-results {
+  }
+}
+
 .datetime-display {}
 .datetime-display.milli {}
 .datetime-display.pretty {}
 .datetime-display.full {
-  th+td {
-    /* border-left:1px transparent solid; */
-    margin-left:1px;
-  }
   td, th {
     position: relative;
     /* color: #999; */
     /* background: #333; */
-    background: #ccc;
+    background:rgba(0,0,0,0.125);
     position: relative;
     border-collapse: separate;
     /* border-bottom: 2px grey solid; */
@@ -55,7 +59,7 @@
     .ac-val+.ac-key {}
     .ac-val {
       /*color:#0cf;*/
-      font-size: 3em;
+      font-size: 2em;
       text-align: right;
       /*width: 100%;*/
       /*padding-top: 0.5em;*/
@@ -75,7 +79,6 @@
       right:0;
       bottom:0.5em;
       left:auto;*/
-      /*border-right: 1px solid white;*/
       /*line-height: 1;*/
       /*padding-left: 0.25em;*/
       /*padding-right: 0.25em;*/
@@ -85,14 +88,18 @@
       }
     }
   }
-  td {
-    border-radius: 3px 0 0 3px;
+  td:first-of-type {
+    border-radius: 4px 0 0 4px;
   }
-  th {
-    border-radius: 0 3px 3px 0;
-    .ac-key {
-      border-right:0;
-    }
+  th:last-of-type {
+    border-radius: 0 4px 4px 0;
+  }
+  td+th {
+    /* border-left:2px rgba(255,0,0,0.5) solid; */
+  }
+  th+td {
+    border-left:1px rgba(255,255,255,0.5) dotted;
+    /* margin-left:1px; */
   }
 }
 .jumbotron {

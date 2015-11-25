@@ -37,68 +37,73 @@
 
       <form action="">
 
-        <div class="well well-sm">
-
-          <div class="intervals">
-            <div class="row interval" id="interval_00">
-              <div class="col-sm-6">
-                <div class="input-group">
-                  <span class="input-group-addon text-muted" id="">From</span>
-                  <input type="date" class="form-control" name="time_start" id="time_start" value="">
-                  <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" id="">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                    </button>
-                  </span>
+        <div class="intervals">
+          <div class="well well-sm">
+            <div class="interval">
+              <div class="row interval-dates" id="interval_00">
+                <div class="col-sm-4 interval-start">
+                  <div class="input-group">
+                    <span class="input-group-addon text-muted" id="">From</span>
+                    <input type="date" class="form-control" name="time_start" id="time_start" value="" placeholder="From">
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" id="">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-sm-4 interval-end">
+                  <div class="input-group">
+                    <span class="input-group-addon text-muted" id="">Until</span>
+                    <input type="date" class="form-control" name="time_end" id="time_end" value="" placeholder="Until">
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" id="">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class=""><a href="#milliseconds" aria-controls="milliseconds" role="tab" data-toggle="tab">Milliseconds</a></li>
+                    <li role="presentation" class=""><a href="#pretty" aria-controls="pretty" role="tab" data-toggle="tab">Pretty</a></li>
+                    <li role="presentation" class="active"><a href="#full" aria-controls="full" role="tab" data-toggle="tab">Full</a></li>
+                  </ul>
                 </div>
               </div>
-              <div class="col-sm-6">
-                <div class="input-group">
-                  <span class="input-group-addon text-muted" id="">Until</span>
-                  <input type="date" class="form-control" name="time_end" id="time_end" value="">
-                  <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" id="">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                    </button>
-                  </span>
+              <div class="row interval-results">
+                <div class="col-sm-12 margin-t-05">
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" id="milliseconds">
+                      <!-- <p>Milliseconds</p> -->
+                      <div class="datetime-display milli">
+                        <div class="input-group">
+                          <input type="text" class="form-control text-center" name="resultms" id="resultms" value="">
+                          <span class="input-group-addon" id="">ms</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="pretty">
+                      <!-- <p>Pretty</p> -->
+                      <div class="datetime-display pretty">
+                        <div class="input-group">
+                          <input type="text" class="form-control text-center" name="result" id="result" value="">
+                          <span class="input-group-addon" id="">time</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane active" id="full">
+                      <!-- <p>Full</p> -->
+                      <div class="datetime-display full">
+                        <div id="table"></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
-<div class="margin-t-05">
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#milliseconds" aria-controls="milliseconds" role="tab" data-toggle="tab">Milliseconds</a></li>
-    <li role="presentation" class=""><a href="#pretty" aria-controls="pretty" role="tab" data-toggle="tab">Pretty</a></li>
-    <li role="presentation" class=""><a href="#full" aria-controls="full" role="tab" data-toggle="tab">Raw</a></li>
-  </ul>
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="milliseconds">
-      <!-- <p>Milliseconds</p> -->
-      <div class="datetime-display milli">
-        <div class="input-group">
-          <input type="text" class="form-control text-center" name="resultms" id="resultms" value="">
-          <span class="input-group-addon" id="">ms</span>
         </div>
-      </div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="pretty">
-      <!-- <p>Pretty</p> -->
-      <div class="datetime-display pretty">
-        <div class="input-group">
-          <input type="text" class="form-control text-center" name="result" id="result" value="">
-          <span class="input-group-addon" id="">time</span>
-        </div>
-      </div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="full">
-      <!-- <p>Raw</p> -->
-      <div class="datetime-display full">
-        <div id="table"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
           <!-- <div class="row margin-t-05">
             <div class="col-sm-4">
@@ -121,6 +126,7 @@
             </div>
           </div> -->
 
+        <div class="well well-sm">
           <div class="row margin-t-05">
             <div class="col-sm-6">
               <button type="button" class="btn btn-info" id="auto">
@@ -143,7 +149,6 @@
               </button>
             </div>
           </div>
-
         </div>
 
       </form>
