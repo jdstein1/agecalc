@@ -86,6 +86,7 @@ $(function() {
   var $start = $('#time_start');
   var $end = $('#time_end');
   var $result = $('#result');
+  var $resultiso = $('#resultiso');
   var $resultms = $('#resultms');
 
   // buttons
@@ -238,7 +239,7 @@ function zeroPad (num, numZeros) {
     if (holder.length < 1) {
       // console.log( 'holder.length < 1' );
       time.pretty = msg.same;
-      time.full = msg.same;
+      time.full = holderRaw;
     } else {
       // console.log( 'holder.length > 0' );
       time.pretty = holder.toString().replace(/,/g, ' ');
@@ -258,6 +259,7 @@ function zeroPad (num, numZeros) {
     // console.log( 'time.ms: ', time.ms );
 
     $resultms.val(time.ms);
+    $resultiso.val(time.iso);
     $result.val(time.pretty);
 
     return time;
@@ -309,16 +311,21 @@ function zeroPad (num, numZeros) {
 
   };
 
-  var $newinterval = $('<div class="row interval">$newinterval</div>');
-  var $colsm6 = $('<div class="col-sm-6">$colsm6</div>');
-  var $lastend = $('<div class="input-group">$lastend</div>');
-  var $newend = $('<div class="input-group">$newend</div>');
-  var $intervals = $('.intervals');
-
   var add = function () {
+
+    // create new DOM objs
+    // var $intervalStartNew = $('div').addClass('interval-start');
+    // var $intervalEndNew = $('div').addClass('interval-end');
+    // var $intervalEndLast = $('div').addClass('interval-end');
+    // var $intervalResultsNew = $('div').addClass('interval-results');
+    // var $colsm6 = $('div').addClass('col-sm-6');
+    // var $intervalNew = $('<div class="well well-sm interval" />').append($colsm6.append($intervalEndLast)).append($colsm6.append($intervalEndNew));
+    var $intervalNew = $('<div/>').attr('class','well well-sm interval').html('new interval');
+    var $intervals = $('.intervals');
+
     // add fields
     console.log( 'START add' );
-    $newinterval.appendTo($intervals);
+    $intervalNew.appendTo($intervals);
 
   };
 
