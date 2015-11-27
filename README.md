@@ -16,3 +16,9 @@ AgeCalc could use a third party library to compare dates and calculate time span
 
 * [] Months - Currently I am just dividing the year by 12 to create month segments.  Not ideal.  But months suck.  Stupid Julian/Gregorian Calendar!
 
+
+## Resources
+
+* [https://en.wikipedia.org/wiki/Gregorian_calendar](https://en.wikipedia.org/wiki/Gregorian_calendar)
+* [https://en.wikipedia.org/wiki/Julian_calendar](https://en.wikipedia.org/wiki/Julian_calendar)
+* [https://zyxyvy.wordpress.com/2013/01/27/calendars-for-other-solar-system-planets/](https://zyxyvy.wordpress.com/2013/01/27/calendars-for-other-solar-system-planets/)
