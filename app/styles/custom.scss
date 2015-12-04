@@ -2,11 +2,11 @@
 
 .small {font-size:0.875em !important;}
 
-.margin-t-05 {margin-top: 0.5em;}
-.margin-b-05 {margin-bottom: 0.5em;}
+.margin-t-05 {margin-top:0.5em;}
+.margin-b-05 {margin-bottom:0.5em;}
 
-.margin-t-10 {margin-top: 1.0em;}
-.margin-b-10 {margin-bottom: 1.0em;}
+.margin-t-10 {margin-top:1.0em;}
+.margin-b-10 {margin-bottom:1.0em;}
 
 .shadow-top {box-shadow:0 -0.25em 1em 0 rgba(0,0,0,0.25);}
 .shadow-bottom {box-shadow:0 0.25em 1em 0 rgba(0,0,0,0.25);}
@@ -29,121 +29,140 @@
 .datetime-display {}
 .datetime-display.milli {}
 .datetime-display.pretty {}
-.datetime-display.full {
+.datetime-display.fancy {
   td, th {
-    position: relative;
-    width: auto;
-    /* color: #999; */
+    position:relative;
+    width:auto;
+    /* color:#999; */
 
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#333333+0,666666+100 */
-background: rgb(51,51,51); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(51,51,51,1) 0%, rgba(102,102,102,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  rgba(51,51,51,1) 0%,rgba(102,102,102,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  rgba(51,51,51,1) 0%,rgba(102,102,102,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#666666',GradientType=0 ); /* IE6-9 */
+    /* Permalink - use to edit and share this gradient -- http://colorzilla.com/gradient-editor/#333333+0,000000+100 */
+    background:rgb(51,51,51); /* Old browsers */
+    background:linear-gradient(to top,  rgba(51,51,51,1) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
-    position: relative;
-    border-collapse: separate;
-    /* border-bottom: 2px grey solid; */
-    text-align: center;
-    vertical-align: baseline;
+    position:relative;
+    border-collapse:separate;
+    /* border-bottom:2px grey solid; */
+    text-align:center;
+    vertical-align:baseline;
+
+    &.y, &.M, &.w, &.d, &.h, &.m, &.s, &.ms {
+      .ac-val {}
+      .ac-key {}
+    }
+
+    .ac-key+.ac-val {
+      /*display:inline;*/
+      /*border-left:2px rgba(0,0,255,1) solid; */
+    }
+    .ac-val+.ac-key {
+      /*display:inline;*/
+      /*border-left:2px rgba(255,0,0,1) solid; */
+    }
     .ac-val, .ac-key {
-      position: relative;
-      width: 100%;
-      color:#9cf;
-      white-space: nowrap;
-      /* text-overflow: ellipsis;*/
-      overflow: hidden;
-      /*float: left;*/
-      text-align: left;
-      vertical-align: baseline;
+      display:inline;
+      position:relative;
+      width:100%;
+      color:#5cb85c;
+      color:#6c6;
+      text-shadow:0 0 1em #696, 0 1px 1px #000;
+      white-space:nowrap;
+      /* text-overflow:ellipsis;*/
+      overflow:hidden;
+      /*float:left;*/
+      text-align:left;
+      vertical-align:baseline;
       line-height:1.5;
       /*display:inline-block;*/
-      padding: 0 0.125em;
+      /*padding:0 0.125em;*/
+      padding:0;
+      margin:0;
       /*color:#999;background:#333;*/
-      background: transparent;
+      background:transparent;
       border:0;
+
+      & i, & em {
+        display:none;
+        font-style:normal;
+      }
+
+      & i {display:inline-block;}
+      /*& em {display:inline-block;}*/
+
     }
-    .ac-val+.ac-key {}
     .ac-val {
-      font-size: 2em;
-      padding-left:0.5em;
-      text-align: right;
-      /*width: 100%;*/
-      /*padding-top: 0.5em;*/
-      /* font-family: 'Orbitron', monospace, sans-serif; */
-      /* font-family: 'Roboto', sans-serif; */
-      /* font-family: 'Ubuntu Mono', monospace; */
-      font-family: 'PT Mono', monospace;
-      /*font-family: 'Exo', sans-serif;*/
-      /*font-family: 'Oswald', sans-serif;*/
-      /*font-family: 'Ek Mukta', sans-serif;*/
-      /* font-family: 'Quantico', sans-serif; */
+      display:block;
+      font-size:2em;
+      font-weight:400;
+      padding-left:0.25em;
+      padding-right:0.125em;
+      text-align:right;
+      /* font-family:'Orbitron', monospace, sans-serif; */
+      /*font-family:'Roboto', sans-serif; */
+      /*font-family:'Ubuntu Mono', monospace; */
+      font-family:'PT Mono', monospace;
+      /*font-family:'Exo', sans-serif;*/
+      /*font-family:'Oswald', sans-serif;*/
+      /*font-family:'Ek Mukta', sans-serif;*/
+      /* font-family:'Quantico', sans-serif; */
     }
     .ac-key {
-      opacity:0.5;
-      padding-right:0.5em;
-      /* text-align: left; */
-      /*position: absolute;
+      display:block;
+      font-size:1em;
+      font-weight:100;
+      padding-right:0.25em;
+      padding-left:0.125em;
+      text-align:left;
+      /*position:absolute;
       top:auto;
       right:0;
       bottom:0.5em;
       left:auto;*/
-      /* line-height: 1; */
-      /* padding-left: 0.25em; */
-      /* padding-right: 0.25em; */
-      /* border-right:1px #999 solid; */
-      font-family: 'Roboto', sans-serif;
-
-      i,em {
-        /*display: none;*/
-        font-style: normal;
-        font-weight:100;
-      }
-      &.yy i:after {content:"yy";}
-      &.yy em:after {content:"years";}
-      &.MM i:after {content:"MM";}
-      &.MM em:after {content:"months";}
-      &.ww i:after {content:"ww";}
-      &.ww em:after {content:"weeks";}
-      &.dd i:after {content:"dd";}
-      &.dd em:after {content:"days";}
-      &.hh i:after {content:"hh";}
-      &.hh em:after {content:"hours";}
-      &.mm i:after {content:"mm";}
-      &.mm em:after {content:"minutes";}
-      &.ss i:after {content:"ss";}
-      &.ss em:after {content:"seconds";}
-      &.ms i:after {content:"ms";}
-      &.ms em:after {content:"millseconds";}
-      & i:after {display:none;}
-      & em:after {display:block;}
     }
   }
-  td:first-of-type {
-    border-radius: 4px 0 0 4px;
+  td:first-of-type {border-radius:4px 0 0 4px;}
+  & .td--div {
+    /*border:1em blue solid !important;*/
+    .ac-val {width:100%; display:inline;}
+    .ac-key {width:auto; display:inline;}
+    td:last-of-type {border-radius:0 4px 4px 0;}
+    .ac-key {
+      /*border-left:2px rgba(255,0,0,0.5) solid;*/
+    }
+    .ac-val {
+      /*border-left:2px rgba(0,0,255,0.5) solid;*/
+    }
   }
-  th:last-of-type {
-    border-radius: 0 4px 4px 0;
+  & .td-th--div, 
+  & .td-th--input {
+    .ac-val, 
+    .ac-key {width:100%; display:block;}
+    td+th {
+      /*border-left:2px rgba(255,0,0,0.5) solid;*/
+    }
+    th+td {
+      /*border-left:2px rgba(0,0,255,0.5) solid;*/
+    }
+    th:last-of-type {border-radius:0 4px 4px 0;border-left:none;}
   }
-  td+th {
-    /* border-left:2px rgba(255,0,0,0.5) solid; */
+  & .td-th--div {
+    /*border:1em red solid !important;*/
+    display: none;
   }
-  th+td {
-    /* border-left:1px grey solid; */
-    /* margin-left:1px; */
+  & .td-th--input {
+    /*border:1em green solid !important;*/
+    display: none;
   }
 }
+
 .jumbotron {
-
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7aafcc+0,ccecff+100 */
-background: rgb(127,191,255); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(127,191,255,1) 0%, rgba(204,236,255,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  rgba(127,191,255,1) 0%,rgba(204,236,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  rgba(127,191,255,1) 0%,rgba(204,236,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7aafcc', endColorstr='#ccecff',GradientType=0 ); /* IE6-9 */
-
+  /* Permalink - use to edit and share this gradient -- http://colorzilla.com/gradient-editor/#7aafcc+0,ccecff+100 */
+  background:rgb(127,191,255); /* Old browsers */
+  background:-moz-linear-gradient(top,  rgba(127,191,255,1) 0%, rgba(204,236,255,1) 100%); /* FF3.6-15 */
+  background:-webkit-linear-gradient(top,  rgba(127,191,255,1) 0%,rgba(204,236,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background:linear-gradient(to bottom,  rgba(127,191,255,1) 0%,rgba(204,236,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#7aafcc', endColorstr='#ccecff',GradientType=0 ); /* IE6-9 */
 }
+
 #icon {
   .icon-box {
     position:relative;

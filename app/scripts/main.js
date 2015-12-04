@@ -193,7 +193,7 @@ function zeroPad (num, numZeros) {
     // console.log( 'time.ms: ', time.ms );
 
     time['pretty'] = '';
-    time['full'] = {};
+    time['fancy'] = {};
 
     // console.log( 'abso: ', abso );
     // console.log( 'Object.keys(abso).length: ', Object.keys(abso).length );
@@ -210,23 +210,23 @@ function zeroPad (num, numZeros) {
         if (keys[i]==='ms') {
           holder.push(zeroPad(abso[keys[i]],4)+' '+labs[keys[i]]+'');
           holderRaw[keys[i]] = zeroPad(abso[keys[i]],4);
-          $('.datetime-display.full').find('#result'+keys[i]).html( zeroPad(abso[keys[i]],4) );
+          $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').html( zeroPad(abso[keys[i]],4) ).val( zeroPad(abso[keys[i]],4) );
         } else {
           holder.push(zeroPad(abso[keys[i]],2)+' '+labs[keys[i]]+' ');
           holderRaw[keys[i]] = zeroPad(abso[keys[i]],2);
-          $('.datetime-display.full').find('#result'+keys[i]).html( zeroPad(abso[keys[i]],2) );
+          $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').html( zeroPad(abso[keys[i]],2) ).val( zeroPad(abso[keys[i]],2) );
         }
       } else {
         if (keys[i]==='ms') {
           // holder.push('0000'+keys[i]+'');
           // holderRaw[keys[i]] = 0000;
-          $('.datetime-display.full').find('#result'+keys[i]).html('0000');
-          // $('.datetime-display.full').find('#result'+keys[i]).hide();
+          $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').html('0000').val('0000');
+          // $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').hide();
         } else {
           // holder.push('00'+keys[i]+'');
           // holderRaw[keys[i]] = 00;
-          $('.datetime-display.full').find('#result'+keys[i]).html('00');
-          // $('.datetime-display.full').find('#result'+keys[i]).hide();
+          $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').html('00').val('00');
+          // $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').hide();
         }
       }
 
@@ -239,11 +239,11 @@ function zeroPad (num, numZeros) {
     if (holder.length < 1) {
       // console.log( 'holder.length < 1' );
       time.pretty = msg.same;
-      time.full = holderRaw;
+      time.fancy = holderRaw;
     } else {
       // console.log( 'holder.length > 0' );
       time.pretty = holder.toString().replace(/,/g, ' ');
-      time.full = holderRaw;
+      time.fancy = holderRaw;
     }
 
     // time.pretty = +abso.y+'y '+
