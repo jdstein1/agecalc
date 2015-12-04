@@ -27,9 +27,11 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="container">
+    <div class="container-fluid">
 
       <div id="header"></div>
+
+      <div class="container">
 
       <div class="row marketing">
 
@@ -40,6 +42,23 @@
 <span class="label label-default">Default</span>
 <!-- Plain -->
 <button type="button" class="btn btn-default">Action</button>
+
+<!-- split button group -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default">Action</button>
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
 <!-- Large -->
 <button type="button" class="btn btn-default btn-lg">Action</button>
 <!-- Extra Small -->
@@ -52,7 +71,7 @@
   <button type="button" class="btn btn-default">Action</button>
   <button type="button" class="btn btn-default">Action</button>
 </div>
-<!-- Justified split button group -->
+<!-- Justified button group -->
 <div class="btn-group btn-group-justified" role="group">
   <div class="btn-group" role="group">
     <button type="button" class="btn btn-default">Action</button>
@@ -64,9 +83,12 @@
     <button type="button" class="btn btn-default">Action</button>
   </div>
 </div>
+<button type="button" class="btn btn-default btn-block">Action</button>
+<p class="bg-muted text-muted">Lorem ipsum dolor...</p>
 
 <hr>
 <span class="label label-primary">Primary</span>
+<!-- split button group -->
 <div class="btn-group">
   <button type="button" class="btn btn-primary">Action</button>
   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,13 +103,14 @@
     <li><a href="#">Separated link</a></li>
   </ul>
 </div>
+<p class="bg-primary text-primary">Lorem ipsum dolor...</p>
 
 <hr>
 <span class="label label-success">Success</span>
-<!-- Large split button group -->
+<!-- split button group -->
 <div class="btn-group">
-  <button type="button" class="btn btn-success btn-lg">Large button</button>
-  <button type="button" class="btn btn-success btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button type="button" class="btn btn-success">Action</button>
+  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="caret"></span>
     <span class="sr-only">Toggle Dropdown</span>
   </button>
@@ -99,13 +122,14 @@
     <li><a href="#">Separated link</a></li>
   </ul>
 </div>
+<p class="bg-success text-success">Lorem ipsum dolor...</p>
 
 <hr>
 <span class="label label-warning">Warning</span>
-<!-- Extra small split button group -->
+<!-- split button group -->
 <div class="btn-group">
-  <button type="button" class="btn btn-warning btn-xs">Extra small button</button>
-  <button type="button" class="btn btn-warning btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button type="button" class="btn btn-warning">Action</button>
+  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="caret"></span>
     <span class="sr-only">Toggle Dropdown</span>
   </button>
@@ -117,9 +141,11 @@
     <li><a href="#">Separated link</a></li>
   </ul>
 </div>
+<p class="bg-warning text-warning">Lorem ipsum dolor...</p>
 
 <hr>
 <span class="label label-danger">Danger</span>
+<!-- split button group -->
 <div class="btn-group">
   <button type="button" class="btn btn-danger">Action</button>
   <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -134,12 +160,14 @@
     <li><a href="#">Separated link</a></li>
   </ul>
 </div>
+<p class="bg-danger text-danger">Lorem ipsum dolor...</p>
 
 <hr>
 <span class="label label-info">Info</span>
+<!-- split button group -->
 <div class="btn-group">
-  <button type="button" class="btn btn-info btn-sm">Small button</button>
-  <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button type="button" class="btn btn-info">Action</button>
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="caret"></span>
     <span class="sr-only">Toggle Dropdown</span>
   </button>
@@ -151,67 +179,70 @@
     <li><a href="#">Separated link</a></li>
   </ul>
 </div>
-</div>
+<p class="bg-info text-info">Lorem ipsum dolor...</p>
+
+        </div>
+
       </div>
 
 <div class="col-sm-12"><h2>Rows (SM)</h2></div>
 
 <div class="row">
-  <div class="col-sm-1 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test.col-sm-1</h3></div>
-  <div class="col-sm-2 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-sm-2</h3></div>
-  <div class="col-sm-3 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test.col-sm-3</h3></div>
-  <div class="col-sm-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-sm-6</h3></div>
+  <div class="col-sm-1 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test of <code>.col-sm-1</code></h3></div>
+  <div class="col-sm-2 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-sm-2</code></h3></div>
+  <div class="col-sm-3 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test of <code>.col-sm-3</code></h3></div>
+  <div class="col-sm-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-sm-6</code></h3></div>
 </div>
 <div class="row">
-  <div class="col-sm-4 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-sm-4</h3></div>
-  <div class="col-sm-5 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test.col-sm-5</h3></div>
-  <div class="col-sm-3 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-sm-3</h3></div>
+  <div class="col-sm-4 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-sm-4</code></h3></div>
+  <div class="col-sm-5 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test of <code>.col-sm-5</code></h3></div>
+  <div class="col-sm-3 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-sm-3</code></h3></div>
 </div>
 <div class="row">
-  <div class="col-sm-6 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test.col-sm-6</h3></div>
-  <div class="col-sm-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-sm-6</h3></div>
+  <div class="col-sm-6 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test of <code>.col-sm-6</code></h3></div>
+  <div class="col-sm-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-sm-6</code></h3></div>
 </div>
 
 <div class="col-md-12"><h2>Rows (MD)</h2></div>
 
 <div class="row">
-  <div class="col-md-1 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test.col-md-1</h3></div>
-  <div class="col-md-2 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-md-2</h3></div>
-  <div class="col-md-3 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test.col-md-3</h3></div>
-  <div class="col-md-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-md-6</h3></div>
+  <div class="col-md-1 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test of <code>.col-md-1</code></h3></div>
+  <div class="col-md-2 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-md-2</code></h3></div>
+  <div class="col-md-3 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test of <code>.col-md-3</code></h3></div>
+  <div class="col-md-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-md-6</code></h3></div>
 </div>
 <div class="row">
-  <div class="col-md-4 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-md-4</h3></div>
-  <div class="col-md-5 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test.col-md-5</h3></div>
-  <div class="col-md-3 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-md-3</h3></div>
+  <div class="col-md-4 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-md-4</code></h3></div>
+  <div class="col-md-5 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test of <code>.col-md-5</code></h3></div>
+  <div class="col-md-3 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-md-3</code></h3></div>
 </div>
 <div class="row">
-  <div class="col-md-6 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test.col-md-6</h3></div>
-  <div class="col-md-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-md-6</h3></div>
+  <div class="col-md-6 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test of <code>.col-md-6</code></h3></div>
+  <div class="col-md-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-md-6</code></h3></div>
 </div>
 
 <div class="col-lg-12"><h2>Rows (LG)</h2></div>
 
 <div class="row">
-  <div class="col-lg-1 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test.col-lg-1</h3></div>
-  <div class="col-lg-2 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-lg-2</h3></div>
-  <div class="col-lg-3 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test.col-lg-3</h3></div>
-  <div class="col-lg-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-lg-6</h3></div>
+  <div class="col-lg-1 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test of <code>.col-lg-1</code></h3></div>
+  <div class="col-lg-2 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-lg-2</code></h3></div>
+  <div class="col-lg-3 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test of <code>.col-lg-3</code></h3></div>
+  <div class="col-lg-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-lg-6</code></h3></div>
 </div>
 <div class="row">
-  <div class="col-lg-4 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-lg-4</h3></div>
-  <div class="col-lg-5 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test.col-lg-5</h3></div>
-  <div class="col-lg-3 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-lg-3</h3></div>
+  <div class="col-lg-4 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-lg-4</code></h3></div>
+  <div class="col-lg-5 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test of <code>.col-lg-5</code></h3></div>
+  <div class="col-lg-3 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-lg-3</code></h3></div>
 </div>
 <div class="row">
-  <div class="col-lg-6 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test.col-lg-6</h3></div>
-  <div class="col-lg-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test.col-lg-6</h3></div>
+  <div class="col-lg-6 lorem" style="overflow:hidden; height:200px; background:#fed;"><h3>Test of <code>.col-lg-6</code></h3></div>
+  <div class="col-lg-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h3>Test of <code>.col-lg-6</code></h3></div>
 </div>
-          
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
+</div>
+
+      <footer id="footer"></footer>
+
     </div>
     
     <!-- build:js(.) scripts/vendor.js -->

@@ -1,4 +1,5 @@
 # agecalc
+
 An Age Calculator
 
 by Jeff Stein
@@ -12,9 +13,10 @@ Computers count time in milliseconds, but they thing time began at the dawn of 1
 AgeCalc could use a third party library to compare dates and calculate time spans with pinpoint accuracy.  Instead, AgeCalc will develop that functionality over time.  At the moment it uses over-simplified math to produce approximate time span lengths.  AgeCalc could use these approximate numbers to display human-friendly, natural-language descriptions for time spans.  This may be added in the future.
 
 
-## Issues
+## Issues & Todo
 
 * [] Months - Currently I am just dividing the year by 12 to create month segments.  Not ideal.  But months suck.  Stupid Julian/Gregorian Calendar!
+* [] "Pretty" vs "Full" - these two dsiplay modes are kind of misnamed now.  Need to reverse them so that "pretty" refers to the fancy display...or rename "full" --> "fancy".
 
 
 ## Resources
