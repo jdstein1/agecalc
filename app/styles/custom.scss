@@ -1,3 +1,12 @@
+@import url(https://fonts.googleapis.com/css?family=Orbitron:100,400);
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,400);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:100,400);
+@import url(https://fonts.googleapis.com/css?family=PT+Mono:100,400);
+@import url(https://fonts.googleapis.com/css?family=Exo:100,400);
+@import url(https://fonts.googleapis.com/css?family=Oswald:100,400);
+@import url(https://fonts.googleapis.com/css?family=Ek+Mukta:100,400);
+@import url(https://fonts.googleapis.com/css?family=Quantico:100,400);
+
 /* Custom styles */
 
 .small {font-size:0.875em !important;}
@@ -30,18 +39,74 @@
 .datetime-display.milli {}
 .datetime-display.pretty {}
 .datetime-display.fancy {
+
+  /* default font family */
+  font-family:'Roboto', sans-serif;
+  /* custom font family - monospace */
+  .font--mono {
+    /*font-family:'Orbitron', monospace;*/
+    /*font-family:'Ubuntu Mono', monospace;*/
+    font-family:'PT Mono', monospace;
+  }
+  /* custom font family - sans-serif*/
+  .font--sans {
+    /*font-family:'Exo', sans-serif;*/
+    /*font-family:'Oswald', sans-serif;*/
+    /*font-family:'Quantico', sans-serif;*/
+    font-family:'Ek Mukta', sans-serif;
+  }
+  .flavor--matrix {
+    font-family:'Ubuntu Mono', monospace;
+    td, th {
+      color:#6c6;
+      text-shadow:0 0 1em #696, 0 1px 1px #000;
+      /* Permalink - use to edit and share this gradient -- http://colorzilla.com/gradient-editor/#333333+0,000000+100 */
+      background:rgb(51,51,51); /* Old browsers */
+      background:linear-gradient(to top,  rgba(51,51,51,1) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+  }
+  .flavor--predator {
+    font-family:'Orbitron', monospace;
+    td, th {
+      color:#f33;
+      text-shadow:0 0 1em #f00, 0 1px 1px #000;
+      background:#210;
+      padding:0.5em 0 0;
+    }
+  }
+  .flavor--oblivion {
+    font-family:'Exo', sans-serif;
+    td, th {
+      color:#369;
+      text-shadow: none;
+      text-shadow: 0 0 1em #fff, 0 1px 1px #666;
+      background:rgb(204,204,204);
+      background:linear-gradient(to bottom,  rgba(225,225,225,1) 0%,rgba(175,175,175,1) 50%,rgba(150,150,150,1) 51%,rgba(200,200,200,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+  }
+  .flavor--looper {
+    font-family:'Quantico', sans-serif;
+    td, th {
+      color:#69c;
+      text-shadow:0 0 1em #369, 0 1px 1px #000;
+      background:rgb(51,51,51);
+      background:linear-gradient(to top,  rgba(0,0,0,1) 0%,rgba(102,102,102,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+  }
+
   td, th {
     position:relative;
     width:auto;
-    /* color:#999; */
+    white-space:nowrap;
+    /* text-overflow:ellipsis;*/
+    overflow:hidden;
 
-    /* Permalink - use to edit and share this gradient -- http://colorzilla.com/gradient-editor/#333333+0,000000+100 */
-    background:rgb(51,51,51); /* Old browsers */
-    background:linear-gradient(to top,  rgba(51,51,51,1) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    color:#fff;
+    background:rgb(127,127,127);
 
     position:relative;
     border-collapse:separate;
-    /* border-bottom:2px grey solid; */
+    /*border-bottom:2px grey solid;*/
     text-align:center;
     vertical-align:baseline;
 
@@ -52,22 +117,16 @@
 
     .ac-key+.ac-val {
       /*display:inline;*/
-      /*border-left:2px rgba(0,0,255,1) solid; */
+      /*border-left:2px rgba(0,0,255,1) solid;*/
     }
     .ac-val+.ac-key {
       /*display:inline;*/
-      /*border-left:2px rgba(255,0,0,1) solid; */
+      /*border-left:2px rgba(255,0,0,1) solid;*/
     }
     .ac-val, .ac-key {
       display:inline;
       position:relative;
       width:100%;
-      color:#5cb85c;
-      color:#6c6;
-      text-shadow:0 0 1em #696, 0 1px 1px #000;
-      white-space:nowrap;
-      /* text-overflow:ellipsis;*/
-      overflow:hidden;
       /*float:left;*/
       text-align:left;
       vertical-align:baseline;
@@ -96,14 +155,6 @@
       padding-left:0.25em;
       padding-right:0.125em;
       text-align:right;
-      /* font-family:'Orbitron', monospace, sans-serif; */
-      /*font-family:'Roboto', sans-serif; */
-      /*font-family:'Ubuntu Mono', monospace; */
-      font-family:'PT Mono', monospace;
-      /*font-family:'Exo', sans-serif;*/
-      /*font-family:'Oswald', sans-serif;*/
-      /*font-family:'Ek Mukta', sans-serif;*/
-      /* font-family:'Quantico', sans-serif; */
     }
     .ac-key {
       display:block;
