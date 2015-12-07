@@ -2,7 +2,7 @@
 $(function() {
   // Handler for .ready() called.
 
-  var t = 0;
+  var t = 0, i = 1;
 
   var $header = $('#header');
   $header.load( "includes/header.html", function() {
@@ -30,7 +30,7 @@ $(function() {
   });
 
   var makeDateObj = function (d) {
-    console.log( 'START makeDateObj d: ', d );
+    console.group( 'START makeDateObj d: ', d );
     // console.log( '(new Date(d)).toJSON(): ', (new Date(d)).toJSON() );
     var x = {};
     x['ms'] = Date.parse(d);
@@ -49,6 +49,8 @@ $(function() {
     x['utc'] = x.local.toUTCString();
     // console.log( 'x.utc: ', x.utc );
     // console.log( 'x: ', x );
+    // console.log('end');
+    console.groupEnd();
     return x;
   };
 
@@ -83,11 +85,11 @@ $(function() {
   msg['diff']['small'] = "Not much time betwen those dates...";
 
   // inputs
-  var $start = $('#time_start');
-  var $end = $('#time_end');
-  var $result = $('#result');
-  var $resultiso = $('#resultiso');
-  var $resultms = $('#resultms');
+  var $start = $('#time_start_0');
+  var $end = $('#time_end_0');
+  var $result = $('#result_0');
+  var $resultiso = $('#resultiso_0');
+  var $resultms = $('#resultms_0');
 
   // buttons
   var $btnAuto = $('.btn#auto');
@@ -120,20 +122,20 @@ $(function() {
     y:"years"
   }; // time span labels
 
-// http://stackoverflow.com/questions/1267283/how-can-i-create-a-zerofilled-value-using-javascript
-function zeroPad (num, numZeros) {
+  // http://stackoverflow.com/questions/1267283/how-can-i-create-a-zerofilled-value-using-javascript
+  function zeroPad (num, numZeros) {
     var an = Math.abs (num);
     var digitCount = 1 + Math.floor (Math.log (an) / Math.LN10);
     if (digitCount >= numZeros) {
-        return num;
+      return num;
     }
     var zeroString = Math.pow (10, numZeros - digitCount).toString ().substr (1);
     return num < 0 ? '-' + zeroString + an : zeroString + an;
-}
+  }
 
   var elapsed = function (a, b, f) {
     // elapsed
-    console.log( 'START elapsed' );
+    console.group( 'START elapsed' );
 
     if (a===b) {
       console.log( 'same date, no time elapsed' );
@@ -145,7 +147,7 @@ function zeroPad (num, numZeros) {
       console.log( 'since a, X time elapsed until b' );
       t = b-a;
     }
-    console.log( 't: ', t );
+    // console.log( 't: ', t );
 
     ints['y'] = t/divs.y;
     abso['y'] = Math.trunc( ints.y );
@@ -202,8 +204,8 @@ function zeroPad (num, numZeros) {
     var keys = Object.keys(abso);
     for (var i = 0; i < keys.length; i++) {
 
-      console.log('keys[i]: ', keys[i]);
-      console.log('abso: ', abso);
+      // console.log('keys[i]: ', keys[i]);
+      // console.log('abso: ', abso);
       // console.log('abso(keys[i]): ', abso(keys[i]));
 
       if (abso[keys[i]]>0) {
@@ -230,11 +232,11 @@ function zeroPad (num, numZeros) {
         }
       }
 
-      console.log( 'Object.keys(abso)[i]', Object.keys(abso)[i] );
-      console.log( 'holder: ', holder );
-      console.log( 'holderRaw: ', holderRaw );
+      // console.log( 'Object.keys(abso)[i]', Object.keys(abso)[i] );
+      // console.log( 'holder: ', holder );
+      // console.log( 'holderRaw: ', holderRaw );
 
-    };
+    }
 
     if (holder.length < 1) {
       // console.log( 'holder.length < 1' );
@@ -254,13 +256,15 @@ function zeroPad (num, numZeros) {
     //   +abso.m+'m '+
     //   +abso.s+'s '+
     //   +abso.ms+'ms' ;
-    console.log( 'time: ', time );
+    // console.log( 'time: ', time );
     // console.log( 'time.pretty: ', time.pretty );
     // console.log( 'time.ms: ', time.ms );
 
     $resultms.val(time.ms);
     $resultiso.val(time.iso);
     $result.val(time.pretty);
+    // console.log('end');
+    console.groupEnd();
 
     return time;
 
@@ -268,7 +272,7 @@ function zeroPad (num, numZeros) {
 
   var reset = function (params) {
     // reset fields
-    console.log( 'START reset' );
+    console.group( 'START reset' );
 
     if (!params || params.target) {
       // if optional params is undefined or an event target
@@ -285,53 +289,152 @@ function zeroPad (num, numZeros) {
 
     $start.val( params[0] );
     $end.val( params[1] );
+    // console.log('end');
+    console.groupEnd();
     
     calc();
-    console.log( '######################' );
 
   };
 
   var clear = function () {
     // clear fields
-    console.log( 'START clear' );
+    console.group( 'START clear' );
 
     reset([oDate0.isodate]);
+    // console.log('end');
+    console.groupEnd();
 
   };
 
   var autofill = function () {
     // autofill fields
-    console.log( 'START autofill' );
+    console.group( 'START autofill' );
 
     reset();
 
     $start.val(oDate1.isodate);
     $end.val(oDate2.isodate);
     calc();
+    // console.log('end');
+    console.groupEnd();
+
+  };
+
+  var remove = function () {
+    // remove fields
+    console.group( 'START remove' );
+
+    $('.intervals').find('.interval.well').last().remove();
+
+    // console.log('end');
+    console.groupEnd();
 
   };
 
   var add = function () {
+    // add fields
+    console.group( 'START add' );
+
+    // console.log('$(#interval__0).find(.form-control): ',$('#interval__0').find('.form-control'));
+
+    // var $intervalEndLast = $('.interval').find('.form-control');
+    // console.log('$intervalEndLast: ',$intervalEndLast);
+    // $('<div/>',{class:'col-sm-4 interval-end'});
+
+    // var $intervalEndLast = $('#interval__'+(i-1)).find('.form-control');
+    // console.log('$intervalEndLast: ',$intervalEndLast);
 
     // create new DOM objs
-    // var $intervalStartNew = $('div').addClass('interval-start');
-    // var $intervalEndNew = $('div').addClass('interval-end');
-    // var $intervalEndLast = $('div').addClass('interval-end');
-    // var $intervalResultsNew = $('div').addClass('interval-results');
-    // var $colsm6 = $('div').addClass('col-sm-6');
-    // var $intervalNew = $('<div class="well well-sm interval" />').append($colsm6.append($intervalEndLast)).append($colsm6.append($intervalEndNew));
-    var $intervalNew = $('<div/>').attr('class','well well-sm interval').html('new interval');
+
+    var $intervalStart = $('<input/>',{
+        class:'form-control',
+        type:'date',
+        placeholder:'From',
+        name:'time_start_'+i,
+        id:'time_start_'+i});
+
+    var $intervalEnd = $('<input/>',{
+        class:'form-control',
+        type:'date',
+        placeholder:'Until',
+        name:'time_end_'+i,
+        id:'time_end_'+i});
+
+    var $addon = $('<span/>',{
+        class:'input-group-addon text-muted'});
+
+    var $intervalGroup = $('<div/>',{
+        class:'input-group'});
+
+    // var $colsm4 = $('<div/>',{
+    //     class:'col-sm-4'})
+    //   .html($intervalGroup);
+
+    var $colsm3 = $('<div/>',{class:'col-sm-3'});
+    var $colsm4 = $('<div/>',{class:'col-sm-4'});
+    var $colsm6 = $('<div/>',{class:'col-sm-6'});
+    var $colsm12 = $('<div/>',{class:'col-sm-12'});
+
+    var $intervalColStart = $colsm4.clone().addClass('interval-start')
+      .html(
+        $intervalGroup.clone().html($intervalStart).prepend($addon.clone().html('From'))
+      );
+
+    var $intervalColEnd = $colsm4.clone().addClass('interval-end')
+      .html(
+        $intervalGroup.clone().html($intervalEnd).prepend($addon.clone().html('Until'))
+      );
+
+    var $intervalColTabs = $colsm4.clone().addClass('interval-tabs')
+      .html('tabs');
+
+    var $intervalColPretty = $colsm4.clone().addClass('interval-result')
+      .html('pretty result');
+
+    var $intervalColResult = $colsm12.clone().addClass('interval-result')
+      .html('result');
+
+    var $intervalDates = $('<div/>',{
+        class:'row interval-dates'})
+      .text('row');
+
+    var $intervalResults = $('<div/>',{
+        class:'row interval-results'})
+      .text('row');
+
+    var $intervalWell = $('<div/>',{
+        class:'well well-sm interval',
+        id:'interval__'+i})
+      .text('well');
+
+    // var $interval = $('<div class="well well-sm interval" />').append($colsm4.append($intervalEndLast)).append($colsm4.append($intervalEndNew));
+
+    var $interval = $intervalWell.addClass('batsignal').attr('id','interval__'+i)
+    .append($intervalDates
+      .append($intervalColStart)
+      .append($intervalColEnd)
+      .append($intervalColPretty)
+      // .append($intervalColTabs)
+    // )
+    // .append($intervalResults
+    //   .append($intervalColResult)
+    );
+
     var $intervals = $('.intervals');
 
-    // add fields
-    console.log( 'START add' );
-    $intervalNew.appendTo($intervals);
+    $intervals.append($interval);
+    // $interval.appendTo($intervals);
+    // $('.input-group').append('<p>'+i+' added</p>'); //test
+
+    i++;
+    // console.log('end');
+    console.groupEnd();
 
   };
 
   var calc = function () {
     // calculate
-    console.log( 'START calc' );
+    console.group( 'START calc' );
 
     if ($start.val()) {
       // console.log( '$start: ', $start.val() );
@@ -345,8 +448,10 @@ function zeroPad (num, numZeros) {
         elapsed(start, end, null);
 
       }
-      
+
     }
+    // console.log('end');
+    console.groupEnd();
 
   };
   calc(); // immediately execute "calc" function.
@@ -356,6 +461,7 @@ function zeroPad (num, numZeros) {
   $btnClear.on('click', clear);
   $btnAuto.on('click', autofill);
   $btnAdd.on('click', add);
+  $btnDelete.on('click', remove);
   $btnCalc.on('click', calc);
 
   $start.on('change', calc);

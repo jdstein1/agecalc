@@ -16,8 +16,9 @@ AgeCalc could use a third party library to compare dates and calculate time span
 ## Issues & Todo
 
 * [] Months - Currently I am just dividing the year by 12 to create month segments.  Not ideal.  But months suck.  Stupid Julian/Gregorian Calendar!
-* [] "Pretty" vs "Full" - these two dsiplay modes are kind of misnamed now.  Need to reverse them so that "pretty" refers to the fancy display...or rename "full" --> "fancy".
-
+* [X] "Pretty" vs "Full" - these two dsiplay modes are kind of misnamed now.  Need to reverse them so that "pretty" refers to the fancy display...or rename "full" --> "fancy".
+* [] Add interval - Feature that adds a row of inputs to measure a new time interval, using the previous interval's end time as the new one's start time.
+* [] Remove interval - Remove last added interval row.
 
 ## Resources
 

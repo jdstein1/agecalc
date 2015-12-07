@@ -223,3 +223,21 @@
   .icon-words {font-size:1.8em;}
   .icon-glyph {font-size:1em; margin:0 -0.4em;}
 }
+
+.batsignal {
+  &.interval.well {
+    background: #ff8080;
+    .row {
+      background: #80ffff;
+      &.interval-dates {background: #ff80ff;}
+      &.interval-results {background: #ffff80;}
+    }
+    .col-sm-6 {background: #808080;}
+    .input-group {
+      background: #8080ff;
+      .form-control {
+        background: #80ff80;
+      }
+    }
+  }
+}

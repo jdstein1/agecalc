@@ -38,32 +38,32 @@
       <form action="">
 
         <div class="intervals">
-          <div class="well well-sm interval">
+          <div class="well well-sm interval" id="interval__0">
             <!-- <div class="interval"> -->
-              <div class="row interval-dates" id="interval_00">
+              <div class="row interval-dates">
                 <div class="col-sm-4 interval-start">
                   <div class="input-group">
-                    <span class="input-group-addon text-muted" id="">From</span>
-                    <input type="date" class="form-control" name="time_start" id="time_start" value="" placeholder="From">
-                    <span class="input-group-btn">
-                      <button type="button" class="btn btn-default" id="">
+                    <span class="input-group-addon text-muted">From</span>
+                    <input type="date" class="form-control" name="time_start_0" id="time_start_0" value="" placeholder="From">
+                    <!-- <span class="input-group-btn">
+                      <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-calendar"></span>
                       </button>
-                    </span>
+                    </span> -->
                   </div>
                 </div>
                 <div class="col-sm-4 interval-end">
                   <div class="input-group">
-                    <span class="input-group-addon text-muted" id="">Until</span>
-                    <input type="date" class="form-control" name="time_end" id="time_end" value="" placeholder="Until">
-                    <span class="input-group-btn">
-                      <button type="button" class="btn btn-default" id="">
+                    <span class="input-group-addon text-muted">Until</span>
+                    <input type="date" class="form-control" name="time_end_0" id="time_end_0" value="" placeholder="Until">
+                    <!-- <span class="input-group-btn">
+                      <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-calendar"></span>
                       </button>
-                    </span>
+                    </span> -->
                   </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 interval-tabs">
                   <ul class="nav nav-tabs nav-justified" role="tablist">
                     <li role="presentation" class=""><a href="#milliseconds" aria-controls="milliseconds" role="tab" data-toggle="tab">Milliseconds</a></li>
                     <li role="presentation" class=""><a href="#pretty" aria-controls="pretty" role="tab" data-toggle="tab">Pretty</a></li>
@@ -77,14 +77,14 @@
                 </div> -->
               </div>
               <div class="row interval-results">
-                <div class="col-sm-12 margin-t-05">
+                <div class="col-sm-12 margin-t-05 interval-result">
                   <div class="tab-content">
                     <div role="tabpanel" class="tab-pane" id="milliseconds">
                       <!-- <p>Milliseconds</p> -->
                       <div class="datetime-display milli">
                         <div class="input-group">
-                          <input type="text" class="form-control text-center" name="resultms" id="resultms" value="">
-                          <span class="input-group-addon" id="">ms</span>
+                          <input type="text" class="form-control text-center" name="resultms_0" id="resultms_0" value="">
+                          <span class="input-group-addon">ms</span>
                         </div>
                       </div>
                     </div>
@@ -92,8 +92,8 @@
                       <!-- <p>Pretty</p> -->
                       <div class="datetime-display pretty">
                         <!-- <div class="input-group"> -->
-                          <input type="text" class="form-control text-center" name="result" id="result" value="">
-                          <!-- <span class="input-group-addon" id="">time</span> -->
+                          <input type="text" class="form-control text-center" name="result_0" id="result_0" value="">
+                          <!-- <span class="input-group-addon">time</span> -->
                         <!-- </div> -->
                       </div>
                     </div>
@@ -119,13 +119,13 @@
             <div class="col-sm-4">
               <div class="input-group">
                 <input type="text" class="form-control text-center" name="resultms" id="resultms" value="">
-                <span class="input-group-addon" id="">ms</span>
+                <span class="input-group-addon">ms</span>
               </div>
             </div>
             <div class="col-sm-8">
               <div class="input-group">
                 <input type="text" class="form-control text-center" name="result" id="result" value="">
-                <span class="input-group-addon" id="">time</span>
+                <span class="input-group-addon">time</span>
               </div>
             </div>
           </div> -->
@@ -153,6 +153,10 @@
               </button>
             </div>
             <div class="col-sm-6 text-right">
+              <button type="button" class="btn btn-danger" id="remove">
+                Remove Interval
+                <span class="glyphicon glyphicon-minus"></span>
+              </button>
               <button type="button" class="btn btn-success" id="add">
                 Add Interval
                 <span class="glyphicon glyphicon-plus"></span>
