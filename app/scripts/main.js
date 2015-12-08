@@ -2,7 +2,7 @@
 $(function() {
   // Handler for .ready() called.
 
-  var t = 0, i = 1;
+  var time = {}, t = 0, i = 1;
 
   var makeDateObj = function (d) {
     // console.group( 'START makeDateObj d: ', d );
@@ -149,6 +149,12 @@ $(function() {
     }
     // console.log( 't: ', t );
 
+    time['ms'] = ''+t+'';
+    time['pretty'] = '';
+    time['fancy'] = {};
+
+    var remainder = t % 1000;
+
     ints['y'] = t/divs.y;
     abso['y'] = Math.trunc( ints.y );
     rems['y'] = t % divs.y;
@@ -185,25 +191,10 @@ $(function() {
     // console.log( 'abso: ', abso );
     // console.log( 'rems: ', rems );
 
-    var remainder = t % 1000;
-    // console.log( 'remainder: ', remainder );
-
-    var time = {};
-    time['ms'] = ''+t+'';
-    time['pretty'] = '';
-    time['fancy'] = {};
-
-    // console.log( 'Object.keys(abso).length: ', Object.keys(abso).length );
-
     var holder = [];
     var holderRaw = {};
     var keys = Object.keys(abso);
     for (var i = 0; i < keys.length; i++) {
-
-      // console.log('keys[i]: ', keys[i]);
-      // console.log('abso: ', abso);
-      // console.log('abso(keys[i]): ', abso(keys[i]));
-
       if (abso[keys[i]]>0) {
         if (keys[i]==='ms') {
           holder.push(zeroPad(abso[keys[i]],4)+' '+labs[keys[i]]+'');
@@ -223,11 +214,6 @@ $(function() {
           // $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').hide();
         }
       }
-
-      // console.log( 'Object.keys(abso)[i]', Object.keys(abso)[i] );
-      // console.log( 'holder: ', holder );
-      // console.log( 'holderRaw: ', holderRaw );
-
     }
 
     if (holder.length < 1) {
@@ -245,7 +231,6 @@ $(function() {
     $result0.val(time.pretty);
 
     console.groupEnd();
-
     return time;
   };
 
@@ -436,7 +421,20 @@ $(function() {
   $btnCalc.bind('click', calc($start0, $end0));
 
   // other event bindings
-  $start0.bind('change', calc($start0, $end0));
-  $end0.bind('change', calc($start0, $end0));
+  $('.test').on('change',function () {
+    alert('test on/changed');
+  });
+  $('.test').bind('change',function () {
+    alert('test bind/changed');
+  });
+  $('.test').change(function () {
+    alert('test changed');
+  });
+  $start0.change(function () {
+    calc($start0, $end0);
+  });
+  $end0.change(function () {
+    calc($start0, $end0);
+  });
 
 });
