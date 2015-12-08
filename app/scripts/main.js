@@ -4,33 +4,8 @@ $(function() {
 
   var t = 0, i = 1;
 
-  var $header = $('#header');
-  $header.load( "includes/header.html", function() {
-    console.log( "header loaded..." );
-  });
-
-  var $footer = $('#footer');
-  $footer.load( "includes/footer.html", function() {
-    console.log( "footer loaded..." );
-  });
-
-  var $table = $('#table');
-  $table.load( "includes/table.html", function() {
-    console.log( "table loaded..." );
-  });
-
-  var $buttons = $('#buttons');
-  // $buttons.load( "includes/buttons.html", function() {
-  //   console.log( "buttons loaded..." );
-  // });
-
-  var $icon = $('#icon');
-  $icon.load( "includes/icon.html", function() {
-    console.log( "icon loaded..." );
-  });
-
   var makeDateObj = function (d) {
-    console.group( 'START makeDateObj d: ', d );
+    // console.group( 'START makeDateObj d: ', d );
     // console.log( '(new Date(d)).toJSON(): ', (new Date(d)).toJSON() );
     var x = {};
     x['ms'] = Date.parse(d);
@@ -49,8 +24,7 @@ $(function() {
     x['utc'] = x.local.toUTCString();
     // console.log( 'x.utc: ', x.utc );
     // console.log( 'x: ', x );
-    // console.log('end');
-    console.groupEnd();
+    // console.groupEnd();
     return x;
   };
 
@@ -87,11 +61,11 @@ $(function() {
   var $intervals = $('.interval-box');
 
   // inputs
-  var $start = $('#time_start_0');
-  var $end = $('#time_end_0');
-  var $result = $('#result_0');
-  var $resultiso = $('#resultiso_0');
-  var $resultms = $('#resultms_0');
+  var $start0 = $('#time_start_0');
+  var $end0 = $('#time_end_0');
+  var $result0 = $('#result_0');
+  var $resultiso0 = $('#resultiso_0');
+  var $resultms0 = $('#resultms_0');
 
   // buttons
   var $btnAuto = $('.btn#auto');
@@ -138,28 +112,28 @@ $(function() {
   }
 
   var checkLength = function () {
-    console.log('START checkLength');
+    console.group('START checkLength');
     if ( $intervals.find('.interval').length < 2 ) {
       $btnRemove.prop('disabled',true);
     } else {
       $btnRemove.prop('disabled',false);
     }
+    console.groupEnd();
+    return false;
   };
 
   var checkValue = function () {
-    console.log('START checkValue');
-    console.log('$start.val(): ', $start.val());
-    console.log('$end.val(): ', $end.val());
-    if ($start.val()==="" || $end.val()==="") {
-      $btnAdd.prop('disabled',true);
-    } else if ($start.val()===$end.val()) {
+    console.group('START checkValue');
+    if ($start0.val()==="" || $end0.val()==="" || $start0.val()===$end0.val()) {
       $btnAdd.prop('disabled',true);
     } else {
       $btnAdd.prop('disabled',false);
     }
+    console.groupEnd();
+    return false;
   };
 
-  var elapsed = function (a, b, f) {
+  var elapsed = function (a, b) {
     // elapsed
     console.group( 'START elapsed' );
 
@@ -207,24 +181,20 @@ $(function() {
     abso['ms'] = Math.trunc( ints.s );
     rems['ms'] = rems.s % divs.ms;
 
-    var remainder = t % 1000;
-
     // console.log( 'ints: ', ints );
     // console.log( 'abso: ', abso );
     // console.log( 'rems: ', rems );
+
+    var remainder = t % 1000;
     // console.log( 'remainder: ', remainder );
-    // console.log( '****************************' );
 
     var time = {};
-
     time['ms'] = ''+t+'';
-    // console.log( 'time.ms: ', time.ms );
-
     time['pretty'] = '';
     time['fancy'] = {};
 
-    // console.log( 'abso: ', abso );
     // console.log( 'Object.keys(abso).length: ', Object.keys(abso).length );
+
     var holder = [];
     var holderRaw = {};
     var keys = Object.keys(abso);
@@ -246,13 +216,9 @@ $(function() {
         }
       } else {
         if (keys[i]==='ms') {
-          // holder.push('0000'+keys[i]+'');
-          // holderRaw[keys[i]] = 0000;
           $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').html('0000').val('0000');
           // $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').hide();
         } else {
-          // holder.push('00'+keys[i]+'');
-          // holderRaw[keys[i]] = 00;
           $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').html('00').val('00');
           // $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').hide();
         }
@@ -274,90 +240,13 @@ $(function() {
       time.fancy = holderRaw;
     }
 
-    // time.pretty = +abso.y+'y '+
-    //   +abso.M+'M '+
-    //   +abso.w+'w '+
-    //   +abso.d+'d '+
-    //   +abso.h+'h '+
-    //   +abso.m+'m '+
-    //   +abso.s+'s '+
-    //   +abso.ms+'ms' ;
-    // console.log( 'time: ', time );
-    // console.log( 'time.pretty: ', time.pretty );
-    // console.log( 'time.ms: ', time.ms );
+    $resultms0.val(time.ms);
+    $resultiso0.val(time.iso);
+    $result0.val(time.pretty);
 
-    $resultms.val(time.ms);
-    $resultiso.val(time.iso);
-    $result.val(time.pretty);
-    // console.log('end');
     console.groupEnd();
 
     return time;
-
-  };
-
-  var reset = function (params) {
-    // reset fields
-    console.group( 'START reset' );
-
-    if (!params || params.target) {
-      // if optional params is undefined or an event target
-      params = [oDate0.isodate,oNow.isodate];
-    } else {
-      // if optional params are passed
-      params = params;
-      console.log( 'params.length: ', params.length );
-      if (params.length < 2) {
-        params[1] = params[0];
-      }
-    }
-    console.log( 'params: ', params );
-
-    $start.val( params[0] );
-    $end.val( params[1] );
-    // console.log('end');
-    console.groupEnd();
-    
-    calc();
-
-  };
-
-  var clear = function () {
-    // clear fields
-    console.group( 'START clear' );
-
-    reset([oDate0.isodate]);
-    // console.log('end');
-    console.groupEnd();
-
-  };
-
-  var autofill = function () {
-    // autofill fields
-    console.group( 'START autofill' );
-
-    reset();
-
-    $start.val(oDate1.isodate);
-    $end.val(oDate2.isodate);
-    calc();
-    // console.log('end');
-    console.groupEnd();
-
-  };
-
-  var remove = function () {
-    // remove fields
-    console.group( 'START remove' );
-
-    $intervals.find('.interval.well').last().remove();
-    i--;
-
-    checkLength();
-
-    // console.log('end');
-    console.groupEnd();
-
   };
 
   var add = function () {
@@ -391,13 +280,16 @@ $(function() {
         id:'time_end_'+i
       });
 
+    var $intervalResult = $('<input/>',{
+        class:'form-control text-center',
+        type:'text',
+        name:'result_'+i,
+        id:'result_'+i
+      });
+
     var $addon = $('<span/>',{class:'input-group-addon text-muted'});
 
     var $intervalGroup = $('<div/>',{class:'input-group'});
-
-    // var $colsm4 = $('<div/>',{
-    //     class:'col-sm-4'})
-    //   .html($intervalGroup);
 
     var $colsm3 = $('<div/>',{class:'col-sm-3'});
     var $colsm4 = $('<div/>',{class:'col-sm-4'});
@@ -406,7 +298,7 @@ $(function() {
 
     var $intervalColStart = $colsm4.clone().addClass('interval-start')
       .html($intervalGroup.clone()
-        .html($intervalStart).prepend($addon.clone()
+        .html($intervalStart.val(oDate0.isodate)).prepend($addon.clone()
           .html('From'))
         );
 
@@ -420,7 +312,7 @@ $(function() {
       .html('tabs');
 
     var $intervalColPretty = $colsm4.clone().addClass('interval-result')
-      .html('pretty result');
+      .html($intervalResult);
 
     var $intervalColResult = $colsm12.clone().addClass('interval-result')
       .html('result');
@@ -433,7 +325,9 @@ $(function() {
 
     // var $interval = $('<div class="well well-sm interval" />').append($colsm4.append($intervalEndLast)).append($colsm4.append($intervalEndNew));
 
-    var $interval = $intervalWell.addClass('batsignal').attr('id','interval__'+i)
+    var $interval = $intervalWell
+      // .addClass('batsignal')
+      .attr('id','interval__'+i)
       .append($intervalDates
         .append($intervalColStart)
         .append($intervalColEnd)
@@ -443,56 +337,106 @@ $(function() {
       // .append($intervalResults
       //   .append($intervalColResult)
     );
-
     $intervals.append($interval);
     // $interval.appendTo($intervals);
     // $('.input-group').append('<p>'+i+' added</p>'); //test
-
     i++;
-
     checkLength();
-
-    // console.log('end');
     console.groupEnd();
-
   };
 
-  var calc = function () {
+  var remove = function () {
+    // remove fields
+    console.group( 'START remove' );
+    $intervals.find('.interval.well').last().remove();
+    i--;
+    checkLength();
+    console.groupEnd();
+  };
+
+  var calc = function (start, end) {
     // calculate
     console.group( 'START calc' );
-
+    console.log( 'start: ', start, ' // end: ', end );
     checkValue();
+    if (start.val()) {
+      console.log( 'start: ', start.val() );
+      var startTime = new Date( start.val() ).getTime();
+      console.log( 'start: ', start );
 
-    if ($start.val()) {
-      // console.log( '$start: ', $start.val() );
-      var start = new Date( $start.val() ).getTime();
-      // console.log( 'start: ', start );
+      if (end.val()) {
+        console.log( 'end: ', end.val() );
+        var endTime = new Date( end.val() ).getTime();
+        console.log( 'end: ', end );
 
-      if ($end.val()) {
-        // console.log( '$end: ', $end.val() );
-        var end = new Date( $end.val() ).getTime();
+        elapsed(startTime, endTime);
 
-        elapsed(start, end, null);
-
+      } else {
+        console.log('noop end');
+        // elapsed(startTime, null);
       }
 
+    } else {
+      console.log('noop start');
+      // elapsed(null, null);
     }
-    // console.log('end');
     console.groupEnd();
-
   };
-  calc(); // immediately execute "calc" function.
+
+  var reset = function (params) {
+    // reset fields
+    console.group( 'START reset' );
+    if (!params || params.target) {
+      // if optional params is undefined or an event target
+      // set 'params' to default dates
+      params = [oDate0.isodate,oNow.isodate];
+    } else {
+      // if optional params are passed
+      // set 'params' to 'params'
+      params = params;
+      // check length of params
+      // console.log( 'params.length: ', params.length );
+      if (params.length < 2) {
+        // if only one param is passed, add second param equal to first
+        params[1] = params[0];
+      }
+    }
+    console.log( 'params: ', params );
+    $start0.val( params[0] );
+    $end0.val( params[1] );
+    calc($start0, $end0);
+    console.groupEnd();
+  };
+
+  var clear = function () {
+    // clear fields
+    console.group( 'START clear' );
+    reset([null]);
+    console.groupEnd();
+  };
+
+  var autofill = function () {
+    // autofill fields
+    console.group( 'START autofill' );
+    reset([null]);
+    $start0.val(oDate1.isodate);
+    $end0.val(oDate2.isodate);
+    calc($start0, $end0);
+    console.groupEnd();
+  };
+
+  // calc($start0, $end0); // immediately execute "calc" function.
 
   // button bindings
-  $btnReset.on('click', reset);
-  $btnClear.on('click', clear);
-  $btnAuto.on('click', autofill);
-  $btnAdd.on('click', add);
-  $btnRemove.on('click', remove);
-  $btnCalc.on('click', calc);
+  $btnReset.bind('click', reset);
+  $btnClear.bind('click', clear);
+  $btnAuto.bind('click', autofill);
+  $btnAdd.bind('click', add);
+  $btnRemove.bind('click', remove);
+  $btnCalc.bind('click', calc($start0, $end0));
 
   // other event bindings
-  $start.on('change', calc);
-  $end.on('change', calc);
+  $start0.bind('change', calc($start0, $end0));
+  $end0.bind('change', calc($start0, $end0));
 
 });

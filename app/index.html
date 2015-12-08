@@ -70,11 +70,6 @@
                     <li role="presentation" class="active"><a href="#fancy" aria-controls="fancy" role="tab" data-toggle="tab">Fancy</a></li>
                   </ul>
                 </div>
-                <!-- <div class="col-sm-1 margin-t-05">
-                  <button type="button" class="btn btn-primary btn-block" id="calc">
-                    <span class="glyphicon glyphicon-random"></span>
-                  </button>
-                </div> -->
               </div>
               <div class="row interval-results">
                 <div class="col-sm-12 margin-t-05 interval-result">
@@ -136,34 +131,35 @@
             </div>
           </div> -->
 
-        <div class="well well-sm">
           <div class="row">
-            <div class="col-sm-6">
-              <button type="button" class="btn btn-info" id="auto">
-                Autofill
-                <span class="glyphicon glyphicon-check"></span>
-              </button>
-              <button type="button" class="btn btn-default" id="reset">
-                Reset
-                <span class="glyphicon glyphicon-repeat" style="transform:scale(-1, 1);"></span>
-              </button>
-              <button type="button" class="btn btn-warning" id="clear">
-                Clear
-                <span class="glyphicon glyphicon-remove"></span>
-              </button>
+            <div class="col-sm-8">
+              <!-- <div class="btn-group"> -->
+                <button type="button" class="btn btn-info" id="auto">Autofill
+                  <span class="glyphicon glyphicon-check"></span>
+                </button>
+                <button type="button" class="btn" id="reset">Reset
+                  <span class="glyphicon glyphicon-repeat" style="transform:scale(-1, 1);"></span>
+                </button>
+                <button type="button" class="btn btn-warning" id="clear">Clear
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+                <button type="button" class="btn btn-primary" id="calc">Calculate
+                  <span class="glyphicon glyphicon-random"></span>
+                </button>
+              <!-- </div> -->
             </div>
-            <div class="col-sm-6 text-right">
-              <button type="button" class="btn btn-danger" id="remove">
-                Remove Interval
-                <span class="glyphicon glyphicon-minus"></span>
-              </button>
-              <button type="button" class="btn btn-success" id="add">
-                Add Interval
-                <span class="glyphicon glyphicon-plus"></span>
-              </button>
+            <div class="col-sm-4 text-right">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default">Interval:</button>
+                <button type="button" class="btn btn-danger" id="remove">Remove
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+                <button type="button" class="btn btn-success" id="add">Add
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
       </form>
 
@@ -210,6 +206,7 @@
     
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
+    <script src="scripts/load.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
