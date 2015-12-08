@@ -85,8 +85,6 @@ $(function() {
   msg['diff']['small'] = "Not much time betwen those dates...";
 
   var $intervals = $('.interval-box');
-  console.log('$intervals.length: ', $intervals.length);
-  console.log('$intervals.find(\'.interval\').length: ', $intervals.find('.interval').length);
 
   // inputs
   var $start = $('#time_start_0');
@@ -139,11 +137,25 @@ $(function() {
     return num < 0 ? '-' + zeroString + an : zeroString + an;
   }
 
-  var check = function () {
+  var checkLength = function () {
+    console.log('START checkLength');
     if ( $intervals.find('.interval').length < 2 ) {
       $btnRemove.prop('disabled',true);
     } else {
       $btnRemove.prop('disabled',false);
+    }
+  };
+
+  var checkValue = function () {
+    console.log('START checkValue');
+    console.log('$start.val(): ', $start.val());
+    console.log('$end.val(): ', $end.val());
+    if ($start.val()==="" || $end.val()==="") {
+      $btnAdd.prop('disabled',true);
+    } else if ($start.val()===$end.val()) {
+      $btnAdd.prop('disabled',true);
+    } else {
+      $btnAdd.prop('disabled',false);
     }
   };
 
@@ -341,7 +353,7 @@ $(function() {
     $intervals.find('.interval.well').last().remove();
     i--;
 
-    check();
+    checkLength();
 
     // console.log('end');
     console.groupEnd();
@@ -438,7 +450,7 @@ $(function() {
 
     i++;
 
-    check();
+    checkLength();
 
     // console.log('end');
     console.groupEnd();
@@ -448,6 +460,8 @@ $(function() {
   var calc = function () {
     // calculate
     console.group( 'START calc' );
+
+    checkValue();
 
     if ($start.val()) {
       // console.log( '$start: ', $start.val() );

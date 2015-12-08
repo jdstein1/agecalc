@@ -18,8 +18,10 @@ AgeCalc could use a third party library to compare dates and calculate time span
 
 * [] Months - Currently I am just dividing the year by 12 to create month segments.  Not ideal.  But months suck.  Stupid Julian/Gregorian Calendar!
 * [X] "Pretty" vs "Full" - these two dsiplay modes are kind of misnamed now.  Need to reverse them so that "pretty" refers to the fancy display...or rename "full" --> "fancy".
-* [] Add interval - Feature that adds a row of inputs to measure a new time interval, using the previous interval's end time as the new one's start time.
-* [] Remove interval - Remove last added interval row.
+* [X] Add interval - Feature that adds a row of inputs to measure a new time interval, using the previous interval's end time as the new one's start time.
+  * [X] Disable 'Add' if no intitial interval is set (if start or end are empty/null, or if start and end are equal).
+* [X] Remove interval - Remove last added interval row.
+  * [X] Disable 'Remove' if there's only one '.interval'.
 * [] New Interval - Not sure if a new interval row should have a simplified layout or a layout totally similar to the initial one.
   * [] Simple layout - 1 row: start, end, result
   * [] Complex layout - 2 rows: 1st row = start, end, tabs; 2nd row = tabbed result display
