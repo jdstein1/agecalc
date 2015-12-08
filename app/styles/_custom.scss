@@ -1,21 +1,38 @@
-@import url(https://fonts.googleapis.com/css?family=Orbitron:100,400);
-@import url(https://fonts.googleapis.com/css?family=Roboto:100,400);
-@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:100,400);
-@import url(https://fonts.googleapis.com/css?family=PT+Mono:100,400);
-@import url(https://fonts.googleapis.com/css?family=Exo:100,400);
-@import url(https://fonts.googleapis.com/css?family=Oswald:100,400);
-@import url(https://fonts.googleapis.com/css?family=Ek+Mukta:100,400);
-@import url(https://fonts.googleapis.com/css?family=Quantico:100,400);
-
 /* Custom styles */
 
 .small {font-size:0.875em !important;}
 
-.margin-t-05 {margin-top:0.5em;}
-.margin-b-05 {margin-bottom:0.5em;}
+@mixin margins($side, $size) {
+  margin:{$side:$size;}
+}
 
-.margin-t-10 {margin-top:1.0em;}
-.margin-b-10 {margin-bottom:1.0em;}
+.margin-t-05 {
+  /* margin-top:0.5em; */
+  @include margins(top,0.5em);
+}
+.margin-b-05 {
+  /* margin-bottom:0.5em; */
+  @include margins(bottom,0.5em);
+}
+.margin-sides-05 {
+  /* margin-left:0.5em;margin-right:0.5em; */
+  @include margins(left,0.5em);
+  @include margins(right,0.5em);
+}
+
+.margin-t-10 {
+  /* margin-top:1em; */
+  @include margins(top,1em);
+}
+.margin-b-10 {
+  /* margin-bottom:1em; */
+  @include margins(bottom,1em);
+}
+.margin-sides-10 {
+  /* margin-left:1em;margin-right:1em; */
+  @include margins(left,1em);
+  @include margins(right,1em);
+}
 
 .shadow-top {box-shadow:0 -0.25em 1em 0 rgba(0,0,0,0.25);}
 .shadow-bottom {box-shadow:0 0.25em 1em 0 rgba(0,0,0,0.25);}
@@ -27,11 +44,33 @@
   .tab-pane {}
 }
 
-.intervals {
-  .interval-dates {
-    .interval {}
+.interval-box {
+  .interval {
+    .interval-dates {
+      .interval-start {}
+      .interval-end {}
+      .interval-tabs {}
+    }
+    .interval-results {
+      .interval-result {}
+    }
   }
-  .interval-results {
+  .batsignal {
+    &.interval.well {
+      background: #ff8080;
+      .row {
+        background: #ff80ff;
+        &.interval-dates {background: #80ffff;}
+        &.interval-results {background: #ffff80;}
+      }
+      .col-sm-6 {background: #808080;}
+      .input-group {
+        background: #8080ff;
+        .form-control {
+          background: #80ff80;
+        }
+      }
+    }
   }
 }
 
@@ -224,20 +263,3 @@
   .icon-glyph {font-size:1em; margin:0 -0.4em;}
 }
 
-.batsignal {
-  &.interval.well {
-    background: #ff8080;
-    .row {
-      background: #80ffff;
-      &.interval-dates {background: #ff80ff;}
-      &.interval-results {background: #ffff80;}
-    }
-    .col-sm-6 {background: #808080;}
-    .input-group {
-      background: #8080ff;
-      .form-control {
-        background: #80ff80;
-      }
-    }
-  }
-}

@@ -84,6 +84,10 @@ $(function() {
   msg['diff']['big'] = "Those dates are pretty far apart...";
   msg['diff']['small'] = "Not much time betwen those dates...";
 
+  var $intervals = $('.interval-box');
+  console.log('$intervals.length: ', $intervals.length);
+  console.log('$intervals.find(\'.interval\').length: ', $intervals.find('.interval').length);
+
   // inputs
   var $start = $('#time_start_0');
   var $end = $('#time_end_0');
@@ -94,6 +98,8 @@ $(function() {
   // buttons
   var $btnAuto = $('.btn#auto');
   var $btnAdd = $('.btn#add');
+  var $btnRemove = $('.btn#remove');
+  $btnRemove.prop('disabled',true);
   var $btnReset = $('.btn#reset');
   var $btnClear = $('.btn#clear');
   var $btnCalc = $('.btn#calc');
@@ -102,7 +108,7 @@ $(function() {
   var abso = {}; // absolute time spans
   var rems = {}; // remainder time spans
   var divs = {
-    ms:1,                           // 1 ms/ms
+    ms:1,                          // 1 ms/ms
     s:1000,                        // 1000 ms/ses
     m:1000*60,                     // 60,000 ms/min
     h:1000*60*60,                  // 3,600,000 ms/hr
@@ -132,6 +138,14 @@ $(function() {
     var zeroString = Math.pow (10, numZeros - digitCount).toString ().substr (1);
     return num < 0 ? '-' + zeroString + an : zeroString + an;
   }
+
+  var check = function () {
+    if ( $intervals.find('.interval').length < 2 ) {
+      $btnRemove.prop('disabled',true);
+    } else {
+      $btnRemove.prop('disabled',false);
+    }
+  };
 
   var elapsed = function (a, b, f) {
     // elapsed
@@ -324,7 +338,10 @@ $(function() {
     // remove fields
     console.group( 'START remove' );
 
-    $('.intervals').find('.interval.well').last().remove();
+    $intervals.find('.interval.well').last().remove();
+    i--;
+
+    check();
 
     // console.log('end');
     console.groupEnd();
@@ -351,20 +368,20 @@ $(function() {
         type:'date',
         placeholder:'From',
         name:'time_start_'+i,
-        id:'time_start_'+i});
+        id:'time_start_'+i
+      });
 
     var $intervalEnd = $('<input/>',{
         class:'form-control',
         type:'date',
         placeholder:'Until',
         name:'time_end_'+i,
-        id:'time_end_'+i});
+        id:'time_end_'+i
+      });
 
-    var $addon = $('<span/>',{
-        class:'input-group-addon text-muted'});
+    var $addon = $('<span/>',{class:'input-group-addon text-muted'});
 
-    var $intervalGroup = $('<div/>',{
-        class:'input-group'});
+    var $intervalGroup = $('<div/>',{class:'input-group'});
 
     // var $colsm4 = $('<div/>',{
     //     class:'col-sm-4'})
@@ -376,14 +393,16 @@ $(function() {
     var $colsm12 = $('<div/>',{class:'col-sm-12'});
 
     var $intervalColStart = $colsm4.clone().addClass('interval-start')
-      .html(
-        $intervalGroup.clone().html($intervalStart).prepend($addon.clone().html('From'))
-      );
+      .html($intervalGroup.clone()
+        .html($intervalStart).prepend($addon.clone()
+          .html('From'))
+        );
 
     var $intervalColEnd = $colsm4.clone().addClass('interval-end')
-      .html(
-        $intervalGroup.clone().html($intervalEnd).prepend($addon.clone().html('Until'))
-      );
+      .html($intervalGroup.clone()
+        .html($intervalEnd).prepend($addon.clone()
+          .html('Until'))
+        );
 
     var $intervalColTabs = $colsm4.clone().addClass('interval-tabs')
       .html('tabs');
@@ -394,39 +413,33 @@ $(function() {
     var $intervalColResult = $colsm12.clone().addClass('interval-result')
       .html('result');
 
-    var $intervalDates = $('<div/>',{
-        class:'row interval-dates'})
-      .text('row');
+    var $intervalDates = $('<div/>',{class:'row interval-dates'});
 
-    var $intervalResults = $('<div/>',{
-        class:'row interval-results'})
-      .text('row');
+    var $intervalResults = $('<div/>',{class:'row interval-results'});
 
-    var $intervalWell = $('<div/>',{
-        class:'well well-sm interval',
-        id:'interval__'+i})
-      .text('well');
+    var $intervalWell = $('<div/>',{class:'well well-sm interval',id:'interval__'+i});
 
     // var $interval = $('<div class="well well-sm interval" />').append($colsm4.append($intervalEndLast)).append($colsm4.append($intervalEndNew));
 
     var $interval = $intervalWell.addClass('batsignal').attr('id','interval__'+i)
-    .append($intervalDates
-      .append($intervalColStart)
-      .append($intervalColEnd)
-      .append($intervalColPretty)
-      // .append($intervalColTabs)
-    // )
-    // .append($intervalResults
-    //   .append($intervalColResult)
+      .append($intervalDates
+        .append($intervalColStart)
+        .append($intervalColEnd)
+        .append($intervalColPretty)
+      //   .append($intervalColTabs)
+      // )
+      // .append($intervalResults
+      //   .append($intervalColResult)
     );
-
-    var $intervals = $('.intervals');
 
     $intervals.append($interval);
     // $interval.appendTo($intervals);
     // $('.input-group').append('<p>'+i+' added</p>'); //test
 
     i++;
+
+    check();
+
     // console.log('end');
     console.groupEnd();
 
@@ -461,9 +474,10 @@ $(function() {
   $btnClear.on('click', clear);
   $btnAuto.on('click', autofill);
   $btnAdd.on('click', add);
-  $btnDelete.on('click', remove);
+  $btnRemove.on('click', remove);
   $btnCalc.on('click', calc);
 
+  // other event bindings
   $start.on('change', calc);
   $end.on('change', calc);
 
