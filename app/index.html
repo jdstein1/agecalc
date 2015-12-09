@@ -37,6 +37,39 @@
 
       <form action="">
 
+        <div class="row">
+          <div class="col-sm-8">
+            <!-- <div class="btn-group"> -->
+              <button type="button" class="btn btn-info" id="auto">Autofill
+                <span class="glyphicon glyphicon-check"></span>
+              </button>
+              <button type="button" class="btn" id="reset">Reset
+                <span class="glyphicon glyphicon-repeat" style="transform:scale(-1, 1);"></span>
+              </button>
+              <button type="button" class="btn btn-warning" id="clear">Clear
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+              <button type="button" class="btn btn-primary" disabled id="calc">Calculate
+                <span class="glyphicon glyphicon-random"></span>
+              </button>
+            <!-- </div> -->
+          </div>
+          <div class="col-sm-4 text-right">
+            <!-- <div class="btn-group"> -->
+              <!-- <button type="button" class="btn btn-default">Interval:</button> -->
+              <button type="button" class="btn btn-success" id="add">Add Interval
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            <!-- </div> -->
+          </div>
+        </div>
+
+        <!-- <div class="row">
+          <div class="col-sm-12">
+            <div id="buttons"></div>
+          </div>
+        </div> -->
+
         <div class="interval-box">
           <div class="well well-sm interval" id="interval__0">
             <!-- <div class="interval"> -->
@@ -44,7 +77,7 @@
                 <div class="col-sm-4 interval-start">
                   <div class="input-group">
                     <span class="input-group-addon text-muted">From</span>
-                    <input type="date" class="form-control" name="time_start_0" id="time_start_0" value="" placeholder="From">
+                    <input type="date" class="form-control" name="time_start_0" id="time_start_0" placeholder="From">
                     <!-- <span class="input-group-btn">
                       <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -55,7 +88,7 @@
                 <div class="col-sm-4 interval-end">
                   <div class="input-group">
                     <span class="input-group-addon text-muted">Until</span>
-                    <input type="date" class="form-control" name="time_end_0" id="time_end_0" value="" placeholder="Until">
+                    <input type="date" class="form-control" name="time_end_0" id="time_end_0" placeholder="Until">
                     <!-- <span class="input-group-btn">
                       <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -78,7 +111,7 @@
                       <!-- <p>Milliseconds</p> -->
                       <div class="datetime-display milli">
                         <div class="input-group">
-                          <input type="text" class="form-control text-center" name="resultms_0" id="resultms_0" value="">
+                          <input type="text" class="form-control text-center" name="resultms_0" id="resultms_0">
                           <span class="input-group-addon">ms</span>
                         </div>
                       </div>
@@ -87,7 +120,7 @@
                       <!-- <p>Pretty</p> -->
                       <div class="datetime-display pretty">
                         <!-- <div class="input-group"> -->
-                          <input type="text" class="form-control text-center" name="result_0" id="result_0" value="">
+                          <input type="text" class="form-control text-center" name="result_0" id="result_0">
                           <!-- <span class="input-group-addon">time</span> -->
                         <!-- </div> -->
                       </div>
@@ -110,64 +143,36 @@
           </div>
         </div>
 
-          <!-- <div class="row margin-t-05">
-            <div class="col-sm-4">
-              <div class="input-group">
-                <input type="text" class="form-control text-center" name="resultms" id="resultms" value="">
-                <span class="input-group-addon">ms</span>
-              </div>
-            </div>
-            <div class="col-sm-8">
-              <div class="input-group">
-                <input type="text" class="form-control text-center" name="result" id="result" value="">
-                <span class="input-group-addon">time</span>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- <div class="row margin-t-05 margin-b-05 datetime-display fancy">
-            <div class="col-sm-12">
-              <div id="table"></div>
-            </div>
-          </div> -->
-
-          <div class="row">
-            <div class="col-sm-8">
-              <!-- <div class="btn-group"> -->
-                <button type="button" class="btn btn-info" id="auto">Autofill
-                  <span class="glyphicon glyphicon-check"></span>
-                </button>
-                <button type="button" class="btn" id="reset">Reset
-                  <span class="glyphicon glyphicon-repeat" style="transform:scale(-1, 1);"></span>
-                </button>
-                <button type="button" class="btn btn-warning" id="clear">Clear
-                  <span class="glyphicon glyphicon-remove"></span>
-                </button>
-                <button type="button" class="btn btn-primary" id="calc">Calculate
-                  <span class="glyphicon glyphicon-random"></span>
-                </button>
-              <!-- </div> -->
-            </div>
-            <div class="col-sm-4 text-right">
-              <div class="btn-group">
-                <button type="button" class="btn btn-default">Interval:</button>
-                <button type="button" class="btn btn-danger" id="remove">Remove
-                  <span class="glyphicon glyphicon-minus"></span>
-                </button>
-                <button type="button" class="btn btn-success" id="add">Add
-                  <span class="glyphicon glyphicon-plus"></span>
-                </button>
-              </div>
+        <!-- <div class="row margin-t-05">
+          <div class="col-sm-4">
+            <div class="input-group">
+              <input type="text" class="form-control text-center" name="resultms" id="resultms">
+              <span class="input-group-addon">ms</span>
             </div>
           </div>
+          <div class="col-sm-8">
+            <div class="input-group">
+              <input type="text" class="form-control text-center" name="result" id="result">
+              <span class="input-group-addon">time</span>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- <div class="row margin-t-05 margin-b-05 datetime-display fancy">
+          <div class="col-sm-12">
+            <div id="table"></div>
+          </div>
+        </div> -->
+
+        <div class="row">
+          <div class="col-sm-12 text-right">
+            <button type="button" class="btn btn-danger" id="remove">Remove Interval
+              <span class="glyphicon glyphicon-minus"></span>
+            </button>
+          </div>
+        </div>
 
       </form>
-
-      <!-- <div class="row">
-        <div class="col-sm-12">
-          <div id="buttons"></div>
-        </div>
-      </div> -->
 
       <hr>
 
@@ -205,6 +210,7 @@
     <!-- endbuild -->
     
     <!-- build:js scripts/main.js -->
+    <script src="scripts/utils.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/load.js"></script>
     <!-- endbuild -->

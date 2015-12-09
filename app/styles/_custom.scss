@@ -15,31 +15,21 @@
   padding-left: $l;
 }
 
-.margin-t-05 {
-  /* margin-top:0.5em; */
-  @include margins(0.5em,null,null,null);
-}
-.margin-b-05 {
-  /* margin-bottom:0.5em; */
-  @include margins(null,null,0.5em,null);
-}
-.margin-sides-05 {
-  /* margin-left:0.5em;margin-right:0.5em; */
-  @include margins(null,0.5em,null,0.5em);
-}
+.margin-t--05 {@include margins(-0.5em,null,null,null);}
+.margin-b--05 {@include margins(null,null,-0.5em,null);}
+.margin-sides--05 {@include margins(null,-0.5em,null,-0.5em);}
 
-.margin-t-10 {
-  /* margin-top:1em; */
-  @include margins(1em,null,null,null);
-}
-.margin-b-10 {
-  /* margin-bottom:1em; */
-  @include margins(null,null,1em,null);
-}
-.margin-sides-10 {
-  /* margin-left:1em;margin-right:1em; */
-  @include margins(null,1em,null,1em);
-}
+.margin-t-00 {@include margins(0,null,null,null);}
+.margin-b-00 {@include margins(null,null,0,null);}
+.margin-sides-00 {@include margins(null,0,null,0);}
+
+.margin-t-05 {@include margins(0.5em,null,null,null);}
+.margin-b-05 {@include margins(null,null,0.5em,null);}
+.margin-sides-05 {@include margins(null,0.5em,null,0.5em);}
+
+.margin-t-10 {@include margins(1em,null,null,null);}
+.margin-b-10 {@include margins(null,null,1em,null);}
+.margin-sides-10 {@include margins(null,1em,null,1em);}
 
 .shadow-top {box-shadow:0 -0.25em 1em 0 rgba(0,0,0,0.25);}
 .shadow-bottom {box-shadow:0 0.25em 1em 0 rgba(0,0,0,0.25);}
@@ -52,6 +42,7 @@
 }
 
 .interval-box {
+  @include margins(1em,null,1em,null);
   .interval {
     .interval-dates {
       .interval-start {}

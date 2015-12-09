@@ -2,7 +2,7 @@
 $(function() {
   // Handler for .ready() called.
 
-  var time = {}, t = 0, i = 1;
+  var time = {}, t = 0, i = 1, rev = null;
 
   var makeDateObj = function (d) {
     // console.group( 'START makeDateObj d: ', d );
@@ -70,6 +70,7 @@ $(function() {
   // buttons
   var $btnAuto = $('.btn#auto');
   var $btnAdd = $('.btn#add');
+  $btnAdd.prop('disabled',true);
   var $btnRemove = $('.btn#remove');
   $btnRemove.prop('disabled',true);
   var $btnReset = $('.btn#reset');
@@ -111,42 +112,30 @@ $(function() {
     return num < 0 ? '-' + zeroString + an : zeroString + an;
   }
 
-  var checkLength = function () {
-    console.group('START checkLength');
-    if ( $intervals.find('.interval').length < 2 ) {
-      $btnRemove.prop('disabled',true);
-    } else {
-      $btnRemove.prop('disabled',false);
-    }
-    console.groupEnd();
-    return false;
-  };
-
-  var checkValue = function () {
-    console.group('START checkValue');
-    if ($start0.val()==="" || $end0.val()==="" || $start0.val()===$end0.val()) {
-      $btnAdd.prop('disabled',true);
-    } else {
-      $btnAdd.prop('disabled',false);
-    }
-    console.groupEnd();
-    return false;
-  };
+/* --------------------------------- */
+/* ELAPSED FUNCTION ++++++++++++ */
+/* --------------------------------- */
 
   var elapsed = function (a, b) {
     // elapsed
     console.group( 'START elapsed' );
+    console.log( 'a: ', a );
+    console.log( 'b: ', b );
 
     if (a===b) {
       console.log( 'same date, no time elapsed' );
       t = 0;
+      rev = null;
     } else if (a>b) {
       console.log( 'since b, X time elapsed until a' );
       t = a-b;
+      rev = false;
     } else {
       console.log( 'since a, X time elapsed until b' );
       t = b-a;
+      rev = true;
     }
+    $btnAdd.prop('disabled',checkValue(t));
     // console.log( 't: ', t );
 
     time['ms'] = ''+t+'';
@@ -172,19 +161,19 @@ $(function() {
     rems['d'] = rems.w % divs.d;
 
     ints['h'] = rems.d/divs.h;
-    abso['h'] = Math.trunc( ints.d );
+    abso['h'] = Math.trunc( ints.h );
     rems['h'] = rems.d % divs.h;
 
     ints['m'] = rems.h/divs.m;
-    abso['m'] = Math.trunc( ints.h );
+    abso['m'] = Math.trunc( ints.m );
     rems['m'] = rems.h % divs.m;
 
     ints['s'] = rems.m/divs.s;
-    abso['s'] = Math.trunc( ints.m );
+    abso['s'] = Math.trunc( ints.s );
     rems['s'] = rems.m % divs.s;
 
     ints['ms'] = rems.s/divs.ms;
-    abso['ms'] = Math.trunc( ints.s );
+    abso['ms'] = Math.trunc( ints.ms );
     rems['ms'] = rems.s % divs.ms;
 
     // console.log( 'ints: ', ints );
@@ -234,9 +223,14 @@ $(function() {
     return time;
   };
 
+
+/* --------------------------------- */
+/* ADD FUNCTION ++++++++++++ */
+/* --------------------------------- */
+
   var add = function () {
     // add fields
-    console.group( 'START add' );
+    // console.group( 'START add' );
 
     // console.log('$(#interval__0).find(.form-control): ',$('#interval__0').find('.form-control'));
 
@@ -263,6 +257,13 @@ $(function() {
         placeholder:'Until',
         name:'time_end_'+i,
         id:'time_end_'+i
+      });
+
+    var $intervalResultMS = $('<input/>',{
+        class:'form-control text-center',
+        type:'text',
+        name:'resultms_'+i,
+        id:'resultms_'+i
       });
 
     var $intervalResult = $('<input/>',{
@@ -296,11 +297,11 @@ $(function() {
     var $intervalColTabs = $colsm4.clone().addClass('interval-tabs')
       .html('tabs');
 
-    var $intervalColPretty = $colsm4.clone().addClass('interval-result')
+    var $intervalColResultPretty = $colsm4.clone().addClass('interval-result')
       .html($intervalResult);
 
-    var $intervalColResult = $colsm12.clone().addClass('interval-result')
-      .html('result');
+    var $intervalColResultMS = $colsm4.clone().addClass('interval-result')
+      .html($intervalGroup.append($intervalResultMS).append('<span class="input-group-addon">ms</span>'));
 
     var $intervalDates = $('<div/>',{class:'row interval-dates'});
 
@@ -316,57 +317,84 @@ $(function() {
       .append($intervalDates
         .append($intervalColStart)
         .append($intervalColEnd)
-        .append($intervalColPretty)
+        .append($intervalColResultMS)
+        // .append($intervalColResultPretty)
       //   .append($intervalColTabs)
       // )
       // .append($intervalResults
-      //   .append($intervalColResult)
+      //   .append($intervalColResultMS)
     );
     $intervals.append($interval);
     // $interval.appendTo($intervals);
     // $('.input-group').append('<p>'+i+' added</p>'); //test
     i++;
-    checkLength();
-    console.groupEnd();
+    $btnRemove.prop( 'disabled', checkLength($intervals.find('.interval.well')) );
+    // console.groupEnd();
   };
+
+/* --------------------------------- */
+/* REMOVE FUNCTION ++++++++++++ */
+/* --------------------------------- */
 
   var remove = function () {
     // remove fields
     console.group( 'START remove' );
     $intervals.find('.interval.well').last().remove();
     i--;
-    checkLength();
+    $btnRemove.prop( 'disabled', checkLength($intervals.find('.interval.well')) );
     console.groupEnd();
   };
 
-  var calc = function (start, end) {
+/* --------------------------------- */
+/* CALC FUNCTION ++++++++++++ */
+/* --------------------------------- */
+
+  var calc = function (target) {
     // calculate
     console.group( 'START calc' );
-    console.log( 'start: ', start, ' // end: ', end );
-    checkValue();
-    if (start.val()) {
-      console.log( 'start: ', start.val() );
-      var startTime = new Date( start.val() ).getTime();
-      console.log( 'start: ', start );
+    // target.val('8734-06-26');
+    // console.log( 'target: ', target );
+    // console.log( 'target.val(): ', target.val() );
+    // console.log( 'date inputs: ', $(target).closest('.interval-dates').find('.input-group input[type=date]') );
 
-      if (end.val()) {
-        console.log( 'end: ', end.val() );
-        var endTime = new Date( end.val() ).getTime();
-        console.log( 'end: ', end );
+    var $inputs = $(target).closest('.interval-dates').find('.input-group input[type=date]');
+    // console.log( '$inputs: ', $inputs );
+    var $input1 = $inputs.eq(0);
+    // console.log( '$input1: ', $input1 );
+    var $input2 = $inputs.eq(1);
+    // console.log( '$input2: ', $input2 );
+
+    // compareValue('date',$inputs);
+
+    if ( $input1.val() ) {
+      console.log( '$input1: ', $input1.val() );
+      var startTime = new Date( $input1.val() ).getTime();
+      console.log( 'startTime: ', startTime );
+
+      if ( $input2.val() ) {
+        console.log( '$input2: ', $input2.val() );
+        var endTime = new Date( $input2.val() ).getTime();
+        console.log( 'endTime: ', endTime );
 
         elapsed(startTime, endTime);
 
       } else {
+        // don't calc if no end time yet/anymore
         console.log('noop end');
         // elapsed(startTime, null);
       }
 
     } else {
       console.log('noop start');
-      // elapsed(null, null);
+      elapsed(null, null);
     }
+
     console.groupEnd();
   };
+
+/* --------------------------------- */
+/* RESET FUNCTION ++++++++++++ */
+/* --------------------------------- */
 
   var reset = function (params) {
     // reset fields
@@ -393,12 +421,20 @@ $(function() {
     console.groupEnd();
   };
 
+/* --------------------------------- */
+/* CLEAR FUNCTION ++++++++++++ */
+/* --------------------------------- */
+
   var clear = function () {
     // clear fields
     console.group( 'START clear' );
     reset([null]);
     console.groupEnd();
   };
+
+/* --------------------------------- */
+/* AUTOFILL FUNCTION ++++++++++++ */
+/* --------------------------------- */
 
   var autofill = function () {
     // autofill fields
@@ -412,7 +448,7 @@ $(function() {
 
   // calc($start0, $end0); // immediately execute "calc" function.
 
-  // button bindings
+  // button event bindings
   $btnReset.bind('click', reset);
   $btnClear.bind('click', clear);
   $btnAuto.bind('click', autofill);
@@ -420,7 +456,25 @@ $(function() {
   $btnRemove.bind('click', remove);
   $btnCalc.bind('click', calc($start0, $end0));
 
-  // other event bindings
+  // interval event bindings
+  $('.interval-start input[type=date]').bind('change input keyup', function (e) {
+    console.group('START interval start change');
+    // console.log('this: ', this);
+    // console.log('e: ', e);
+    // console.log('e.target: ', e.target);
+    calc(e.target);
+    console.groupEnd();
+  });
+  $('.interval-end input[type=date]').bind('change input keyup', function (e) {
+    console.group('START interval end change');
+    // console.log('this: ', this);
+    // console.log('e: ', e);
+    // console.log('e.target: ', e.target);
+    calc(e.target);
+    console.groupEnd();
+  });
+
+  // test event bindings
   $('.test').on('change',function () {
     alert('test on/changed');
   });
@@ -429,12 +483,6 @@ $(function() {
   });
   $('.test').change(function () {
     alert('test changed');
-  });
-  $start0.change(function () {
-    calc($start0, $end0);
-  });
-  $end0.change(function () {
-    calc($start0, $end0);
   });
 
 });
