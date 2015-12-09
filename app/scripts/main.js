@@ -122,18 +122,22 @@ $(function() {
     console.log( 'a: ', a );
     console.log( 'b: ', b );
 
-    if (a===b) {
-      console.log( 'same date, no time elapsed' );
-      t = 0;
-      rev = null;
-    } else if (a>b) {
-      console.log( 'since b, X time elapsed until a' );
-      t = a-b;
-      rev = false;
+    if (a && b) {
+      if (a===b) {
+        console.log( 'same date, no time elapsed' );
+        t = 0;
+        rev = null;
+      } else if (a>b) {
+        console.log( 'since b, X time elapsed until a' );
+        t = a-b;
+        rev = false;
+      } else {
+        console.log( 'since a, X time elapsed until b' );
+        t = b-a;
+        rev = true;
+      }
     } else {
-      console.log( 'since a, X time elapsed until b' );
-      t = b-a;
-      rev = true;
+      t = null;
     }
     $btnAdd.prop('disabled',checkValue(t));
     // console.log( 't: ', t );
@@ -367,25 +371,30 @@ $(function() {
     // compareValue('date',$inputs);
 
     if ( $input1.val() ) {
-      console.log( '$input1: ', $input1.val() );
+      // console.log( '$input1: ', $input1.val() );
       var startTime = new Date( $input1.val() ).getTime();
-      console.log( 'startTime: ', startTime );
+      // console.log( 'startTime: ', startTime );
 
       if ( $input2.val() ) {
-        console.log( '$input2: ', $input2.val() );
+        // console.log( '$input2: ', $input2.val() );
         var endTime = new Date( $input2.val() ).getTime();
-        console.log( 'endTime: ', endTime );
+        // console.log( 'endTime: ', endTime );
 
+        console.log('yup start, yup end');
         elapsed(startTime, endTime);
 
       } else {
         // don't calc if no end time yet/anymore
-        console.log('noop end');
-        // elapsed(startTime, null);
+        console.log('yup start, noop end');
+        elapsed(startTime, null);
       }
 
+    } else if ( $input2.val() ) {
+      console.log('noop start, yup end');
+      elapsed(null, endTime);
+
     } else {
-      console.log('noop start');
+      console.log('noop start, noop end');
       elapsed(null, null);
     }
 

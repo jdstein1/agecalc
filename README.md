@@ -25,10 +25,13 @@ AgeCalc could use a third party library to compare dates and calculate time span
 * [] New Interval - Not sure if a new interval row should have a simplified layout or a layout totally similar to the initial one.
   * [] Simple layout - 1 row: start, end, result
   * [] Complex layout - 2 rows: 1st row = start, end, tabs; 2nd row = tabbed result display
-* [] Calc Function - Dynamically calculate the time span of the current start and end.
-  1) [] Pass current date input to function, then 
-  2) [] get adjacent date input programmatically, then
-  3) [] 
+* [X] Calc Function - Dynamically calculate the time span of the current start and end.
+  1) [X] Pass current date input to function, then 
+  2) [X] get adjacent date input programmatically, then
+  3) [X] convert values to properly formatted dates, then
+  4) [X] pass those to elapsed function to produce resulting time span.
+* [] Reset result when one interval is cleared (change event).
+* [] Make dynamically added intervals produce a result.
 
 
 ## Resources
