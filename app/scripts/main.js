@@ -2,6 +2,10 @@
 $(function() {
   // Handler for .ready() called.
 
+/* --------------------------------- */
+/* VARIABLES ++++++++++++ */
+/* --------------------------------- */
+
   var time = {}, t = 0, i = 1, rev = null;
 
   var makeDateObj = function (d) {
@@ -101,7 +105,11 @@ $(function() {
     y:"years"
   }; // time span labels
 
-  // http://stackoverflow.com/questions/1267283/how-can-i-create-a-zerofilled-value-using-javascript
+/* --------------------------------- */
+/* ZERO-PADDING FUNCTION ++++++++++++ */
+/* http://stackoverflow.com/questions/1267283/how-can-i-create-a-zerofilled-value-using-javascript */
+/* --------------------------------- */
+
   function zeroPad (num, numZeros) {
     var an = Math.abs (num);
     var digitCount = 1 + Math.floor (Math.log (an) / Math.LN10);
@@ -122,7 +130,7 @@ $(function() {
     console.log( 'a: ', a );
     console.log( 'b: ', b );
 
-    if (a && b) {
+    if (a > -1 && b > -1) {
       if (a===b) {
         console.log( 'same date, no time elapsed' );
         t = 0;
@@ -210,11 +218,11 @@ $(function() {
     }
 
     if (holder.length < 1) {
-      // console.log( 'holder.length < 1' );
+      console.log( 'holder.length < 1' );
       time.pretty = msg.same;
       time.fancy = holderRaw;
     } else {
-      // console.log( 'holder.length > 0' );
+      console.log( 'holder.length > 0' );
       time.pretty = holder.toString().replace(/,/g, ' ');
       time.fancy = holderRaw;
     }
@@ -426,7 +434,7 @@ $(function() {
     console.log( 'params: ', params );
     $start0.val( params[0] );
     $end0.val( params[1] );
-    calc($start0, $end0);
+    calc($start0);
     console.groupEnd();
   };
 
@@ -451,11 +459,15 @@ $(function() {
     reset([null]);
     $start0.val(oDate1.isodate);
     $end0.val(oDate2.isodate);
-    calc($start0, $end0);
+    calc($start0);
     console.groupEnd();
   };
 
-  // calc($start0, $end0); // immediately execute "calc" function.
+  // calc($start0); // immediately execute "calc" function.
+
+/* --------------------------------- */
+/* EVENT BINDINGS ++++++++++++ */
+/* --------------------------------- */
 
   // button event bindings
   $btnReset.bind('click', reset);
@@ -463,7 +475,7 @@ $(function() {
   $btnAuto.bind('click', autofill);
   $btnAdd.bind('click', add);
   $btnRemove.bind('click', remove);
-  $btnCalc.bind('click', calc($start0, $end0));
+  $btnCalc.bind('click', calc($start0));
 
   // interval event bindings
   $('.interval-start input[type=date]').bind('change input keyup', function (e) {
