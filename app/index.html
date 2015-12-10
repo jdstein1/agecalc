@@ -31,7 +31,8 @@
       <div class="jumbotron text-center marketing">
         <h1>AgeCalc</h1>
         <!-- <div id="icon"></div> -->
-        <p class="lead">Compare dates to learn ages and time spans.</p>
+        <hr>
+        <p class="lead">compare dates to learn ages</p>
         <!-- <p><a class="btn btn-lg btn-success" href="#"><span class="glyphicon glyphicon-time"></span> Clock</a></p> -->
       </div>
 
@@ -97,42 +98,61 @@
                   </div>
                 </div>
                 <div class="col-sm-4 interval-tabs">
-                  <ul class="nav nav-tabs nav-justified" role="tablist">
-                    <li role="presentation" class=""><a href="#milliseconds" aria-controls="milliseconds" role="tab" data-toggle="tab">Milliseconds</a></li>
+                  <ul class="nav nav-tabs" role="tablist">
+                    <!-- <li role="presentation" class=""><a href="#milliseconds" aria-controls="milliseconds" role="tab" data-toggle="tab">Milliseconds</a></li> -->
                     <li role="presentation" class=""><a href="#pretty" aria-controls="pretty" role="tab" data-toggle="tab">Pretty</a></li>
-                    <li role="presentation" class="active"><a href="#fancy" aria-controls="fancy" role="tab" data-toggle="tab">Fancy</a></li>
+                    <li role="presentation" class="active">
+                      <a href="#fancy" aria-controls="fancy" role="tab" data-toggle="tab">Fancy
+                      <select class="flavors" style="display:inline-block;">
+                        <option value="">choose...</option>
+                        <option value="matrix">matrix</option>
+                        <option value="predator">predator</option>
+                        <option value="oblivion">oblivion</option>
+                        <option value="looper">looper</option>
+                      </select>
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </div>
               <div class="row interval-results">
-                <div class="col-sm-12 margin-t-05 interval-result">
                   <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane" id="milliseconds">
-                      <!-- <p>Milliseconds</p> -->
+                    <!-- <div role="tabpanel" class="tab-pane" id="milliseconds">
+                <div class="col-sm-12 margin-t-05 interval-result">
                       <div class="datetime-display milli">
                         <div class="input-group">
                           <input type="text" class="form-control text-center" name="resultms_0" id="resultms_0">
                           <span class="input-group-addon">ms</span>
                         </div>
                       </div>
-                    </div>
+                </div>
+                    </div> -->
                     <div role="tabpanel" class="tab-pane" id="pretty">
-                      <!-- <p>Pretty</p> -->
-                      <div class="datetime-display pretty">
-                        <!-- <div class="input-group"> -->
-                          <input type="text" class="form-control text-center" name="result_0" id="result_0">
-                          <!-- <span class="input-group-addon">time</span> -->
-                        <!-- </div> -->
+                <div class="col-sm-6 margin-t-05 interval-result">
+                      <div class="datetime-display milli">
+                        <div class="input-group">
+                          <input type="text" class="form-control text-center" name="resultms_0" id="resultms_0">
+                          <span class="input-group-addon">ms</span>
+                        </div>
                       </div>
+                </div>
+                <div class="col-sm-6 margin-t-05 interval-result">
+                      <div class="datetime-display pretty">
+                        <div class="input-group">
+                          <input type="text" class="form-control text-center" name="result_0" id="result_0">
+                          <span class="input-group-addon">time</span>
+                        </div>
+                      </div>
+                </div>
                     </div>
                     <div role="tabpanel" class="tab-pane active" id="fancy">
-                      <!-- <p>Fancy</p> -->
+                <div class="col-sm-12 margin-t-05 interval-result">
                       <div class="datetime-display fancy">
                         <div id="table"></div>
                       </div>
+                </div>
                     </div>
                   </div>
-                </div>
                 <!-- <div class="col-sm-1 margin-t-05">
                   <button type="button" class="btn btn-success btn-block" id="add">
                     <span class="glyphicon glyphicon-plus"></span>

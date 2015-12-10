@@ -22,8 +22,6 @@ $(function() {
     y: 0
   };
 
-  checkLength(i,2);
-
   var makeDateObj = function (d) {
     // console.group( 'START makeDateObj d: ', d );
     // console.log( '(new Date(d)).toJSON(): ', (new Date(d)).toJSON() );
@@ -558,6 +556,18 @@ $(function() {
     // console.log('e: ', e);
     // console.log('e.target: ', e.target);
     calc(e.target);
+    console.groupEnd();
+  });
+
+  // change style of fancy display
+  $('select.flavors').bind('change', function (e) {
+    console.group('START flavor change');
+    // console.log('this: ', this);
+    // console.log('fancy: ', $(this).closest('.well').find('#fancy table').attr('class'));
+    // console.log('e.target.value: ', e.target.value);
+    // console.log('e.target: ', e.target);
+    $(this).closest('.well').find('#fancy table').attr('class','flavor--'+e.target.value);
+    // var flavorOld = e.target.id;
     console.groupEnd();
   });
 
