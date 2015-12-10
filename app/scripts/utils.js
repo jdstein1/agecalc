@@ -2,10 +2,11 @@
 // $(function() {
   // Handler for .ready() called.
 
-  var checkLength = function (thing) {
-    console.group('START checkLength (less than 2)');
-    if (thing) {
-      if ( thing.length < 2 ) {
+  var checkLength = function (thing,expected) {
+    console.group('START checkLength (thing.length is less than '+expected+')');
+    if (typeof thing === 'object') {
+      console.log('object');
+      if ( thing.length < expected ) {
         // console.log( 'true' );
         var out = true;
       } else {
@@ -13,6 +14,7 @@
         var out = false;
       }
     } else {
+      console.log('not object');
       var out = true;
     }
     console.groupEnd();
@@ -20,7 +22,7 @@
   };
 
   var checkValue = function (thing) {
-    console.group('START checkValue (empty, null, undefined)');
+    console.group('START checkValue (0, empty, null, undefined)');
 
     // console.log('thing: ', thing);
     // console.log('typeof thing: ', typeof thing);

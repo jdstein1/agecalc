@@ -8,6 +8,8 @@ $(function() {
 
   var time = {}, t = 0, i = 1, rev = null;
 
+  checkLength(i,2);
+
   var makeDateObj = function (d) {
     // console.group( 'START makeDateObj d: ', d );
     // console.log( '(new Date(d)).toJSON(): ', (new Date(d)).toJSON() );
@@ -130,20 +132,24 @@ $(function() {
     console.log( 'a: ', a );
     console.log( 'b: ', b );
 
-    if (a===b) {
-      console.log( 'same date, no time elapsed' );
-      t = 0;
-      rev = null;
-    } else if (a>b) {
-      console.log( 'since b, X time elapsed until a' );
-      t = a-b;
-      rev = false;
+    if (a!==null && b!==null) {
+      if (a===b) {
+        console.log( 'same date, no time elapsed' );
+        t = 0;
+        rev = null;
+      } else if (a>b) {
+        console.log( 'since b, X time elapsed until a' );
+        t = a-b;
+        rev = false;
+      } else {
+        console.log( 'since a, X time elapsed until b' );
+        t = b-a;
+        rev = true;
+      }
+      $btnAdd.prop('disabled',checkValue(t));
     } else {
-      console.log( 'since a, X time elapsed until b' );
-      t = b-a;
-      rev = true;
+      console.log( 'a and/or b is null' );
     }
-    $btnAdd.prop('disabled',checkValue(t));
 
     time['ms'] = ''+t+'';
     time['pretty'] = '';
@@ -335,7 +341,7 @@ $(function() {
     // $interval.appendTo($intervals);
     // $('.input-group').append('<p>'+i+' added</p>'); //test
     i++;
-    $btnRemove.prop( 'disabled', checkLength($intervals.find('.interval.well')) );
+    $btnRemove.prop( 'disabled', checkLength($intervals.find('.interval.well'),2) );
     // console.groupEnd();
   };
 
@@ -348,7 +354,7 @@ $(function() {
     console.group( 'START remove' );
     $intervals.find('.interval.well').last().remove();
     i--;
-    $btnRemove.prop( 'disabled', checkLength($intervals.find('.interval.well')) );
+    $btnRemove.prop( 'disabled', checkLength($intervals.find('.interval.well'),2) );
     console.groupEnd();
   };
 
