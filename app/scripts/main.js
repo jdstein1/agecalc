@@ -7,6 +7,20 @@ $(function() {
 /* --------------------------------- */
 
   var time = {}, t = 0, i = 1, rev = null;
+      time['ms'] = 0;
+      time['pretty'] = '';
+      time['fancy'] = {};
+
+  var abso_default = {
+    M: 0,
+    d: 0,
+    h: 0,
+    m: 0,
+    ms: 0,
+    s: 0,
+    w: 0,
+    y: 0
+  };
 
   checkLength(i,2);
 
@@ -58,11 +72,15 @@ $(function() {
   $('div.lorem').append($lorem);
 
   var msg = {};
+  msg['err'] = {};
+  msg.err['none'] = "No dates given!";
+  msg.err['start'] = "No start date given!";
+  msg.err['end'] = "No end date given!";
   msg['same'] = "The dates are the same!";
   msg['judg'] = "Judgement Day approaches...";
   msg['diff'] = {};
-  msg['diff']['big'] = "Those dates are pretty far apart...";
-  msg['diff']['small'] = "Not much time betwen those dates...";
+  msg.diff['big'] = "Those dates are pretty far apart...";
+  msg.diff['small'] = "Not much time betwen those dates...";
 
   var $intervals = $('.interval-box');
 
@@ -70,7 +88,6 @@ $(function() {
   var $start0 = $('#time_start_0');
   var $end0 = $('#time_end_0');
   var $result0 = $('#result_0');
-  var $resultiso0 = $('#resultiso_0');
   var $resultms0 = $('#resultms_0');
 
   // buttons
@@ -123,78 +140,82 @@ $(function() {
   }
 
 /* --------------------------------- */
-/* ELAPSED FUNCTION ++++++++++++ */
+/* CREATE TIME OBJECT FUNCTION ++++++++++++ */
 /* --------------------------------- */
 
-  var elapsed = function (a, b) {
-    // elapsed
-    console.group( 'START elapsed' );
-    console.log( 'a: ', a );
-    console.log( 'b: ', b );
+  var fCreateTime = function (t) {
+    // create time object
+    console.log( 'START fCreateTime' );
 
-    if (a!==null && b!==null) {
-      if (a===b) {
-        console.log( 'same date, no time elapsed' );
-        t = 0;
-        rev = null;
-      } else if (a>b) {
-        console.log( 'since b, X time elapsed until a' );
-        t = a-b;
-        rev = false;
-      } else {
-        console.log( 'since a, X time elapsed until b' );
-        t = b-a;
-        rev = true;
-      }
-      $btnAdd.prop('disabled',checkValue(t));
+    // create result
+    if (t==='null') {
+      console.log('t null');
+      time.ms = null;
+      // time.pretty = msg.err.none;
+      time.fancy = null;
+      fCreateResult(abso_default);
+
     } else {
-      console.log( 'a and/or b is null' );
+      console.log('t NOT null');
+
+      time.ms = ''+t+'';
+
+      ints['y'] = t/divs.y;
+      abso['y'] = Math.trunc( ints.y );
+      rems['y'] = t % divs.y;
+
+      ints['M'] = rems.y/divs.M;
+      abso['M'] = Math.trunc( ints.M );
+      rems['M'] = rems.y % divs.M;
+
+      ints['w'] = rems.M/divs.w;
+      abso['w'] = Math.trunc( ints.w );
+      rems['w'] = rems.M % divs.w;
+
+      ints['d'] = rems.w/divs.d;
+      abso['d'] = Math.trunc( ints.d );
+      rems['d'] = rems.w % divs.d;
+
+      ints['h'] = rems.d/divs.h;
+      abso['h'] = Math.trunc( ints.h );
+      rems['h'] = rems.d % divs.h;
+
+      ints['m'] = rems.h/divs.m;
+      abso['m'] = Math.trunc( ints.m );
+      rems['m'] = rems.h % divs.m;
+
+      ints['s'] = rems.m/divs.s;
+      abso['s'] = Math.trunc( ints.s );
+      rems['s'] = rems.m % divs.s;
+
+      ints['ms'] = rems.s/divs.ms;
+      abso['ms'] = Math.trunc( ints.ms );
+      rems['ms'] = rems.s % divs.ms;
+
+      // console.log( 'ints: ', ints );
+      // console.log( 'abso: ', abso );
+      // console.log( 'rems: ', rems );
+
+      fCreateResult(abso);
     }
 
-    time['ms'] = ''+t+'';
-    time['pretty'] = '';
-    time['fancy'] = {};
+    $resultms0.val(time.ms);
+    $result0.val(time.pretty);
 
-    var remainder = t % 1000;
+  };
 
-    ints['y'] = t/divs.y;
-    abso['y'] = Math.trunc( ints.y );
-    rems['y'] = t % divs.y;
+/* --------------------------------- */
+/* CREATE TIME SPAN RESULT FUNCTION ++++++++++++ */
+/* --------------------------------- */
 
-    ints['M'] = rems.y/divs.M;
-    abso['M'] = Math.trunc( ints.M );
-    rems['M'] = rems.y % divs.M;
-
-    ints['w'] = rems.M/divs.w;
-    abso['w'] = Math.trunc( ints.w );
-    rems['w'] = rems.M % divs.w;
-
-    ints['d'] = rems.w/divs.d;
-    abso['d'] = Math.trunc( ints.d );
-    rems['d'] = rems.w % divs.d;
-
-    ints['h'] = rems.d/divs.h;
-    abso['h'] = Math.trunc( ints.h );
-    rems['h'] = rems.d % divs.h;
-
-    ints['m'] = rems.h/divs.m;
-    abso['m'] = Math.trunc( ints.m );
-    rems['m'] = rems.h % divs.m;
-
-    ints['s'] = rems.m/divs.s;
-    abso['s'] = Math.trunc( ints.s );
-    rems['s'] = rems.m % divs.s;
-
-    ints['ms'] = rems.s/divs.ms;
-    abso['ms'] = Math.trunc( ints.ms );
-    rems['ms'] = rems.s % divs.ms;
-
-    // console.log( 'ints: ', ints );
-    // console.log( 'abso: ', abso );
-    // console.log( 'rems: ', rems );
+  var fCreateResult = function (abso) {
+    // create pretty & fancy time messages
+    console.group( 'START fCreateResult' );
+    console.log( 'abso: ', abso );
 
     var holder = [];
     var holderRaw = {};
+
     var keys = Object.keys(abso);
     for (var i = 0; i < keys.length; i++) {
       if (abso[keys[i]]>0) {
@@ -218,22 +239,69 @@ $(function() {
       }
     }
 
+    console.log( 'holder: ', holder );
+    console.log( 'holderRaw: ', holderRaw );
+
+    // check if there is a pretty time span to display
     if (holder.length < 1) {
-      console.log( 'holder.length < 1' );
-      time.pretty = msg.same;
-      time.fancy = holderRaw;
+      // no items in holder array 
+      console.log( 'holder.length < 1: ', holder.length );
+      // time.pretty = msg.same;
     } else {
-      console.log( 'holder.length > 0' );
+      // some items in holder array 
+      console.log( 'holder.length > 1: ', holder.length );
       time.pretty = holder.toString().replace(/,/g, ' ');
-      time.fancy = holderRaw;
+      // time.fancy = holderRaw;
     }
 
-    $resultms0.val(time.ms);
-    $resultiso0.val(time.iso);
-    $result0.val(time.pretty);
-
     console.groupEnd();
-    return time;
+
+  };
+
+/* --------------------------------- */
+/* ELAPSED FUNCTION ++++++++++++ */
+/* --------------------------------- */
+
+  var elapsed = function (a, b) {
+    // elapsed
+    console.log( 'START elapsed' );
+    console.log( 'a: ', a );
+    console.log( 'b: ', b );
+      time.pretty = msg.err.none;
+
+    if (a!==null && b!==null) {
+      if (a===b) {
+        console.log( 'same date, no time elapsed' );
+        t = 0;
+        rev = null;
+        time.pretty = msg.same;
+      } else if (a>b) {
+        console.log( 'since b, X time elapsed until a' );
+        t = a-b;
+        rev = false;
+      } else {
+        console.log( 'since a, X time elapsed until b' );
+        t = b-a;
+        rev = true;
+      }
+      $btnAdd.prop('disabled',checkValue(t));
+      var remainder = t % 1000;
+
+    } else {
+      console.log( 'a and/or b is null' );
+      t = 'null';
+      rev = null;
+      if (a===null && b!==null) {
+        time.pretty = msg.err.start;
+      } else if (a!==null && b===null) {
+        time.pretty = msg.err.end;
+      }
+
+    }
+
+    fCreateTime(t);
+
+    // console.groupEnd();
   };
 
 
@@ -245,17 +313,7 @@ $(function() {
     // add fields
     // console.group( 'START add' );
 
-    // console.log('$(#interval__0).find(.form-control): ',$('#interval__0').find('.form-control'));
-
-    // var $intervalEndLast = $('.interval').find('.form-control');
-    // console.log('$intervalEndLast: ',$intervalEndLast);
-    // $('<div/>',{class:'col-sm-4 interval-end'});
-
-    // var $intervalEndLast = $('#interval__'+(i-1)).find('.form-control');
-    // console.log('$intervalEndLast: ',$intervalEndLast);
-
     // create new DOM objs
-
     var $intervalStart = $('<input/>',{
         class:'form-control',
         type:'date',
@@ -390,24 +448,29 @@ $(function() {
         // console.log( 'endTime: ', endTime );
 
         console.log('yup start, yup end');
-        elapsed(startTime, endTime);
+        // elapsed(startTime, endTime);
 
       } else {
         // don't calc if no end time yet/anymore
         console.log('yup start, noop end');
-        elapsed(startTime, null);
+        var endTime = null;
+        // elapsed(startTime, null);
       }
 
     } else if ( $input2.val() ) {
       console.log('noop start, yup end');
-      elapsed(null, endTime);
+      var startTime = null;
+      var endTime = new Date( $input2.val() ).getTime();
+      // elapsed(null, endTime);
 
     } else {
       console.log('noop start, noop end');
-      elapsed(null, null);
+      var startTime = null;
+      var endTime = null;
+      // elapsed(null, null);
     }
-
     console.groupEnd();
+    elapsed(startTime, endTime);
   };
 
 /* --------------------------------- */
@@ -421,6 +484,8 @@ $(function() {
       // if optional params is undefined or an event target
       // set 'params' to default dates
       params = [oDate0.isodate,oNow.isodate];
+    } else if ( params === [null] ) {
+      params = [0,0];
     } else {
       // if optional params are passed
       // set 'params' to 'params'
@@ -479,7 +544,7 @@ $(function() {
   $btnCalc.bind('click', calc($start0));
 
   // interval event bindings
-  $('.interval-start input[type=date]').bind('change input keyup', function (e) {
+  $('.interval-start input[type=date]').bind('change', function (e) {
     console.group('START interval start change');
     // console.log('this: ', this);
     // console.log('e: ', e);
@@ -487,7 +552,7 @@ $(function() {
     calc(e.target);
     console.groupEnd();
   });
-  $('.interval-end input[type=date]').bind('change input keyup', function (e) {
+  $('.interval-end input[type=date]').bind('change', function (e) {
     console.group('START interval end change');
     // console.log('this: ', this);
     // console.log('e: ', e);
