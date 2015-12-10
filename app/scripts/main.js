@@ -130,25 +130,20 @@ $(function() {
     console.log( 'a: ', a );
     console.log( 'b: ', b );
 
-    if (a > -1 && b > -1) {
-      if (a===b) {
-        console.log( 'same date, no time elapsed' );
-        t = 0;
-        rev = null;
-      } else if (a>b) {
-        console.log( 'since b, X time elapsed until a' );
-        t = a-b;
-        rev = false;
-      } else {
-        console.log( 'since a, X time elapsed until b' );
-        t = b-a;
-        rev = true;
-      }
+    if (a===b) {
+      console.log( 'same date, no time elapsed' );
+      t = 0;
+      rev = null;
+    } else if (a>b) {
+      console.log( 'since b, X time elapsed until a' );
+      t = a-b;
+      rev = false;
     } else {
-      t = null;
+      console.log( 'since a, X time elapsed until b' );
+      t = b-a;
+      rev = true;
     }
     $btnAdd.prop('disabled',checkValue(t));
-    // console.log( 't: ', t );
 
     time['ms'] = ''+t+'';
     time['pretty'] = '';
