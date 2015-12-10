@@ -20,6 +20,28 @@ body {
   padding-bottom: 20px;
 }
 
+table.demo, .demo tr {
+  border-collapse:separate;
+  border:1px #ccc solid;
+  width:100%;
+  padding:0;
+  margin:0;
+  td, th {
+    position:relative;
+    width:auto;
+    white-space:nowrap;
+    position:relative;
+    border:1px #ccc solid;
+    text-align:center;
+    vertical-align:baseline;
+    padding:4px;
+    margin:2px;
+    input, select {display:block; width:100%;}
+  }
+  th {background:#eee;}
+}
+
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

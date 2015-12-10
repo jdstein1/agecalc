@@ -38,19 +38,36 @@
         <div class="">
 
 <h2>Input Events</h2>
-
-<div class="">
-  <input type="date" name="test_date" id="test_date" class="test">
-</div>
-<div class="">
-  <select name="test_select" id="test_select" class="test">
-    <option value="">Choose...</option>
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
-</div>
+<table class="demo">
+  <thead>
+    <tr>
+      <th class="test-date" style="width:50%;">Input / Date</th>
+      <th class="test-select" style="width:50%;">Select / Option</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="test-date input-events">
+        <input type="date" name="" id="test_date_0" class="test-binding">
+      </td>
+      <td class="test-select input-events">
+        <select name="" id="test_select_0" class="test-binding">
+          <option value="">Choose...</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td class="test-date"><button class="btn btn-block btn-primary add-input" id="add_input_date">Add Date</button></td>
+      <td class="test-select"><button class="btn btn-block btn-primary add-input" id="add_input_select">Add Select</button></td>
+    </tr>
+  </tfoot>
+</table>
 
         </div>
         <div class="">

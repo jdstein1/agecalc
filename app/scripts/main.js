@@ -98,6 +98,12 @@ $(function() {
   var $btnClear = $('.btn#clear');
   var $btnCalc = $('.btn#calc');
 
+  // other
+  // if ( $('#td--div').hasClass() ) {
+  //   var myClass = $('#td--div').attr('class');
+  //   var truClass = myClass;
+  // }
+
   var ints = {}; // integer time span
   var abso = {}; // absolute time spans
   var rems = {}; // remainder time spans
@@ -567,19 +573,45 @@ $(function() {
     // console.log('e.target.value: ', e.target.value);
     // console.log('e.target: ', e.target);
     $(this).closest('.well').find('#fancy table').attr('class','flavor--'+e.target.value);
-    // var flavorOld = e.target.id;
+    console.groupEnd();
+  });
+  // $('select.flavors option[value=oblivion]').prop('selected','selected');
+
+  // Add fake test element
+  var k = 1;
+  $('#add_input_date').bind('click', function (e) {
+    console.group('START add test INPUT/DATE element');
+    // console.log('$(e.target).closest(\'table\'): ', $(e.target).closest('table').find('tbody td').html());
+    var $input = $('input').attr({'class':'test-binding','type':'date'}).last();
+    console.log('$input: ',$input);
+    var $cell = $(e.target).closest('table').find('tbody td.test-date');
+    $input.clone().attr({'id':'test_date_'+k}).appendTo($cell);
+    k++;
+    $input = null;
+    console.groupEnd();
+  });
+  var j = 1;
+  $('#add_input_select').bind('click', function (e) {
+    console.group('START add test SELECT/OPTION element');
+    // console.log('$(e.target).closest(\'table\'): ', $(e.target).closest('table').find('tbody td').html());
+    var $input = $('select').attr({'class':'test-binding'}).last();
+    console.log('$input: ',$input);
+    var $cell = $(e.target).closest('table').find('tbody td.test-select');
+    $input.clone().attr({'id':'test_select_'+j}).appendTo($cell);
+    j++;
+    $input = null;
     console.groupEnd();
   });
 
   // test event bindings
-  $('.test').on('change',function () {
-    alert('test on/changed');
+  $('.input-events').on('change','.test-binding',function (e) {
+    console.log('test on/changed', e.target.value);
   });
-  $('.test').bind('change',function () {
-    alert('test bind/changed');
+  $('.input-events').bind('change','.test-binding',function (e) {
+    console.log('test bind/changed', e.target.value);
   });
-  $('.test').change(function () {
-    alert('test changed');
+  $('.test-binding').change(function (e) {
+    console.log('test changed', e.target.value);
   });
 
 });
