@@ -6,10 +6,12 @@ $(function() {
 /* VARIABLES ++++++++++++ */
 /* --------------------------------- */
 
-  var time = {}, t = 0, i = 1, rev = null;
+  var time = {}, alertmsg = {}, t = 0, i = 1, rev = null;
       time['ms'] = 0;
       time['pretty'] = '';
       time['fancy'] = {};
+      alertmsg['global'] = '';
+      alertmsg['local'] = '';
 
   var abso_default = {
     M: 0,
@@ -91,14 +93,23 @@ $(function() {
   // buttons
   var $btnAuto = $('.btn#auto');
   var $btnAdd = $('.btn#add');
-  $btnAdd.prop('disabled',true);
+  $btnAdd.prop('disabled',true).hide();
   var $btnRemove = $('.btn#remove');
-  $btnRemove.prop('disabled',true);
+  $btnRemove.prop('disabled',true).hide();
   var $btnReset = $('.btn#reset');
   var $btnClear = $('.btn#clear');
   var $btnCalc = $('.btn#calc');
+  $btnCalc.prop('disabled',true).hide();
 
   // other
+  var $alerts = $('.alert');
+  console.log('$alerts: ', $alerts);
+  // $alerts.hide();
+  var $alertsLocal = $('.alert.local');
+  console.log('$alertsLocal: ', $alertsLocal);
+  var $alertGlobal = $('.alert.global').eq(0);
+  console.log('$alertGlobal: ', $alertGlobal);
+  // $alertsGlobal.hide();
   // if ( $('#td--div').hasClass() ) {
   //   var myClass = $('#td--div').attr('class');
   //   var truClass = myClass;
@@ -279,6 +290,7 @@ $(function() {
         t = 0;
         rev = null;
         time.pretty = msg.same;
+        alertmsg.global = msg.same;
       } else if (a>b) {
         console.log( 'since b, X time elapsed until a' );
         t = a-b;
@@ -297,11 +309,18 @@ $(function() {
       rev = null;
       if (a===null && b!==null) {
         time.pretty = msg.err.start;
+        alertmsg.global = msg.err.start;
       } else if (a!==null && b===null) {
         time.pretty = msg.err.end;
+        alertmsg.global = msg.err.end;
       }
 
     }
+
+    // if (alert.global!=="") {
+    //   alert('global alert!');
+    //   $alertGlobal.find('p').html(alertmsg.global).fadeIn(1000).fadeOut(2000);
+    // }
 
     fCreateTime(t);
 
@@ -444,11 +463,13 @@ $(function() {
     if ( $input1.val() ) {
       // console.log( '$input1: ', $input1.val() );
       var startTime = new Date( $input1.val() ).getTime();
+      // $input1.closest('.interval-start').find('.alert').show();
       // console.log( 'startTime: ', startTime );
 
       if ( $input2.val() ) {
         // console.log( '$input2: ', $input2.val() );
         var endTime = new Date( $input2.val() ).getTime();
+        // $input2.closest('.interval-end').find('.alert').show();
         // console.log( 'endTime: ', endTime );
 
         console.log('yup start, yup end');
@@ -550,17 +571,11 @@ $(function() {
   // interval event bindings
   $('.interval-start input[type=date]').bind('change', function (e) {
     console.group('START interval start change');
-    // console.log('this: ', this);
-    // console.log('e: ', e);
-    // console.log('e.target: ', e.target);
     calc(e.target);
     console.groupEnd();
   });
   $('.interval-end input[type=date]').bind('change', function (e) {
     console.group('START interval end change');
-    // console.log('this: ', this);
-    // console.log('e: ', e);
-    // console.log('e.target: ', e.target);
     calc(e.target);
     console.groupEnd();
   });

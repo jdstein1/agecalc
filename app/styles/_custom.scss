@@ -45,6 +45,7 @@
   @include margins(1em,null,1em,null);
   .interval {
     .interval-dates {
+      &, & > div {position: relative;}
       .interval-start {}
       .interval-end {}
       .interval-tabs {}
@@ -265,3 +266,16 @@
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn {opacity: 0.5;}
 
 .marketing.jumbotron {margin:4em 0 2em; padding: 2em 4em;}
+
+.alert {
+  opacity:0.9;
+  &.global {}
+  &.local {
+    position: absolute;
+    top:-4em;
+    right:1em;
+    bottom:auto;
+    left:1em;
+  }
+  &.temp {}
+}

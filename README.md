@@ -32,7 +32,8 @@ AgeCalc could use a third party library to compare dates and calculate time span
   4) [X] pass those to elapsed function to produce resulting time span.
 * [] Reset result when one interval is cleared (change event).
 * [] Make dynamically added intervals produce a result.
-
+* [] "This Day in History" feature - provide link to a site that list notable events on this day in history (e.g., [http://www.historynet.com/today-in-history/december-09](http://www.historynet.com/today-in-history/december-09))
+* [] Alert messages for interval dates - add a tooltip for notable dates.
 
 ## Resources
 
