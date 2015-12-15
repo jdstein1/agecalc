@@ -244,6 +244,8 @@
 }
 
 .jumbotron {
+  max-height:40px;
+  overflow:hidden;
   /* Permalink - use to edit and share this gradient -- http://colorzilla.com/gradient-editor/#7aafcc+0,ccecff+100 */
   background:rgb(127,191,255); /* Old browsers */
   background:-moz-linear-gradient(top,  rgba(127,191,255,1) 0%, rgba(204,236,255,1) 100%); /* FF3.6-15 */
@@ -279,3 +281,24 @@
   }
   &.temp {}
 }
+
+
+#test-date {
+  &:after {content:"";}
+}
+#test-month {
+  &:after {content:"";}
+}
+#test-week {
+  &:after {content:"";}
+}
+#test-time {
+  &:after {content:"";}
+}
+#test-datetime {
+  &:after {content:"";}
+}
+#test-datetime-local {
+  &:after {content:"";}
+}
+

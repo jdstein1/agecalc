@@ -35,9 +35,46 @@
 
       <div class="row marketing">
 
-        <div class="">
+        <section class="">
+
+<h2>Inputs</h2>
+
+<p>Test of form inputs that HTML5 provides for date and time data.</p>
+
+<fieldset>
+  <label class="input-group">
+    Label for <code>date</code>
+    <input class="form-control" placeholder="date" type="date" id="test-date">
+  </label>
+  <label class="input-group">
+    Label for <code>month</code>
+    <input class="form-control" placeholder="month" type="month" id="test-month">
+  </label>
+  <label class="input-group">
+    Label for <code>week</code>
+    <input class="form-control" placeholder="week" type="week" id="test-week">
+  </label>
+  <label class="input-group">
+    Label for <code>time</code>
+    <input class="form-control" placeholder="time" type="time" id="test-time">
+  </label>
+  <label class="input-group">
+    Label for <code>datetime</code>
+    <input class="form-control" placeholder="datetime" type="datetime" id="test-datetime">
+  </label>
+  <label class="input-group">
+    Label for <code>datetime-local</code>
+    <input class="form-control" placeholder="datetime-local" type="datetime-local" id="test-datetime-local">
+  </label>
+</fieldset>
+
+        </section>
+        <section class="">
 
 <h2>Input Events</h2>
+
+<p>Attaching events to form inputs, even when dynamically added to the DOM.</p>
+
 <table class="demo">
   <thead>
     <tr>
@@ -48,10 +85,10 @@
   <tbody>
     <tr>
       <td class="test-date input-events">
-        <input type="date" name="" id="test_date_0" class="test-binding">
+        <input type="date" name="" id="test_date_0" class="form-control test-binding">
       </td>
       <td class="test-select input-events">
-        <select name="" id="test_select_0" class="test-binding">
+        <select name="" id="test_select_0" class="form-control test-binding">
           <option value="">Choose...</option>
           <option value="0">0</option>
           <option value="1">1</option>
@@ -69,10 +106,12 @@
   </tfoot>
 </table>
 
-        </div>
-        <div class="">
+        </section>
+        <section class="">
 
 <h2>Buttons &amp; Button Groups</h2>
+
+<p>Test of variations of action inputs that Bootstrap provides.</p>
 
 <span class="label label-default">Default</span>
 <!-- Plain -->
@@ -100,6 +139,7 @@
 <div class="btn-group">
   <button type="button" class="btn btn-default dropdown-toggle">Action
     <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
   </button>
   <ul class="dropdown-menu">
     <li><a href="#">Action</a></li>
@@ -183,11 +223,14 @@
 <p class="bg-info text-info">Lorem ipsum dolor...</p>
 <div class="alert alert-info">Lorem <a href="#">ipsum</a> ad <a href="#" class="alert-link">infinitum</a> dolor...</div>
 
-        </div>
+        </section>
 
       </div>
+      <div>
 
-<div class=""><h2>Rows (SM)</h2></div>
+        <section class="">
+
+<h2>Rows (SM)</h2>
 
 <div class="row">
   <div class="col-sm-1 lorem" style="overflow:hidden; height:200px; background:#fed;"><h4><code>.col-sm-1</code></h4></div>
@@ -205,7 +248,10 @@
   <div class="col-sm-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h4><code>.col-sm-6</code></h4></div>
 </div>
 
-<div class=""><h2>Rows (MD)</h2></div>
+        </section>
+        <section class="">
+
+<h2>Rows (MD)</h2>
 
 <div class="row">
   <div class="col-md-1 lorem" style="overflow:hidden; height:200px; background:#fed;"><h4><code>.col-md-1</code></h4></div>
@@ -223,7 +269,10 @@
   <div class="col-md-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h4><code>.col-md-6</code></h4></div>
 </div>
 
-<div class=""><h2>Rows (LG)</h2></div>
+        </section>
+        <section class="">
+
+<h2>Rows (LG)</h2>
 
 <div class="row">
   <div class="col-lg-1 lorem" style="overflow:hidden; height:200px; background:#fed;"><h4><code>.col-lg-1</code></h4></div>
@@ -241,7 +290,11 @@
   <div class="col-lg-6 lorem" style="overflow:hidden; height:200px; background:#def;"><h4><code>.col-lg-6</code></h4></div>
 </div>
 
-</div>
+          </section>
+
+        </div>
+
+      </div> <!-- END .container -->
 
       <footer id="footer"></footer>
 

@@ -102,13 +102,15 @@ $(function() {
   $btnCalc.prop('disabled',true).hide();
 
   // other
+  var $inputsDate = $('input[type=date],input[type=week],input[type=month],input[type=datetime],input[type=datetime-local],input[type=time]');
+  console.log('$inputsDate: ', $inputsDate);
   var $alerts = $('.alert');
-  console.log('$alerts: ', $alerts);
+  // console.log('$alerts: ', $alerts);
   // $alerts.hide();
   var $alertsLocal = $('.alert.local');
-  console.log('$alertsLocal: ', $alertsLocal);
+  // console.log('$alertsLocal: ', $alertsLocal);
   var $alertGlobal = $('.alert.global').eq(0);
-  console.log('$alertGlobal: ', $alertGlobal);
+  // console.log('$alertGlobal: ', $alertGlobal);
   // $alertsGlobal.hide();
   // if ( $('#td--div').hasClass() ) {
   //   var myClass = $('#td--div').attr('class');
@@ -234,21 +236,47 @@ $(function() {
     var keys = Object.keys(abso);
     for (var i = 0; i < keys.length; i++) {
       if (abso[keys[i]]>0) {
+        console.log('more than 0');
         if (keys[i]==='ms') {
           holder.push(zeroPad(abso[keys[i]],4)+' '+labs[keys[i]]+'');
           holderRaw[keys[i]] = zeroPad(abso[keys[i]],4);
-          $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').html( zeroPad(abso[keys[i]],4) ).val( zeroPad(abso[keys[i]],4) );
+          $('.datetime-display.fancy')
+            .find('.'+keys[i])
+            .find('.ac-val')
+            .html( zeroPad(abso[keys[i]],4) )
+            .val( zeroPad(abso[keys[i]],4) )
+            .css({"opacity":"1"})
+            ;
         } else {
           holder.push(zeroPad(abso[keys[i]],2)+' '+labs[keys[i]]+' ');
           holderRaw[keys[i]] = zeroPad(abso[keys[i]],2);
-          $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').html( zeroPad(abso[keys[i]],2) ).val( zeroPad(abso[keys[i]],2) );
+          $('.datetime-display.fancy')
+            .find('.'+keys[i])
+            .find('.ac-val')
+            .html( zeroPad(abso[keys[i]],2) )
+            .val( zeroPad(abso[keys[i]],2) )
+            .css({"opacity":"1"})
+            ;
         }
       } else {
+        console.log('equals 0');
         if (keys[i]==='ms') {
-          $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').html('0000').val('0000');
+          $('.datetime-display.fancy')
+            .find('.'+keys[i])
+            .find('.ac-val')
+            .html('0000')
+            .val('0000')
+            .css({"opacity":"0.25"})
+            ;
           // $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').hide();
         } else {
-          $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').html('00').val('00');
+          $('.datetime-display.fancy')
+            .find('.'+keys[i])
+            .find('.ac-val')
+            .html('00')
+            .val('00')
+            .css({"opacity":"0.25"})
+            ;
           // $('.datetime-display.fancy').find('.'+keys[i]).find('.ac-val').hide();
         }
       }
@@ -449,9 +477,9 @@ $(function() {
     // target.val('8734-06-26');
     // console.log( 'target: ', target );
     // console.log( 'target.val(): ', target.val() );
-    // console.log( 'date inputs: ', $(target).closest('.interval-dates').find('.input-group input[type=date]') );
+    // console.log( 'date inputs: ', $(target).closest('.interval-dates').find('.input-group').find($inputsDate) );
 
-    var $inputs = $(target).closest('.interval-dates').find('.input-group input[type=date]');
+    var $inputs = $(target).closest('.interval-dates').find('.input-group').find($inputsDate);
     // console.log( '$inputs: ', $inputs );
     var $input1 = $inputs.eq(0);
     // console.log( '$input1: ', $input1 );
@@ -569,12 +597,12 @@ $(function() {
   $btnCalc.bind('click', calc($start0));
 
   // interval event bindings
-  $('.interval-start input[type=date]').bind('change', function (e) {
+  $('.interval-start').find($inputsDate).bind('change', function (e) {
     console.group('START interval start change');
     calc(e.target);
     console.groupEnd();
   });
-  $('.interval-end input[type=date]').bind('change', function (e) {
+  $('.interval-end').find($inputsDate).bind('change', function (e) {
     console.group('START interval end change');
     calc(e.target);
     console.groupEnd();
@@ -597,10 +625,11 @@ $(function() {
   $('#add_input_date').bind('click', function (e) {
     console.group('START add test INPUT/DATE element');
     // console.log('$(e.target).closest(\'table\'): ', $(e.target).closest('table').find('tbody td').html());
-    var $input = $('input').attr({'class':'test-binding','type':'date'}).last();
+    var input = document.createElement('input');
+    var $input = $(input).attr({'class':'form-control test-binding','type':'date','id':'test_date_'+k}).last();
     console.log('$input: ',$input);
     var $cell = $(e.target).closest('table').find('tbody td.test-date');
-    $input.clone().attr({'id':'test_date_'+k}).appendTo($cell);
+    $input.clone().appendTo($cell);
     k++;
     $input = null;
     console.groupEnd();
@@ -609,12 +638,17 @@ $(function() {
   $('#add_input_select').bind('click', function (e) {
     console.group('START add test SELECT/OPTION element');
     // console.log('$(e.target).closest(\'table\'): ', $(e.target).closest('table').find('tbody td').html());
-    var $input = $('select').attr({'class':'test-binding'}).last();
-    console.log('$input: ',$input);
+    var select = document.createElement('select');
+    var option = document.createElement('option');
+    var optionText = document.createTextNode('optionText '+j);
+    option.appendChild(optionText);
+    select.appendChild(option);
+    var $select = $(select).attr({'class':'form-control test-binding','id':'test_select_'+j}).last();
+    console.log('select: ',select);
     var $cell = $(e.target).closest('table').find('tbody td.test-select');
-    $input.clone().attr({'id':'test_select_'+j}).appendTo($cell);
+    $select.clone().appendTo($cell);
     j++;
-    $input = null;
+    select= null;
     console.groupEnd();
   });
 

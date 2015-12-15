@@ -6,43 +6,43 @@ $(function() {
 /* VARIABLES ++++++++++++ */
 /* --------------------------------- */
 
-  var susan = {};
-  susan['life'] = new Date('October 4, 1946 12:34:56');
-  susan.life['begin'] = new Date('October 4, 1946 12:34:56');
-  // console.log('susan.begin: ', susan.begin);
-  susan.life['end'] = undefined;
+  var sampleText = document.createTextNode('SAMPLE TEXT');
 
-  susan['chris'] = {};
-  susan.chris['begin'] = new Date('September 16, 1967 12:34:56');
-  console.log('susan.chris.begin: ', susan.chris.begin);
-  susan.chris['end'] = new Date('September 20, 1979 12:34:56');
-  console.log('susan.chris.end: ', susan.chris.end);
+  var $intervalBox = $('.interval-box');
+  var intervalBox = document.getElementsByClassName('interval-box');
+  console.log('intervalBox: ', intervalBox);
 
-  susan['tim'] = {};
-  // susan.tim['begin'] = 'jdfshgkjh';
-  susan.tim['begin'] = new Date('1988','05','30','12','34','56');
-  // susan.tim['begin'] = new Date(1988,05,30,12,34,56);
-  console.log('susan.tim.begin: ', susan.tim.begin);
-  // susan.tim['end'] = new Date(2009,05,30,12,34,56);
-  // console.log('susan.tim.end: ', susan.tim.end);
+  var newInterval = document.createElement('div');
+  newInterval.classList.add('well','well-sm','interval');
 
-  var robin = {};
-  robin['life'] = {};
-  robin.life['begin'] = new Date('1951-07-21');
-  console.log('robin.life.begin: ', robin.life.begin);
-  robin.life['end'] = new Date('2014-08-11');
-  console.log('robin.life.end: ', robin.life.end);
+  var newIntervalRow = document.createElement('div');
+  newIntervalRow.classList.add('row','interval-dates');
+  newIntervalRow.appendChild(sampleText);
+  document.body.appendChild(newIntervalRow);
+  // document.intervalBox.appendChild(newIntervalRow);
+  $intervalBox.append($(newIntervalRow));
 
   var loadDates = function (obj) {
+    console.log(obj);
+
     for (var i = 0; i < obj.length; i++) {
       console.log(obj[i]);
     };
 
   };
 
-
-  $('.btn.load#robin').bind('click', loadDates(robin));
-  $('.btn.load#susan').bind('click', loadDates(susan));
+  $('#robin').bind('click', function () {
+    loadDates(dates.robin)
+  });
+  // $('#robin').on('click', function () {
+  //   loadDates(dates.robin);
+  // });
+  $('#susan').bind('click', function () {
+    loadDates(dates.susan)
+  });
+  // $('#susan').on('click', function () {
+  //   loadDates(dates.susan)
+  // });
 
 });
 
