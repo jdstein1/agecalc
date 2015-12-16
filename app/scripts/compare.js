@@ -21,8 +21,11 @@
   // $intervalBox.append($(newIntervalRow));
   // intervalBox[0].appendChild(newIntervalRow);
 
+  // static function to 
+  // traverse JSON objects to get data...
   var loadDates = function (obj) {
-    console.group('obj: ',obj);
+    console.group('START loadDates');
+    console.log('obj: ',obj);
     var objKeysI = Object.keys(obj);
 
     if (objKeysI.length > 0) {
@@ -70,12 +73,43 @@
 
   };
 
+  // recursive function to 
+  // traverse JSON objects to get data...
+  var traverse = function (keys,obj) {
+    console.group('START traverse')
+    if (keys.length > 0) {
+      console.log('obj: ',obj);
+      console.log('keys: ',keys);
+      // console.log('keys.length: ',keys.length);
+      for (var i = 0; i < keys.length; i++) {
+        if (obj[keys[i]]) {
+          console.group('obj['+keys[i]+']: ',obj[keys[i]]);
+          var innerobj = obj[keys[i]];
+          var innerkeys = Object.keys(innerobj);
+          if (innerkeys.length > 0) {
+            traverse(innerkeys,innerobj);
+          }
+          console.groupEnd();
+        }
+      };
+    }
+    console.groupEnd();
+  };
+
+  var loadDatesRecurse = function (obj) {
+    console.group('START loadDatesRecurse');
+    console.log('obj: ',obj);
+    var keys = Object.keys(obj);
+    traverse(keys,obj);
+    console.groupEnd();
+  };
+
   $('#robin').bind('click', function () {
-    loadDates(dates.robin);
+    loadDatesRecurse(dates.robin);
   });
 
   $('#susan').bind('click', function () {
-    loadDates(dates.susan);
+    loadDatesRecurse(dates.susan);
   });
 
 // });
