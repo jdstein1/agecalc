@@ -1,0 +1,23 @@
+[{
+  "susan":{
+    "life":{
+      "birth":"October 4, 1946 12:00:00",
+      "death":""
+    },
+    "chris":{
+      "married": "September 16, 1967 12:00:01",
+      "divorced": "September 20, 1979 12:00:02"
+    },
+    "tim":{
+      "begin":"1988,05,30,12,00,03",
+      "end":"2009,05,30,12,00,04"
+    }
+  }
+},{
+  "robin":{
+    "life":{
+      "birth":"July 21, 1951 12:00:00",
+      "death":"August 11, 2014 12:00:01"
+    }
+  }
+}]

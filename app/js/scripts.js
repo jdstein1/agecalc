@@ -23,19 +23,19 @@ http://countdownjs.org/demo.html
     // console.log('date: ', date);
     console.log(date.toString()); // Wed Jan 12 2011 12:42:46 GMT-0800 (PST)
 
-    life.birth = new Date('October 4, 1946 12:34:56');
+    life.birth = new Date('October 4, 1946 12:00:00');
     // console.log('life.birth: ', life.birth);
 
     life.chris = {};
-    life.chris.married = new Date('September 16, 1967 12:34:56');
+    life.chris.married = new Date('September 16, 1967 12:00:01');
     // console.log('life.chris.married: ', life.chris.married);
-    life.chris.divorced = new Date('September 20, 1979 12:34:56');
+    life.chris.divorced = new Date('September 20, 1979 12:00:02');
     // console.log('life.chris.divorced: ', life.chris.divorced);
 
     life.tim = {};
-    life.tim.begin = new Date(1988,05,30,12,34,56);
+    life.tim.begin = new Date(1988,05,30,12,00,03);
     // console.log('life.tim.begin: ', life.tim.begin);
-    life.tim.end = new Date(2009,05,30,12,34,56);
+    life.tim.end = new Date(2009,05,30,12,00,04);
     // console.log('life.tim.end: ', life.tim.end);
 
     var dateFormat = {};
@@ -128,19 +128,19 @@ http://countdownjs.org/demo.html
       rems['dd'] = rems.wk % divs.dd;
 
       ints['hh'] = rems.dd/divs.hh;
-      abso['hh'] = Math.trunc( ints.dd );
+      abso['hh'] = Math.trunc( ints.hh );
       rems['hh'] = rems.dd % divs.hh;
 
       ints['mm'] = rems.hh/divs.mm;
-      abso['mm'] = Math.trunc( ints.hh );
+      abso['mm'] = Math.trunc( ints.mm );
       rems['mm'] = rems.hh % divs.mm;
 
       ints['ss'] = rems.mm/divs.ss;
-      abso['ss'] = Math.trunc( ints.mm );
+      abso['ss'] = Math.trunc( ints.ss );
       rems['ss'] = rems.mm % divs.ss;
 
       ints['ms'] = rems.ss/divs.ms;
-      abso['ms'] = Math.trunc( ints.ss );
+      abso['ms'] = Math.trunc( ints.ms );
       rems['ms'] = rems.ss % divs.ms;
 
       var remainder = t % 1000;
@@ -151,16 +151,16 @@ http://countdownjs.org/demo.html
       console.log('remainder: ', remainder);
       console.log('****************************');
 
-      var raw = ''+t+'';
-      var pretty = '<ul>'+
+      var raw = '<span class="time elapsed">'+t+' ms</span>';
+      var pretty = '<ul class="time elapsed">'+
         // '<li>t:'+t+'</li>'+
         '<li>'+abso.yy+' years</li>'+
         '<li>'+abso.mo+' months</li>'+
         '<li>'+abso.wk+' weeks</li>'+
         '<li>'+abso.dd+' days</li>'+
-        '<li>'+abso.hh+' hours</li>'+
+        '<li>'+abso.hh+' hrs</li>'+
         '<li>'+abso.mm+' min</li>'+
-        '<li>'+abso.ss+' ss</li>'+
+        '<li>'+abso.ss+' sec</li>'+
         '<li>'+abso.ms+' ms</li>'+
         '</ul>';
 

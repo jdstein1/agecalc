@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <script src="lib/pretty-jds.js"></script>
   <script src="lib/humane.js"></script>
+  <script src="js/life.json"></script>
   <script src="js/scripts.js"></script>
 </head>
 <body>
@@ -19,63 +20,90 @@
     <tbody>
       <tr>
         <th>Event</th>
-        <th>Date (ms)</th>
-        <th>Date (ISO)</th>
-        <th>Date (UTC)</th>
-        <th>Elapsed until now (ms)</th>
-        <th>Elapsed until now (pretty)</th>
+        <th>Date</th>
+        <th>Elapsed since then, until now (ms)</th>
+        <th>Elapsed since then, until now (pretty)</th>
         <th>Elapsed (humane)</th>
       </tr>
       <tr>
         <td>Birth</td>
-        <td><script>document.write( fDate(life.birth, 'ms') );</script></td>
-        <td><script>document.write( fDate(life.birth, 'iso') );</script></td>
-        <td><script>document.write( fDate(life.birth) );</script></td>
+        <td><dl>
+          <dt>ms</dt>
+          <dd><script>document.write( fDate(life.birth, 'ms') );</script></dd>
+          <dt>iso</dt>
+          <dd><script>document.write( fDate(life.birth, 'iso') );</script></dd>
+          <dt>full</dt>
+          <dd><script>document.write( fDate(life.birth) );</script></dd>
+        </dl></td>
         <td><script>document.write( fElapsed(life.birth, now, 'ms') );</script></td>
         <td><script>document.write( fElapsed(life.birth, now) );</script></td>
         <td><script>document.write( humane_date( fDate(life.birth, 'iso') ) )</script></td>
       </tr>
       <tr>
         <td>married Chris Sarandon</td>
-        <td><script>document.write( fDate(life.chris.married, 'ms') );</script></td>
-        <td><script>document.write( fDate(life.chris.married, 'iso') );</script></td>
-        <td><script>document.write( fDate(life.chris.married) );</script></td>
+        <td><dl>
+          <dt>ms</dt>
+          <dd><script>document.write( fDate(life.chris.married, 'ms') );</script></dd>
+          <dt>iso</dt>
+          <dd><script>document.write( fDate(life.chris.married, 'iso') );</script></dd>
+          <dt>full</dt>
+          <dd><script>document.write( fDate(life.chris.married) );</script></dd>
+        </dl></td>
         <td><script>document.write( fElapsed(life.chris.married, now, 'ms') );</script></td>
         <td><script>document.write( fElapsed(life.chris.married, now) );</script></td>
         <td><script>document.write( humane_date( fDate(life.chris.married, 'iso') ) )</script></td>
       </tr>
       <tr>
         <td>divorced Chris Sarandon</td>
-        <td><script>document.write( fDate(life.chris.divorced, 'ms') );</script></td>
-        <td><script>document.write( fDate(life.chris.divorced, 'iso') );</script></td>
-        <td><script>document.write( fDate(life.chris.divorced) );</script></td>
+        <td><dl>
+          <dt>ms</dt>
+          <dd><script>document.write( fDate(life.chris.divorced, 'ms') );</script></dd>
+          <dt>iso</dt>
+          <dd><script>document.write( fDate(life.chris.divorced, 'iso') );</script></dd>
+          <dt>full</dt>
+          <dd><script>document.write( fDate(life.chris.divorced) );</script></dd>
+        </dl></td>
         <td><script>document.write( fElapsed(life.chris.divorced, now, 'ms') );</script></td>
         <td><script>document.write( fElapsed(life.chris.divorced, now) );</script></td>
         <td><script>document.write( humane_date( fDate(life.chris.divorced, 'iso') ) )</script></td>
       </tr>
       <tr>
         <td>got together with Tim Robbins</td>
-        <td><script>document.write( fDate(life.tim.begin, 'ms') );</script></td>
-        <td><script>document.write( fDate(life.tim.begin, 'iso') );</script></td>
-        <td><script>document.write( fDate(life.tim.begin) );</script></td>
+        <td><dl>
+          <dt>ms</dt>
+          <dd><script>document.write( fDate(life.tim.begin, 'ms') );</script></dd>
+          <dt>iso</dt>
+          <dd><script>document.write( fDate(life.tim.begin, 'iso') );</script></dd>
+          <dt>full</dt>
+          <dd><script>document.write( fDate(life.tim.begin) );</script></dd>
+        </dl></td>
         <td><script>document.write( fElapsed(life.tim.begin, now, 'ms') );</script></td>
         <td><script>document.write( fElapsed(life.tim.begin, now) );</script></td>
         <td><script>document.write( humane_date( fDate(life.tim.begin, 'iso') ) )</script></td>
       </tr>
       <tr>
         <td>split up with Tim Robbins</td>
-        <td><script>document.write( fDate(life.tim.end, 'ms') );</script></td>
-        <td><script>document.write( fDate(life.tim.end, 'iso') );</script></td>
-        <td><script>document.write( fDate(life.tim.end) );</script></td>
+        <td><dl>
+          <dt>ms</dt>
+          <dd><script>document.write( fDate(life.tim.end, 'ms') );</script></dd>
+          <dt>iso</dt>
+          <dd><script>document.write( fDate(life.tim.end, 'iso') );</script></dd>
+          <dt>full</dt>
+          <dd><script>document.write( fDate(life.tim.end) );</script></dd>
+        </dl></td>
         <td><script>document.write( fElapsed(life.tim.end, now, 'ms') );</script></td>
         <td><script>document.write( fElapsed(life.tim.end, now) );</script></td>
         <td><script>document.write( humane_date( fDate(life.tim.end, 'iso') ) )</script></td>
       </tr>
       <tr>
         <td>Now</td>
-        <td><script>document.write( fDate(now, 'ms') );</script></td>
-        <td><script>document.write( fDate(now, 'iso') );</script></td>
-        <td><script>document.write( fDate(now) );</script></td>
+        <td><dl>
+          <dt>ms</dt>
+          <dd><script>document.write( fDate(now, 'ms') );</script></dd>
+          <dt>iso</dt>
+          <dd><script>document.write( fDate(now, 'iso') );</script></dd>
+          <li><bdocument.write( fDate(now) );</script></li>
+        </dl></td>
         <td><script>document.write( fElapsed(now, now, 'ms') );</script></td>
         <td><script>document.write( fElapsed(now, now) );</script></td>
         <td><script>document.write( humane_date( fDate(now, 'iso') ) )</script></td>

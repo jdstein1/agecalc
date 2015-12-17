@@ -1,0 +1,14 @@
+body {padding:1em;margin:1em;}
+table {width:100%;}
+table, tr, th, td {border-collapse: separate; border: 1px ridge #ccc;}
+th, td {padding:4px;}
+th {text-align: center; background: #eee;}
+td {text-align: left;}
+td.r {text-align: right;}
+dl b:after, ul b:after, ol b:after {
+  content:":";
+}
+dt, dd {border-bottom:1px grey solid;}
+dt {font-weight: 900;float: left;}
+dd {}
+.time {font-family: monospace;}
