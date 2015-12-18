@@ -1,5 +1,8 @@
-body {padding:1em;margin:1em;}
-table {width:100%;}
+html {background:#fed;}
+body {padding:1em;margin:0.5em;font-family: "Helvetica","Arial",sans-serif;background:#def;}
+header, footer {text-align: center;}
+.main {padding:1em;margin:1em 0;border-width:1px 0; border-color:#999; border-style:solid;background:#fff;}
+table {width:100%;table-layout: fixed;}
 table, tr, th, td {border-collapse: separate; border: 1px ridge #ccc;}
 th, td {padding:4px;}
 th {text-align: center; background: #eee;}
@@ -8,7 +11,13 @@ td.r {text-align: right;}
 dl b:after, ul b:after, ol b:after {
   content:":";
 }
-dt, dd {border-bottom:1px grey solid;}
+dt, dd {}
 dt {font-weight: 900;float: left;}
 dd {}
-.time {font-family: monospace;}
+/*.time {font-family: monospace;}*/
+label {display:block;width:100%; border-bottom:1px grey solid; clear: both;}
+label > input {width:auto;}
+label > span {}
+label > span + input {}
+.left {float: left;clear: both;}
+.right {float: right;clear: both;}
