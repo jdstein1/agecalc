@@ -11,27 +11,44 @@
 <body>
   <header>
     <h1>AgeCalc</h1>
-    <hr>
     <h2>calculate time spans from dates </h2>
+    <nav>
+      <ul>
+        <li><a class="current" href="index.html">Home</a></li>
+        <li><a href="compare.html">Compare</a></li>
+      </ul>
+    </nav>
   </header>
   <div class="main">
-  <table>
+  <table class="calendar">
     <tbody>
       <tr>
-        <th>Start</th>
-        <th>End</th>
+        <th>From</th>
+        <th>Until</th>
         <th>Result</th>
       </tr>
       <tr>
         <td>
-          <label for="start_0"><span class="left">From</span><input type="datetime-local" name="start_0" id="start_0"></label>
+          <label for="start_0"><span class="left">From</span>
+            <input onchange="fChangeDatetime(event)" class="datetime" type="datetime-local" name="start_0" id="start_0">
+            <input onchange="fChangeDate(event)" class="date" type="date" name="start_date_0" id="start_date_0">
+            <input onchange="fChangeTime(event)" class="time" type="time" name="start_time_0" id="start_time_0">
+          </label>
         </td>
         <td>
-          <label for="end_0"><span class="left">Until</span><input type="datetime-local" name="end_0" id="end_0"></label>
+          <label for="end_0"><span class="left">Until</span>
+            <input onchange="fChangeDatetime(event)" class="datetime" type="datetime-local" name="end_0" id="end_0">
+            <input onchange="fChangeDate(event)" class="date" type="date" name="end_date_0" id="end_date_0">
+            <input onchange="fChangeTime(event)" class="time" type="time" name="end_time_0" id="end_time_0">
+          </label>
         </td>
         <td>
-          <label for="result_0"><span class="right">ms</span><input type="text" name="result_0" id="result_0"></label>
-          <label for="result_pretty_0"><span class="right">time</span><input type="text" name="result_pretty_0" id="result_pretty_0"></label>
+          <label for="result_0"><span class="right">ms</span>
+            <input type="text" name="result_0" id="result_0">
+          </label>
+          <label for="result_pretty_0"><span class="right">time</span>
+            <input type="text" name="result_pretty_0" id="result_pretty_0">
+          </label>
         </td>
       </tr>
     </tbody>

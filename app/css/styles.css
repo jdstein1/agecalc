@@ -1,23 +1,165 @@
-html {background:#fed;}
-body {padding:1em;margin:0.5em;font-family: "Helvetica","Arial",sans-serif;background:#def;}
-header, footer {text-align: center;}
-.main {padding:1em;margin:1em 0;border-width:1px 0; border-color:#999; border-style:solid;background:#fff;}
-table {width:100%;table-layout: fixed;}
-table, tr, th, td {border-collapse: separate; border: 1px ridge #ccc;}
-th, td {padding:4px;}
-th {text-align: center; background: #eee;}
-td {text-align: left;}
-td.r {text-align: right;}
-dl b:after, ul b:after, ol b:after {
-  content:":";
+html {
+  background: #fed;
 }
-dt, dd {}
-dt {font-weight: 900;float: left;}
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Futura", "Helvetica", "Arial", sans-serif;
+  background: #def;
+  color:#333;
+}
+/* HEADER */
+header {
+  padding: 0.5em;
+  margin: 0.5em;
+}
+header h1 {
+  display: inline-block;
+  margin-right: 0.5em;
+}
+header h2 {
+  display: inline-block;
+}
+/* HEADER NAV */
+header nav, header nav * {
+  display: block;
+  clear: both;
+  padding: 0;
+  margin: 0;
+  text-indent: 0;
+}
+header nav ul {
+  border-top: 2px #ccc solid;
+  /*list-style-image: none;*/
+}
+header nav ul li {
+  display: inline-block;
+  margin-top:-2px;
+}
+header nav ul li a {
+  border-top: 2px #ccc solid;
+  padding: 0.5em 1em;
+}
+/* MAIN CONTENT AREA */
+main,
+.main {
+  padding: 1em;
+  margin: 1em;
+  background: rgba(255, 255, 255, 0.75);
+}
+/* FOOTER */
+footer {
+  padding: 0.5em;
+  margin: 0.5em;
+  text-align: center;
+}
+/* TABLES */
+table,
+tr,
+th,
+td {
+  padding: 0;
+  margin: 0;
+  border-collapse: separate;
+  vertical-align: top;
+}
+table {
+  width: 100%;
+  border: 3px outset #ddd;
+}
+th,
+td {
+  padding: 16px;
+  border: 3px inset #eee;
+}
+th {
+  text-align: center;
+  background: #eee;
+  border: 3px inset #ccc;
+}
+td {
+  text-align: left;
+}
+td.r {
+  text-align: right;
+}
+dl,
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+  text-indent: 0;
+}
+dl b:after,
+ul b:after,
+ol b:after {
+  content: ":";
+}
+dt,
+dd {} dt {
+  font-weight: 900;
+  float: left;
+}
 dd {}
 /*.time {font-family: monospace;}*/
-label {display:block;width:100%; border-bottom:1px grey solid; clear: both;}
-label > input {width:auto;}
-label > span {}
-label > span + input {}
-.left {float: left;clear: both;}
-.right {float: right;clear: both;}
+
+label {
+  display: block;
+  width: 100%;
+  border-bottom: 1px grey solid;
+  clear: both;
+}
+label > input {
+  width: auto;
+}
+label > span {} label > span + input {} .left {
+  float: left;
+  clear: both;
+}
+.right {
+  float: right;
+  clear: both;
+}
+label > span.left {
+  display: none;
+  float: none;
+}
+.calendar {
+  table-layout: fixed;
+}
+.event {font-weight: bold; font-size: 1.5em}
+.time {} .elapsed {} .ms {
+  color: navy;
+  background: #fff;
+}
+.iso {
+  color: teal;
+  background: #fff;
+}
+.full {
+  color: cornflowerblue;
+  background: #fff;
+}
+.pretty {
+  color: salmon;
+  background: #fff;
+}
+.humane {
+  color: olive;
+  background: #fff;
+}
+ul.time.elapsed.pretty {
+  padding: 0;
+  margin: 0;
+  text-indent: 0;
+}
+ul.time.elapsed.pretty li {
+  display: inline;
+  white-space: normal;
+}
+ul.time.elapsed.pretty li:not(:last-of-type)::after {
+  content: ", ";
+}
+.current {border-color:black !important;}
+
+input[type=date], input[type=time] {display: none;}
