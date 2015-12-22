@@ -232,7 +232,7 @@ var fChange = function (event,type) {
           var myStart = new Date(document.getElementById('start_date_0').value);
           break;
         case 'time':
-          var myStart = new Date(document.getElementById('start_time_0').value);
+          var myStart = document.getElementById('start_time_0').value;
           break;
         default:
           var myStart = new Date(document.getElementById('start_0').value);
@@ -251,7 +251,7 @@ var fChange = function (event,type) {
           var myEnd = new Date(document.getElementById('end_date_0').value);
           break;
         case 'time':
-          var myEnd = new Date(document.getElementById('end_time_0').value);
+          var myEnd = document.getElementById('end_time_0').value;
           break;
         default:
           var myEnd = new Date(document.getElementById('end_0').value);
@@ -290,23 +290,23 @@ var fChangeTime = function (event) {
   console.groupEnd();
 };
 
+var elDatetimes = document.getElementsByClassName('input-datetime');
+var elDates = document.getElementsByClassName('input-date');
+var elTimes = document.getElementsByClassName('input-time');
 var fSettings = function (type) {
   console.group('START fSettings');
-    var datetimes = document.getElementsByClassName('input-datetime');
-    fLoopElements(datetimes,'style.display','none');
-    var dates = document.getElementsByClassName('input-date');
-    fLoopElements(dates,'style.display','none');
-    var times = document.getElementsByClassName('input-time');
-    fLoopElements(times,'style.display','none');
+    fLoopElements(elDatetimes,'style','display','none');
+    fLoopElements(elDates,'style','display','none');
+    fLoopElements(elTimes,'style','display','none');
   switch (type) {
     case 'datetime':
-      fLoopElements(datetimes,'style.display','block');
+      fLoopElements(elDatetimes,'style','display','block');
       break;
     case 'date':
-      fLoopElements(dates,'style.display','block');
+      fLoopElements(elDates,'style','display','block');
       break;
     case 'time':
-      fLoopElements(times,'style.display','block');
+      fLoopElements(elTimes,'style','display','block');
       break;
     default:
       break;
@@ -314,9 +314,11 @@ var fSettings = function (type) {
   console.groupEnd();
 };
 
-var fLoopElements = function (el,effect,value) {
+var fLoopElements = function (el,prop,effect,value) {
+  console.group('START fLoopElements of ',el[0].className +' // '+ prop +'|'+ effect +':'+ value);
   for (var i = 0; i < el.length; i++) {
-    console.log(el[i][effect]);
-    el[i][effect] = value;
+    console.log(el[i][prop][effect]);
+    el[i][prop][effect] = value;
   };
+  console.groupEnd();
 };

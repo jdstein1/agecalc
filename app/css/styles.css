@@ -192,5 +192,6 @@ input[type=time] {
   /*display: none;*/
 }
 .input-datetime {display: none;}
-.input-date {/*display: none;*/}
+.input-date {display: block;}
 .input-time {display: none;}
+#setting-time-box {display: none;}
