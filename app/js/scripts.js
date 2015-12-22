@@ -90,14 +90,20 @@ var fCalc = function (a, b) {
   } else if (a>b) {
     // console.log('since b, X time elapsed until a');
     t = a-b;
-    reverse = true;
+    // reverse = true;
   } else {
     // console.log('since a, X time elapsed until b');
     t = b-a;
-    reverse = false;
+    // reverse = false;
   }
   console.log('t: ', t);
-  return t;
+  if (t) {
+    console.log('return t')
+    return t;
+  } else {
+    console.log('return false')
+    return false;
+  }
 };
 
 /** fCalcPretty function -- Calculate MS
@@ -175,69 +181,142 @@ t: time elapsed
 */
 var fElapsed = function (a,b,f) {
   console.log('START fElapsed function, format: ',f);
-  fCalc(a,b);
+  var t = fCalc(a,b);
   var format = {};
 
-  switch (f) {
-    case 'ms':
-      console.log('case MS');
-      format.ms = '<dl><dt>ms</dt><dd class="time elapsed ms">'+t+'</dd></dl>';
-      console.log('format: ', format);
-      return format.ms;
-    case 'pretty':
-      console.log('case PRETTY');
-      var abso = fCalcPretty(t);
-      format.pretty = '<dl><dt>full</dt><dd class="time elapsed ms"><ul class="time elapsed pretty">'+
-        // '<li>t:'+t+'</li>'+
-        '<li>'+abso.yy+' years</li>'+
-        '<li>'+abso.mo+' months</li>'+
-        '<li>'+abso.wk+' weeks</li>'+
-        '<li>'+abso.dd+' days</li>'+
-        '<li>'+abso.hh+' hrs</li>'+
-        '<li>'+abso.mm+' min</li>'+
-        '<li>'+abso.ss+' sec</li>'+
-        '<li>'+abso.ms+' ms</li>'+
-        '</ul></dd></dl>';
-      console.log('format: ', format);
-      return format.pretty;
-    default:
-      console.log('case NO FORMAT');
-      return t;
-      break;
+  if (!t) {
+    console.log('t is NaN');
+    return false;
+  } else {
+    console.log('t is:', t);
+    switch (f) {
+      case 'ms':
+        console.log('case MS');
+        format.ms = '<dl><dt>ms</dt><dd class="time elapsed ms">'+t+'</dd></dl>';
+        console.log('format: ', format);
+        return format.ms;
+      case 'pretty':
+        console.log('case PRETTY');
+        var abso = fCalcPretty(t);
+        format.pretty = '<dl><dt>full</dt><dd class="time elapsed ms"><ul class="time elapsed pretty">'+
+          // '<li>t:'+t+'</li>'+
+          '<li>'+abso.yy+' years</li>'+
+          '<li>'+abso.mo+' months</li>'+
+          '<li>'+abso.wk+' weeks</li>'+
+          '<li>'+abso.dd+' days</li>'+
+          '<li>'+abso.hh+' hrs</li>'+
+          '<li>'+abso.mm+' min</li>'+
+          '<li>'+abso.ss+' sec</li>'+
+          '<li>'+abso.ms+' ms</li>'+
+          '</ul></dd></dl>';
+        console.log('format: ', format);
+        return format.pretty;
+      default:
+        console.log('case NO FORMAT');
+        return t;
+        break;
     }
+  }
 
 };
 
-var fChangeDatetime = function (event) {
-  console.group('START fChangeDatetime');
-  // console.log('type: ', type)
-  // console.log('event: ', event);
-  // console.log('event.target.id: ', event.target.id);
-  // console.log('event.target.value: ', event.target.value);
-  var myStart = new Date(document.getElementById('start_0').value);
-  console.log('myStart: ', myStart);
-  var myEnd = new Date(document.getElementById('end_0').value);
-  console.log('myEnd: ', myEnd);
-  var result = fElapsed(myStart,myEnd);
-  console.log(result);
-  document.getElementById('result_0').value = result;
+
+var fChange = function (event,type) {
+  console.group('START fChange');
+  console.log( 'document.getElementById(\'start_0\').value: ', document.getElementById('start_0').value );
+
+    console.log('yes START value');
+    // explicitly finding input w start ID
+      switch (type) {
+        case 'date':
+          var myStart = new Date(document.getElementById('start_date_0').value);
+          break;
+        case 'time':
+          var myStart = new Date(document.getElementById('start_time_0').value);
+          break;
+        default:
+          var myStart = new Date(document.getElementById('start_0').value);
+          break;
+      }
+    // i could use this method but that would involve checking whether it's really the start input or the end input, then traversing the DOM for the matching end/start input:
+    // var myStart = new Date(event.target.value);
+    console.log('myStart: ', myStart);
+
+    if (myStart !== 'Invalid Date') {
+
+      console.log('yes END value');
+      // explicitly finding input w start ID
+      switch (type) {
+        case 'date':
+          var myEnd = new Date(document.getElementById('end_date_0').value);
+          break;
+        case 'time':
+          var myEnd = new Date(document.getElementById('end_time_0').value);
+          break;
+        default:
+          var myEnd = new Date(document.getElementById('end_0').value);
+          break;
+      }
+      console.log('myEnd: ', myEnd);
+
+      if (myEnd !== 'Invalid Date') {
+
+        var result = fElapsed(myStart,myEnd,'ms');
+        console.log('result: ', result);
+        if (result) {
+          document.getElementById('result_0').innerHTML = result;
+        }
+
+        var result_pretty = fElapsed(myStart,myEnd,'pretty');
+        console.log('result_pretty: ', result_pretty);
+        if (result_pretty) {
+          document.getElementById('result_pretty_0').innerHTML = result_pretty;
+        }
+
+      }
+
+    }
+
   console.groupEnd();
 };
 
 var fChangeDate = function (event) {
   console.group('START fChangeDate');
-  // console.log('type: ', type)
-  // console.log('event: ', event);
-  // console.log('event.target.id: ', event.target.id);
-  // console.log('event.target.value: ', event.target.value);
   console.groupEnd();
 };
 
 var fChangeTime = function (event) {
   console.group('START fChangeTime');
-  // console.log('type: ', type)
-  // console.log('event: ', event);
-  // console.log('event.target.id: ', event.target.id);
-  // console.log('event.target.value: ', event.target.value);
   console.groupEnd();
+};
+
+var fSettings = function (type) {
+  console.group('START fSettings');
+    var datetimes = document.getElementsByClassName('input-datetime');
+    fLoopElements(datetimes,'style.display','none');
+    var dates = document.getElementsByClassName('input-date');
+    fLoopElements(dates,'style.display','none');
+    var times = document.getElementsByClassName('input-time');
+    fLoopElements(times,'style.display','none');
+  switch (type) {
+    case 'datetime':
+      fLoopElements(datetimes,'style.display','block');
+      break;
+    case 'date':
+      fLoopElements(dates,'style.display','block');
+      break;
+    case 'time':
+      fLoopElements(times,'style.display','block');
+      break;
+    default:
+      break;
+  }
+  console.groupEnd();
+};
+
+var fLoopElements = function (el,effect,value) {
+  for (var i = 0; i < el.length; i++) {
+    console.log(el[i][effect]);
+    el[i][effect] = value;
+  };
 };

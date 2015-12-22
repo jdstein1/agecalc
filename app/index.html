@@ -29,33 +29,75 @@
       </tr>
       <tr>
         <td>
-          <label for="start_0"><span class="left">From</span>
-            <input onchange="fChangeDatetime(event)" class="datetime" type="datetime-local" name="start_0" id="start_0">
-            <input onchange="fChangeDate(event)" class="date" type="date" name="start_date_0" id="start_date_0">
-            <input onchange="fChangeTime(event)" class="time" type="time" name="start_time_0" id="start_time_0">
+          <label for="start_0"><span class="left hide">From</span>
+            <input onchange="fChange(event)" 
+              class="input-datetime" 
+              type="datetime-local" 
+              name="start_0" id="start_0">
+            <input onchange="fChange(event,'date')" 
+              class="input-date" 
+              type="date" 
+              name="start_date_0" id="start_date_0">
+            <input onchange="fChange(event,'time')" 
+              class="input-time" 
+              type="time" 
+              name="start_time_0" id="start_time_0">
           </label>
         </td>
         <td>
-          <label for="end_0"><span class="left">Until</span>
-            <input onchange="fChangeDatetime(event)" class="datetime" type="datetime-local" name="end_0" id="end_0">
-            <input onchange="fChangeDate(event)" class="date" type="date" name="end_date_0" id="end_date_0">
-            <input onchange="fChangeTime(event)" class="time" type="time" name="end_time_0" id="end_time_0">
+          <label for="end_0"><span class="left hide">Until</span>
+            <input onchange="fChange(event)" 
+              class="input-datetime" 
+              type="datetime-local" 
+              name="end_0" id="end_0">
+            <input onchange="fChange(event,'date')" 
+              class="input-date" 
+              type="date" 
+              name="end_date_0" id="end_date_0">
+            <input onchange="fChange(event,'time')" 
+              class="input-time" 
+              type="time" 
+              name="end_time_0" id="end_time_0">
           </label>
         </td>
         <td>
-          <label for="result_0"><span class="right">ms</span>
-            <input type="text" name="result_0" id="result_0">
-          </label>
-          <label for="result_pretty_0"><span class="right">time</span>
-            <input type="text" name="result_pretty_0" id="result_pretty_0">
-          </label>
+          <div id="result_0">??? ms</div>
+          <!-- <label for="result_0"><span class="right">ms</span>
+            <input type="text" 
+              name="result_0" id="result_0">
+          </label> -->
+          <div id="result_pretty_0">??? time</div>
+          <!-- <label for="result_pretty_0"><span class="right">time</span>
+            <input type="text" 
+              name="result_pretty_0" id="result_pretty_0">
+          </label> -->
         </td>
       </tr>
     </tbody>
   </table>
+  <form action="">
+    <table class="calendar settings">
+      <tr>
+        <th colspan="3">Settings</th>
+      </tr>
+      <tr>
+        <td><label for="setting-datetime">
+          <input onchange="fSettings('datetime')" type="radio" id="setting-datetime" name="settings">
+          <span class="">Date &amp; Time</span>
+        </label></td>
+        <td><label for="setting-date">
+          <input onchange="fSettings('date')" type="radio" id="setting-date" name="settings">
+          <span class="">Date</span>
+        </label></td>
+        <td><label for="setting-time">
+          <input onchange="fSettings('time')" type="radio" id="setting-time" name="settings">
+          <span class="">Time</span>
+        </label></td>
+      </tr>
+    </table>
+  </form>
   </div>
   <footer>
-    <hr>
     <p>&copy; 2015 by Jeff Stein</p>
   </footer>
 </body>

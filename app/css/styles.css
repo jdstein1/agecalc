@@ -1,23 +1,48 @@
 html {
-  background: #fed;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background: #cba;
+  min-height: 100%;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 body {
   padding: 0;
   margin: 0;
   font-family: "Futura", "Helvetica", "Arial", sans-serif;
-  background: #def;
+  background: #cba;
   color:#333;
+  min-height: 100%;
 }
+/* MAIN CONTENT AREA */
+header, 
+footer, 
+main,
+.main {
+  padding: 1em;
+  margin: 1em;
+  /*background: rgba(255, 255, 255, 0.75);*/
+  background: #fff;
+  box-shadow: 0 0.5em 1em 0 rgba(0,0,0,0.25);
+}
+header + main,
+header + .main {margin-top: 2em;}
+main + footer,
+.main + footer {margin-top: 2em;}
 /* HEADER */
-header {
-  padding: 0.5em;
-  margin: 0.5em;
+header, footer {
+  /*padding: 1em;*/
+  /*margin: 1em;*/
+  /*background: rgba(255, 255, 255, 0.75);*/
+  /*box-shadow: 0 0.5em 2em 0 rgba(0,0,0,0.25);*/
 }
 header h1 {
   display: inline-block;
-  margin-right: 0.5em;
+  margin: 0 0.5em;
 }
-header h2 {
+header > * {
   display: inline-block;
 }
 /* HEADER NAV */
@@ -29,28 +54,20 @@ header nav, header nav * {
   text-indent: 0;
 }
 header nav ul {
-  border-top: 2px #ccc solid;
+  margin: 0;
+  border-top: 4px #eee solid;
   /*list-style-image: none;*/
 }
 header nav ul li {
   display: inline-block;
-  margin-top:-2px;
+  margin-top:-4px;
 }
 header nav ul li a {
-  border-top: 2px #ccc solid;
+  border-top: 4px #eee solid;
   padding: 0.5em 1em;
-}
-/* MAIN CONTENT AREA */
-main,
-.main {
-  padding: 1em;
-  margin: 1em;
-  background: rgba(255, 255, 255, 0.75);
 }
 /* FOOTER */
 footer {
-  padding: 0.5em;
-  margin: 0.5em;
   text-align: center;
 }
 /* TABLES */
@@ -65,7 +82,7 @@ td {
 }
 table {
   width: 100%;
-  border: 3px outset #ddd;
+  /*border: 3px outset #fed;*/
 }
 th,
 td {
@@ -74,8 +91,9 @@ td {
 }
 th {
   text-align: center;
-  background: #eee;
-  border: 3px inset #ccc;
+  background: #fed;
+  border: 3px inset #cba;
+  text-transform: uppercase;
 }
 td {
   text-align: left;
@@ -96,23 +114,40 @@ ol b:after {
   content: ":";
 }
 dt,
-dd {} dt {
+dd {}
+dt {
   font-weight: 900;
   float: left;
 }
 dd {}
-/*.time {font-family: monospace;}*/
-
 label {
   display: block;
   width: 100%;
   border-bottom: 1px grey solid;
   clear: both;
 }
-label > input {
-  width: auto;
+label > input, label > select {
+  display: block;
+  /*width: auto;*/
+  width: 100%;
+  /*text-align: center;*/
+  padding: 0.5em;
+  margin: 0.25em auto;
 }
-label > span {} label > span + input {} .left {
+fieldset {
+  display: table;
+  table-layout: fixed;
+  width:100%;
+}
+fieldset label {
+  display: table-cell;
+  width: 33%;
+}
+fieldset > label > input, fieldset > label > select {
+}
+label > span {line-height: 2;}
+label > span + input {}
+.left {
   float: left;
   clear: both;
 }
@@ -120,34 +155,23 @@ label > span {} label > span + input {} .left {
   float: right;
   clear: both;
 }
-label > span.left {
+label > span.left {}
+.hide {
   display: none;
-  float: none;
 }
 .calendar {
   table-layout: fixed;
 }
+.settings {width:auto;border: 3px inset #eee; margin-top: 1em;}
+.settings th, .settings td {padding:0.25em 0.5em;}
 .event {font-weight: bold; font-size: 1.5em}
-.time {} .elapsed {} .ms {
-  color: navy;
-  background: #fff;
-}
-.iso {
-  color: teal;
-  background: #fff;
-}
-.full {
-  color: cornflowerblue;
-  background: #fff;
-}
-.pretty {
-  color: salmon;
-  background: #fff;
-}
-.humane {
-  color: olive;
-  background: #fff;
-}
+.time {font-style: italic;}
+.elapsed {text-decoration: underline;}
+.ms {color: navy;}
+.iso {color: teal;}
+.full {color: cornflowerblue;}
+.pretty {color: salmon;}
+.humane {color: olive;}
 ul.time.elapsed.pretty {
   padding: 0;
   margin: 0;
@@ -160,6 +184,13 @@ ul.time.elapsed.pretty li {
 ul.time.elapsed.pretty li:not(:last-of-type)::after {
   content: ", ";
 }
-.current {border-color:black !important;}
-
-input[type=date], input[type=time] {display: none;}
+.current {border-color:#666 !important;}
+input[type=radio], 
+input[type=checkbox] {width:auto; display: inline-block;}
+input[type=date], 
+input[type=time] {
+  /*display: none;*/
+}
+.input-datetime {display: none;}
+.input-date {/*display: none;*/}
+.input-time {display: none;}
