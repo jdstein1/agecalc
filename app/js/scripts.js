@@ -90,11 +90,11 @@ var fCalc = function (a, b) {
   } else if (a>b) {
     // console.log('since b, X time elapsed until a');
     t = a-b;
-    // reverse = true;
+    reverse = true;
   } else {
     // console.log('since a, X time elapsed until b');
     t = b-a;
-    // reverse = false;
+    reverse = false;
   }
   console.log('t: ', t);
   if (t) {
@@ -189,18 +189,22 @@ var fElapsed = function (a,b,f) {
     return false;
   } else {
     console.log('t is:', t);
+    if (reverse) {
+      var rev = '-';
+    } else {
+      var rev = '+';
+    }
     switch (f) {
       case 'ms':
         console.log('case MS');
-        format.ms = '<dl><dt>ms</dt><dd class="time elapsed ms">'+t+'</dd></dl>';
+        format.ms = '<dl><dt>ms</dt><dd class="time elapsed ms">'+rev+t+'</dd></dl>';
         console.log('format: ', format);
         return format.ms;
       case 'pretty':
         console.log('case PRETTY');
         var abso = fCalcPretty(t);
         format.pretty = '<dl><dt>full</dt><dd class="time elapsed ms"><ul class="time elapsed pretty">'+
-          // '<li>t:'+t+'</li>'+
-          '<li>'+abso.yy+' years</li>'+
+          '<li>'+rev+abso.yy+' years</li>'+
           '<li>'+abso.mo+' months</li>'+
           '<li>'+abso.wk+' weeks</li>'+
           '<li>'+abso.dd+' days</li>'+
@@ -219,7 +223,6 @@ var fElapsed = function (a,b,f) {
   }
 
 };
-
 
 var fChange = function (event,type) {
   console.group('START fChange');
