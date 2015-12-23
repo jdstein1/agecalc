@@ -12,25 +12,25 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Futura", "Helvetica", "Arial", sans-serif;
-  background: #cba;
+  background: #dcb;
   color:#333;
   min-height: 100%;
 }
 /* MAIN CONTENT AREA */
 header, 
-footer, 
-main,
-.main {
+footer {
   padding: 1em;
-  margin: 1em;
-  /*background: rgba(255, 255, 255, 0.75);*/
+  margin: 0;
   background: #fff;
   box-shadow: 0 0.5em 1em 0 rgba(0,0,0,0.25);
 }
-header + main,
-header + .main {margin-top: 2em;}
-main + footer,
-.main + footer {margin-top: 2em;}
+main,
+.main {
+  padding: 2em;
+  /*margin:1.25em 0.75em;*/
+  background: transparent;
+  background: rgba(255,255,255,0.5);
+}
 /* HEADER */
 header, footer {
   /*padding: 1em;*/
@@ -65,6 +65,7 @@ header nav ul li {
 header nav ul li a {
   border-top: 4px #eee solid;
   padding: 0.5em 1em;
+  text-decoration: none;
 }
 /* FOOTER */
 footer {
@@ -72,6 +73,9 @@ footer {
 }
 /* TABLES */
 table,
+thead,
+tbody,
+tfoot,
 tr,
 th,
 td {
@@ -79,28 +83,33 @@ td {
   margin: 0;
   border-collapse: separate;
   vertical-align: top;
+  background: #fff;
 }
 table {
   width: 100%;
-  /*border: 3px outset #fed;*/
+  margin: 0 0 1em 0;
+  border: 0.5em solid #fff;
+  box-shadow: 0 0.5em 1em 0 rgba(0,0,0,0.25);
 }
 th,
 td {
-  padding: 16px;
-  border: 3px inset #eee;
+  padding: 8px 16px;
+  border: 4px outset #eee;
 }
 th {
   text-align: center;
   background: #fed;
-  border: 3px inset #cba;
+  border-color: #edc;
   text-transform: uppercase;
 }
+.settings th > span {line-height: 2;}
 td {
   text-align: left;
 }
 td.r {
   text-align: right;
 }
+/* LISTS */
 dl,
 ul,
 ol {
@@ -120,13 +129,16 @@ dt {
   float: left;
 }
 dd {}
+/* FORMS & INPUTS */
 label {
   display: block;
   width: 100%;
-  border-bottom: 1px grey solid;
+  /*border-bottom: 1px grey solid;*/
   clear: both;
+  text-align: left;
+  position: relative;
 }
-label > input, label > select {
+label > input, label > button, label > select {
   display: block;
   /*width: auto;*/
   width: 100%;
@@ -143,10 +155,31 @@ fieldset label {
   display: table-cell;
   width: 33%;
 }
-fieldset > label > input, fieldset > label > select {
-}
+fieldset > label > input, fieldset > label > select {}
+
 label > span {line-height: 2;}
-label > span + input {}
+label > span.left {position: absolute; left:0.5em; right:auto;}
+label > span.right {position: absolute; left:auto; right:0.5em;}
+
+
+label > span + input {
+  /*line-height: 2; width:80%; margin-left: 0;*/
+}
+
+input[type=radio], 
+input[type=checkbox] {
+  width:2em;
+  display:inline-block;
+  line-height:1;
+  padding:1em;
+  margin:0;
+  background: teal !important;
+}
+/*input[type=datetime-local] {display: none;}*/
+/*input[type=datetime] {display: none;}*/
+/*input[type=date] {display: none;}*/
+/*input[type=time] {display: none;}*/
+/* GENERIC CLASSES */
 .left {
   float: left;
   clear: both;
@@ -162,8 +195,13 @@ label > span.left {}
 .calendar {
   table-layout: fixed;
 }
-.settings {width:auto;border: 3px inset #eee; margin-top: 1em;}
-.settings th, .settings td {padding:0.25em 0.5em;}
+.settings {
+  width:auto;
+}
+.settings th, .settings td {
+  padding:0.25em 0.5em; border-width:4px;
+  border-style: outset;
+}
 .event {font-weight: bold; font-size: 1.5em}
 .time {font-style: italic;}
 .elapsed {text-decoration: underline;}
@@ -185,12 +223,6 @@ ul.time.elapsed.pretty li:not(:last-of-type)::after {
   content: ", ";
 }
 .current {border-color:#666 !important;}
-input[type=radio], 
-input[type=checkbox] {width:auto; display: inline-block;}
-input[type=date], 
-input[type=time] {
-  /*display: none;*/
-}
 .input-datetime {display: none;}
 .input-date {display: block;}
 .input-time {display: none;}

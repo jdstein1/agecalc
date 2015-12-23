@@ -23,22 +23,14 @@ var time = new Date().getTime();
 // console.log('time: ', time);
 var date = new Date(time);
 // console.log('date: ', date);
-console.log(date.toString()); // Wed Jan 12 2011 12:42:46 GMT-0800 (PST)
+// console.log(date.toString()); // Wed Jan 12 2011 12:42:46 GMT-0800 (PST)
 
-life.birth = new Date('October 4, 1946 12:00:00');
-// console.log('life.birth: ', life.birth);
+var elDatetimes = document.getElementsByClassName('input-datetime');
+var elDates = document.getElementsByClassName('input-date');
+var elTimes = document.getElementsByClassName('input-time');
 
-life.chris = {};
-life.chris.married = new Date('September 16, 1967 12:00:01');
-// console.log('life.chris.married: ', life.chris.married);
-life.chris.divorced = new Date('September 20, 1979 12:00:02');
-// console.log('life.chris.divorced: ', life.chris.divorced);
-
-life.tim = {};
-life.tim.begin = new Date(1988,05,30,12,00,03);
-// console.log('life.tim.begin: ', life.tim.begin);
-life.tim.end = new Date(2009,05,30,12,00,04);
-// console.log('life.tim.end: ', life.tim.end);
+var elResults = document.getElementsByClassName("result");
+// console.log('elResults: ', elResults);
 
 var dateFormat = {};
 dateFormat.masks = {
@@ -59,10 +51,26 @@ dateFormat.masks = {
 var f = dateFormat.masks.isoDateTime; // set default date/time format
 // console.log('f: ', f);
 
+/* LIFE EVENTS */
+life.birth = new Date('October 4, 1946 12:00:00');
+// console.log('life.birth: ', life.birth);
+
+life.chris = {};
+life.chris.married = new Date('September 16, 1967 12:00:01');
+// console.log('life.chris.married: ', life.chris.married);
+life.chris.divorced = new Date('September 20, 1979 12:00:02');
+// console.log('life.chris.divorced: ', life.chris.divorced);
+
+life.tim = {};
+life.tim.begin = new Date(1988,05,30,12,00,03);
+// console.log('life.tim.begin: ', life.tim.begin);
+life.tim.end = new Date(2009,05,30,12,00,04);
+// console.log('life.tim.end: ', life.tim.end);
+
 /** fDate function
 params...
-a: start date & time
-f: date & time format (optional)
+  a: start date & time
+  f: date & time format (optional)
 */
 var fDate = function (a, f) {
   // console.log('START fDate function...');
@@ -75,15 +83,13 @@ var fDate = function (a, f) {
   }
 };
 
-/** fCalc function -- Calculate MS
+/** fCalcInterval function -- Calculate and return elapsed milliseconds.
 params...
-a: start date & time
-b: end date & time
-f: date & time format (optional)
-t: time elapsed
+  a: start date & time
+  b: end date & time
 */
-var fCalc = function (a, b) {
-  console.log('START fCalc function...');
+var fCalcInterval = function (a, b) {
+  console.group('START fCalcInterval function...');
   if (a===b) {
     // console.log('same date, no time elapsed');
     t = 0;
@@ -96,25 +102,23 @@ var fCalc = function (a, b) {
     t = b-a;
     reverse = false;
   }
-  console.log('t: ', t);
-  if (t) {
-    console.log('return t')
+  if (t!==NaN) {
+    console.log('return t: ',t)
+    console.groupEnd();
     return t;
   } else {
     console.log('return false')
+    console.groupEnd();
     return false;
   }
 };
 
-/** fCalcPretty function -- Calculate MS
+/** fCalcPretty function -- Use elapsed milliseconds to generate a display of the elapsed time in a pretty format (according to the Julian/Gregorian calendar).  Return a JS object of time interval values.
 params...
-a: start date & time
-b: end date & time
-f: date & time format (optional)
-t: time elapsed
+  t: time elapsed (ms)
 */
 var fCalcPretty = function (t) {
-  console.log('START fCalcPretty function...');
+  console.group('START fCalcPretty function...');
   var remainder = t % 1000;
   var ints = {};
   var abso = {};
@@ -165,6 +169,8 @@ var fCalcPretty = function (t) {
   abso['ms'] = Math.trunc( ints.ms );
   rems['ms'] = rems.ss % divs.ms;
 
+  console.groupEnd();
+
   return abso;
 
   // console.log('ints: ', ints);
@@ -177,17 +183,22 @@ var fCalcPretty = function (t) {
 
 /** fElapsed function
 params...
-t: time elapsed
+  a: start date & time
+  b: end date & time
+  f: date & time format (optional)
 */
 var fElapsed = function (a,b,f) {
-  console.log('START fElapsed function, format: ',f);
-  var t = fCalc(a,b);
+  console.group('START fElapsed function, format: ',f);
+  var t = fCalcInterval(a,b);
+  // console.log('abso: ', abso);
   var format = {};
 
-  if (!t) {
+  if (t===NaN) {
     console.log('t is NaN');
+    console.groupEnd();
     return false;
   } else {
+    var abso = fCalcPretty(t);
     console.log('t is:', t);
     if (reverse) {
       var rev = '-';
@@ -197,13 +208,21 @@ var fElapsed = function (a,b,f) {
     switch (f) {
       case 'ms':
         console.log('case MS');
-        format.ms = '<dl><dt>ms</dt><dd class="time elapsed ms">'+rev+t+'</dd></dl>';
-        console.log('format: ', format);
+        format['ms'] = '<dl><dt>ms</dt><dd class="time elapsed ms">'+rev+t+'</dd></dl>';
+        // console.log('format: ', format);
+        console.groupEnd();
         return format.ms;
+        break;
+      case 'abso':
+        console.log('case ABSO');
+        format['abso'] = JSON.stringify(abso,false,false);
+        // console.log('format: ', format);
+        console.groupEnd();
+        return format.abso;
+        break;
       case 'pretty':
         console.log('case PRETTY');
-        var abso = fCalcPretty(t);
-        format.pretty = '<dl><dt>full</dt><dd class="time elapsed ms"><ul class="time elapsed pretty">'+
+        format['pretty'] = '<dl><dt>full</dt><dd class="time elapsed ms"><ul class="time elapsed pretty">'+
           '<li>'+rev+abso.yy+' years</li>'+
           '<li>'+abso.mo+' months</li>'+
           '<li>'+abso.wk+' weeks</li>'+
@@ -213,10 +232,13 @@ var fElapsed = function (a,b,f) {
           '<li>'+abso.ss+' sec</li>'+
           '<li>'+abso.ms+' ms</li>'+
           '</ul></dd></dl>';
-        console.log('format: ', format);
+        // console.log('format: ', format);
+        console.groupEnd();
         return format.pretty;
+        break;
       default:
         console.log('case NO FORMAT');
+        console.groupEnd();
         return t;
         break;
     }
@@ -224,78 +246,111 @@ var fElapsed = function (a,b,f) {
 
 };
 
+/** fChange function -- Respond to date/time input change events.
+params...
+  a: start date & time
+  b: end date & time
+  f: date & time format (optional)
+  t: time elapsed
+*/
 var fChange = function (event,type) {
   console.group('START fChange');
-  console.log( 'document.getElementById(\'start_0\').value: ', document.getElementById('start_0').value );
 
-    console.log('yes START value');
-    // explicitly finding input w start ID
+  // console.log( 'event.target.value: ', event.target.value );
+  // console.log( 'document.getElementById(\"start_0\").value: ', document.getElementById("start_0").value );
+
+    // console.log('yes START value');
+    // explicitly finding start & end inputs by ID
       switch (type) {
         case 'date':
-          var myStart = new Date(document.getElementById('start_date_0').value);
+          var elStart = document.getElementById("start_date_0");
+          var elEnd = document.getElementById("end_date_0");
+          var myStart = new Date(elStart.value);
+          var myEnd = new Date(elEnd.value);
           break;
         case 'time':
-          var myStart = document.getElementById('start_time_0').value;
+          var elStart = document.getElementById("start_time_0");
+          var elEnd = document.getElementById("end_time_0");
+          var myStart = elStart.value;
+          var myEnd = elEnd.value;
           break;
         default:
-          var myStart = new Date(document.getElementById('start_0').value);
+          var elStart = document.getElementById("start_0");
+          var elEnd = document.getElementById("end_0");
+          var myStart = new Date(elStart.value);
+          var myEnd = new Date(elEnd.value);
           break;
       }
     // i could use this method but that would involve checking whether it's really the start input or the end input, then traversing the DOM for the matching end/start input:
     // var myStart = new Date(event.target.value);
-    console.log('myStart: ', myStart);
+    console.log('elStart.value: ', elStart.value);
+    console.log('elEnd.value: ', elEnd.value);
+    console.log('myStart: ', Object.prototype.toString.call(myStart));
+    console.log('myEnd: ', Object.prototype.toString.call(myEnd));
 
-    if (myStart !== 'Invalid Date') {
-
-      console.log('yes END value');
-      // explicitly finding input w start ID
-      switch (type) {
-        case 'date':
-          var myEnd = new Date(document.getElementById('end_date_0').value);
-          break;
-        case 'time':
-          var myEnd = document.getElementById('end_time_0').value;
-          break;
-        default:
-          var myEnd = new Date(document.getElementById('end_0').value);
-          break;
-      }
-      console.log('myEnd: ', myEnd);
-
-      if (myEnd !== 'Invalid Date') {
+    if (elStart.value && elEnd.value) {
+        console.log('yes START && END values');
 
         var result = fElapsed(myStart,myEnd,'ms');
-        console.log('result: ', result);
-        if (result) {
-          document.getElementById('result_0').innerHTML = result;
-        }
+        // console.log('result: ', result);
+        // if (result) {
+          document.getElementById("result_0").innerHTML = result;
+        // }
+
+        var result_raw = fElapsed(myStart,myEnd);
+        // console.log('result_raw: ', result_raw);
+        // if (result_raw) {
+          document.getElementById("result_raw_0").value = result_raw;
+        // }
+
+        var result_abso = fElapsed(myStart,myEnd,'abso');
+        // console.log('result_abso: ', result_abso);
+        // if (result_abso) {
+          document.getElementById("result_abso_0").value = result_abso;
+        // }
 
         var result_pretty = fElapsed(myStart,myEnd,'pretty');
-        console.log('result_pretty: ', result_pretty);
-        if (result_pretty) {
-          document.getElementById('result_pretty_0').innerHTML = result_pretty;
-        }
+        // console.log('result_pretty: ', result_pretty);
+        // if (result_pretty) {
+          document.getElementById("result_pretty_0").innerHTML = result_pretty;
+        // }
 
+      } else {
+        console.log('no START && END values');
+        // clear result
+        for (var i = 0; i < elResults.length; i++) {
+          elResults[i].value = null;
+          elResults[i].innerHTML = null;
+        };
       }
 
-    }
-
   console.groupEnd();
 };
 
-var fChangeDate = function (event) {
-  console.group('START fChangeDate');
+var fAutofill = function (type) {
+  console.group('START fAutofill');
+  // console.log( 'document.getElementById(\"start_0\"): ', document.getElementById("start_0") );
+  document.getElementById("start_0").value = '1970-01-01';
+  // console.log( 'document.getElementById(\"end_0\"): ', document.getElementById("end_0") );
+  document.getElementById("end_0").value = '1971-01-01';
+  // fChange(event);
   console.groupEnd();
 };
 
-var fChangeTime = function (event) {
-  console.group('START fChangeTime');
+var fClear = function (type) {
+  console.group('START fClear');
+  // console.log( 'document.getElementById(\"start_0\"): ', document.getElementById("start_0") );
+  document.getElementById("start_0").value = null;
+  // console.log( 'document.getElementById(\"end_0\"): ', document.getElementById("end_0") );
+  document.getElementById("end_0").value = null;
   console.groupEnd();
 };
 
-var elDatetimes = document.getElementsByClassName('input-datetime');
-var elDates = document.getElementsByClassName('input-date');
-var elTimes = document.getElementsByClassName('input-time');
+var fAdd = function (type) {
+  console.group('START fAdd');
+  console.groupEnd();
+};
+
 var fSettings = function (type) {
   console.group('START fSettings');
     fLoopElements(elDatetimes,'style','display','none');
@@ -320,7 +375,10 @@ var fSettings = function (type) {
 var fLoopElements = function (el,prop,effect,value) {
   console.group('START fLoopElements of ',el[0].className +' // '+ prop +'|'+ effect +':'+ value);
   for (var i = 0; i < el.length; i++) {
-    console.log(el[i][prop][effect]);
+    console.log('el[i][\'value\']: ',el[i]['value']);
+    console.log('el[i][prop][effect]: ',el[i][prop][effect]);
+    el[i]['value'] = null;
+    document.getElementById("results").reset();
     el[i][prop][effect] = value;
   };
   console.groupEnd();

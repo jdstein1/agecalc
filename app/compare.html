@@ -21,124 +21,126 @@
     </nav>
   </header>
   <div class="main">
-  <h2>Susan Sarandon</h2>
-  <table>
-    <tbody>
-      <tr>
-        <th>Event</th>
-        <th>Start Date</th>
-        <th>Time Elapsed</th>
-      </tr>
-      <tr>
-        <td class="event">Birth</td>
-        <td><dl>
-          <dt>ms</dt>
-          <dd class="ms"><script>document.write( fDate(life.birth, 'ms') );</script></dd>
-          <dt>iso</dt>
-          <dd class="iso"><script>document.write( fDate(life.birth, 'iso') );</script></dd>
-          <dt>full</dt>
-          <dd class="full"><script>document.write( fDate(life.birth) );</script></dd>
-        </dl></td>
-        <td class=""><script>document.write( fElapsed(life.birth, now, 'ms') );</script>
-          <script>document.write( fElapsed(life.birth, now, 'pretty') );</script>
-          <dl>
-            <dt>nice</dt>
-            <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.birth, 'iso') ) )</script></dd>
-          </dl>
-        </td>
-      </tr>
-      <tr>
-        <td class="event">married Chris Sarandon</td>
-        <td><dl>
-          <dt>ms</dt>
-          <dd class="ms"><script>document.write( fDate(life.chris.married, 'ms') );</script></dd>
-          <dt>iso</dt>
-          <dd class="iso"><script>document.write( fDate(life.chris.married, 'iso') );</script></dd>
-          <dt>full</dt>
-          <dd class="full"><script>document.write( fDate(life.chris.married) );</script></dd>
-        </dl></td>
-        <td class=""><script>document.write( fElapsed(life.chris.married, now, 'ms') );</script>
-          <script>document.write( fElapsed(life.chris.married, now, 'pretty') );</script>
-          <dl>
-            <dt>nice</dt>
-            <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.chris.married, 'iso') ) )</script></dd>
-          </dl>
-        </td>
-      </tr>
-      <tr>
-        <td class="event">divorced Chris Sarandon</td>
-        <td><dl>
-          <dt>ms</dt>
-          <dd class="ms"><script>document.write( fDate(life.chris.divorced, 'ms') );</script></dd>
-          <dt>iso</dt>
-          <dd class="iso"><script>document.write( fDate(life.chris.divorced, 'iso') );</script></dd>
-          <dt>full</dt>
-          <dd class="full"><script>document.write( fDate(life.chris.divorced) );</script></dd>
-        </dl></td>
-        <td class=""><script>document.write( fElapsed(life.chris.divorced, now, 'ms') );</script>
-          <script>document.write( fElapsed(life.chris.divorced, now, 'pretty') );</script>
-          <dl>
-            <dt>nice</dt>
-            <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.chris.divorced, 'iso') ) )</script></dd>
-          </dl>
-        </td>
-      </tr>
-      <tr>
-        <td class="event">got together with Tim Robbins</td>
-        <td><dl>
-          <dt>ms</dt>
-          <dd class="ms"><script>document.write( fDate(life.tim.begin, 'ms') );</script></dd>
-          <dt>iso</dt>
-          <dd class="iso"><script>document.write( fDate(life.tim.begin, 'iso') );</script></dd>
-          <dt>full</dt>
-          <dd class="full"><script>document.write( fDate(life.tim.begin) );</script></dd>
-        </dl></td>
-        <td class=""><script>document.write( fElapsed(life.tim.begin, now, 'ms') );</script>
-          <script>document.write( fElapsed(life.tim.begin, now, 'pretty') );</script>
-          <dl>
-            <dt>nice</dt>
-            <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.tim.begin, 'iso') ) )</script></dd>
-          </dl>
-        </td>
-      </tr>
-      <tr>
-        <td class="event">split up with Tim Robbins</td>
-        <td><dl>
-          <dt>ms</dt>
-          <dd class="ms"><script>document.write( fDate(life.tim.end, 'ms') );</script></dd>
-          <dt>iso</dt>
-          <dd class="iso"><script>document.write( fDate(life.tim.end, 'iso') );</script></dd>
-          <dt>full</dt>
-          <dd class="full"><script>document.write( fDate(life.tim.end) );</script></dd>
-        </dl></td>
-        <td class=""><script>document.write( fElapsed(life.tim.end, now, 'ms') );</script>
-          <script>document.write( fElapsed(life.tim.end, now, 'pretty') );</script>
-          <dl>
-            <dt>nice</dt>
-            <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.tim.end, 'iso') ) )</script></dd>
-          </dl>
-        </td>
-      </tr>
-      <tr>
-        <td class="event">Now</td>
-        <td><dl>
-          <dt>ms</dt>
-          <dd class="ms"><script>document.write( fDate(now, 'ms') );</script></dd>
-          <dt>iso</dt>
-          <dd class="iso"><script>document.write( fDate(now, 'iso') );</script></dd>
-          <dt>full</dt>
-          <dd class="full"><script>document.write( fDate(now) );</script></dd>
-        </dl></td>
-        <td class=""><script>document.write( fElapsed(now, now, 'ms') );</script>
-          <script>document.write( fElapsed(now, now, 'pretty') );</script>
-          <dl>
-            <dt>nice</dt>
-            <dd class="time elapsed humane"><script>document.write( humane_date( fDate(now, 'iso') ) )</script></dd>
-          </dl>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <h2>Susan Sarandon's Life</h2>
+    <h3>a brief list of significant life events</h3>
+    <table cellpadding="0" cellspacing="1">
+      <tbody>
+        <tr>
+          <th><span>Event</span></th>
+          <th><span>Start Date</span></th>
+          <th><span>Time Elapsed</span></th>
+        </tr>
+        <tr>
+          <td class="event">Birth</td>
+          <td><dl>
+            <dt>ms</dt>
+            <dd class="ms"><script>document.write( fDate(life.birth, 'ms') );</script></dd>
+            <dt>iso</dt>
+            <dd class="iso"><script>document.write( fDate(life.birth, 'iso') );</script></dd>
+            <dt>full</dt>
+            <dd class="full"><script>document.write( fDate(life.birth) );</script></dd>
+          </dl></td>
+          <td class="">
+            <script>document.write( fElapsed(life.birth, now, 'ms') );</script>
+            <script>document.write( fElapsed(life.birth, now, 'pretty') );</script>
+            <dl>
+              <dt>nice</dt>
+              <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.birth, 'iso') ) )</script></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="event">married Chris Sarandon</td>
+          <td><dl>
+            <dt>ms</dt>
+            <dd class="ms"><script>document.write( fDate(life.chris.married, 'ms') );</script></dd>
+            <dt>iso</dt>
+            <dd class="iso"><script>document.write( fDate(life.chris.married, 'iso') );</script></dd>
+            <dt>full</dt>
+            <dd class="full"><script>document.write( fDate(life.chris.married) );</script></dd>
+          </dl></td>
+          <td class=""><script>document.write( fElapsed(life.chris.married, now, 'ms') );</script>
+            <script>document.write( fElapsed(life.chris.married, now, 'pretty') );</script>
+            <dl>
+              <dt>nice</dt>
+              <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.chris.married, 'iso') ) )</script></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="event">divorced Chris Sarandon</td>
+          <td><dl>
+            <dt>ms</dt>
+            <dd class="ms"><script>document.write( fDate(life.chris.divorced, 'ms') );</script></dd>
+            <dt>iso</dt>
+            <dd class="iso"><script>document.write( fDate(life.chris.divorced, 'iso') );</script></dd>
+            <dt>full</dt>
+            <dd class="full"><script>document.write( fDate(life.chris.divorced) );</script></dd>
+          </dl></td>
+          <td class=""><script>document.write( fElapsed(life.chris.divorced, now, 'ms') );</script>
+            <script>document.write( fElapsed(life.chris.divorced, now, 'pretty') );</script>
+            <dl>
+              <dt>nice</dt>
+              <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.chris.divorced, 'iso') ) )</script></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="event">got together with Tim Robbins</td>
+          <td><dl>
+            <dt>ms</dt>
+            <dd class="ms"><script>document.write( fDate(life.tim.begin, 'ms') );</script></dd>
+            <dt>iso</dt>
+            <dd class="iso"><script>document.write( fDate(life.tim.begin, 'iso') );</script></dd>
+            <dt>full</dt>
+            <dd class="full"><script>document.write( fDate(life.tim.begin) );</script></dd>
+          </dl></td>
+          <td class=""><script>document.write( fElapsed(life.tim.begin, now, 'ms') );</script>
+            <script>document.write( fElapsed(life.tim.begin, now, 'pretty') );</script>
+            <dl>
+              <dt>nice</dt>
+              <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.tim.begin, 'iso') ) )</script></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="event">split up with Tim Robbins</td>
+          <td><dl>
+            <dt>ms</dt>
+            <dd class="ms"><script>document.write( fDate(life.tim.end, 'ms') );</script></dd>
+            <dt>iso</dt>
+            <dd class="iso"><script>document.write( fDate(life.tim.end, 'iso') );</script></dd>
+            <dt>full</dt>
+            <dd class="full"><script>document.write( fDate(life.tim.end) );</script></dd>
+          </dl></td>
+          <td class=""><script>document.write( fElapsed(life.tim.end, now, 'ms') );</script>
+            <script>document.write( fElapsed(life.tim.end, now, 'pretty') );</script>
+            <dl>
+              <dt>nice</dt>
+              <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.tim.end, 'iso') ) )</script></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="event">Now</td>
+          <td><dl>
+            <dt>ms</dt>
+            <dd class="ms"><script>document.write( fDate(now, 'ms') );</script></dd>
+            <dt>iso</dt>
+            <dd class="iso"><script>document.write( fDate(now, 'iso') );</script></dd>
+            <dt>full</dt>
+            <dd class="full"><script>document.write( fDate(now) );</script></dd>
+          </dl></td>
+          <td class=""><script>document.write( fElapsed(now, now, 'ms') );</script>
+            <script>document.write( fElapsed(now, now, 'pretty') );</script>
+            <dl>
+              <dt>nice</dt>
+              <dd class="time elapsed humane"><script>document.write( humane_date( fDate(now, 'iso') ) )</script></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <footer>
     <p>&copy; 2015 by Jeff Stein</p>
