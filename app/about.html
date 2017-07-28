@@ -40,11 +40,35 @@
 
           <h3>About <b>AgeCalc</b></h3>
 
-          <p>Time.  What is it?  We cannot see it, but it is all around us.  Is it a color our eyes cannot see?  We cannot touch it, yet it passes through us and we pass through it.  Is it a medium like air or water that our finngers cannot feel?  How do we know it is there?  How do we experience it or measure it?</p>
-
-          <p>Computers count time in milliseconds, but they thing time began at the dawn of 1970 AD.  JavaScript has built-in methods to get the date and time that correspond to that number of milliseconds.  Translating milliseconds to a time span based upon the Gregorian Calendar is, however, not simple math.  A year is not 365 days: it is 365 days for three years and then 366 days (give or take some leap seconds).  A month is not 4 weeks, nor is it 30 days: it is exactly 4 weeks once a year in 3 out of 4 years, otherwise it is 30 days, sometimes 31 days, and 29 days 1/4 of 1/12 of the time.</p>
-
-          <p>AgeCalc could use a third party library to compare dates and calculate time spans with pinpoint accuracy.  Instead, AgeCalc will develop that functionality over time.  At the moment it uses over-simplified math to produce approximate time span lengths.  AgeCalc could use these approximate numbers to display human-friendly, natural-language descriptions for time spans.  This may be added in the future.</p>
+<h4 id="tl-dr">TL;DR</h4>
+<blockquote>
+<p>AgeCalc uses over-simplified math to produce approximate lengths of time between two dates.</p>
+</blockquote>
+<h4 id="long-version">Long Version</h4>
+<p>Time:  what is it?  We cannot see it, but it is all around us.  We cannot touch it, yet it passes through us and we pass through it.</p>
+<p>Is it a color our eyes cannot see?  Is it a medium our fingers cannot touch?  How do we know it is there?  How do we experience it or measure it?</p>
+<p>Forget I asked.</p>
+<p>Computers count time in milliseconds...starting at the year 1970!  Weird, I know.</p>
+<p>JavaScript has methods to get the current date and time, but they return a number of milliseconds.  Which is fine, for a computer.  It is sub-optimal to ask a human to parse <code>1501204860904</code> into a time and date.</p>
+<p>Even using basic math, an integer that represents a number of milliseconds cannot easily be translated into a date on the Gregorian Calendar.</p>
+<ul>
+<li>A year is usually 365 days, but is 366 days if:
+<ul>
+<li>the year is divisible by 4, </li>
+<li>except when divisible by 100, </li>
+<li>but not divisible by 400.</li>
+</ul>
+</li>
+<li>A month is usually 30 days:
+<ul>
+<li>unless it is 31 days, </li>
+<li>but a single month is exactly four weeks long in three out of every four years, </li>
+<li>and don't forget that 1/4 of 1/12 of all months are 29 days long.</li>
+</ul>
+</li>
+</ul>
+<p>It's a bit of a headache.</p>
+<p>I could use a third party library to compare dates and calculate time spans with pinpoint accuracy.  Instead, I will develop that functionality within AgeCalc myself over time.  At the moment it uses over-simplified math to produce approximate lengths of time between two dates.</p>
 
         </div>
 
