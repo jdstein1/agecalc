@@ -69,6 +69,8 @@ Once you have cloned this repo, run it locally with the following sequence of co
 * [_] "This Day in History" feature - provide link to a site that list notable events on this day in history (e.g., [http://www.historynet.com/today-in-history/december-09](http://www.historynet.com/today-in-history/december-09))
 * [_] Alert messages for interval dates - add a tooltip for notable dates.
 
+
+
 ## Resources
 
 * [https://en.wikipedia.org/wiki/Gregorian_calendar](https://en.wikipedia.org/wiki/Gregorian_calendar)
