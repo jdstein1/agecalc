@@ -27,8 +27,9 @@
       <tbody>
         <tr>
           <th><span>Event</span></th>
-          <th><span>Start Date</span></th>
+          <th><span>Date</span></th>
           <th><span>Time Elapsed</span></th>
+          <th><span>Age</span></th>
         </tr>
         <tr>
           <td class="event">Birth</td>
@@ -48,6 +49,7 @@
               <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.birth, 'iso') ) )</script></dd>
             </dl>
           </td>
+          <td><script>document.write( fElapsed(life.birth, life.birth, 'age') );</script></td>
         </tr>
         <tr>
           <td class="event">married Chris Sarandon</td>
@@ -66,6 +68,7 @@
               <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.chris.married, 'iso') ) )</script></dd>
             </dl>
           </td>
+          <td><script>document.write( fElapsed(life.birth, life.chris.married, 'age') );</script></td>
         </tr>
         <tr>
           <td class="event">divorced Chris Sarandon</td>
@@ -84,6 +87,7 @@
               <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.chris.divorced, 'iso') ) )</script></dd>
             </dl>
           </td>
+          <td><script>document.write( fElapsed(life.birth, life.chris.divorced, 'age') );</script></td>
         </tr>
         <tr>
           <td class="event">got together with Tim Robbins</td>
@@ -102,6 +106,7 @@
               <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.tim.begin, 'iso') ) )</script></dd>
             </dl>
           </td>
+          <td><script>document.write( fElapsed(life.birth, life.tim.begin, 'age') );</script></td>
         </tr>
         <tr>
           <td class="event">split up with Tim Robbins</td>
@@ -120,6 +125,7 @@
               <dd class="time elapsed humane"><script>document.write( humane_date( fDate(life.tim.end, 'iso') ) )</script></dd>
             </dl>
           </td>
+          <td><script>document.write( fElapsed(life.birth, life.tim.end, 'age') );</script></td>
         </tr>
         <tr>
           <td class="event">Now</td>
@@ -138,6 +144,7 @@
               <dd class="time elapsed humane"><script>document.write( humane_date( fDate(now, 'iso') ) )</script></dd>
             </dl>
           </td>
+          <td><script>document.write( fElapsed(life.birth, now, 'age') );</script></td>
         </tr>
       </tbody>
     </table>

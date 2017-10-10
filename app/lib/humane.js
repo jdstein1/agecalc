@@ -12,6 +12,8 @@
  */
 
 function humane_date(date_str){
+	console.group('START humane_date');
+	console.log('date_str: ', date_str);
 	var time_formats = [
 		[60, 'Just Now'],
 		[90, '1 Minute'], // 60*1.5
@@ -40,6 +42,8 @@ function humane_date(date_str){
 		seconds = Math.abs(seconds);
 		token = '';
 	}
+
+	console.groupEnd();
 
 	while (format = time_formats[i++]) {
 		if (seconds < format[0]) {

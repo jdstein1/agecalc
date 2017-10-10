@@ -206,6 +206,23 @@ var fElapsed = function (a,b,f) {
       var rev = '+';
     }
     switch (f) {
+      case 'age':
+        console.log('case AGE');
+        format['age'] = '<dt>age</dt><dd class="time elapsed pretty"><ul class="time elapsed pretty">'+
+          '<li>'+abso.yy+' years</li>'+
+          '<li>'+abso.mo+' months</li>'+
+          '<li>'+abso.wk+' weeks</li>'+
+          '<li>'+abso.dd+' days</li>'+
+          '<li>'+abso.hh+' hrs</li>'+
+          '<li>'+abso.mm+' min</li>'+
+          '<li>'+abso.ss+' sec</li>'+
+          '<li>'+abso.ms+' ms</li>'+
+          '<li>Old</li>'+
+          '</ul></dd>';
+        // console.log('format: ', format);
+        console.groupEnd();
+        return format.age;
+        break;
       case 'ms':
         console.log('case MS');
         format['ms'] = '<dl><dt>ms</dt><dd class="time elapsed ms">'+rev+t+'</dd></dl>';
@@ -222,7 +239,7 @@ var fElapsed = function (a,b,f) {
         break;
       case 'pretty':
         console.log('case PRETTY');
-        format['pretty'] = '<dl><dt>full</dt><dd class="time elapsed ms"><ul class="time elapsed pretty">'+
+        format['pretty'] = '<dl><dt>full</dt><dd class="time elapsed pretty"><ul class="time elapsed pretty">'+
           '<li>'+rev+abso.yy+' years</li>'+
           '<li>'+abso.mo+' months</li>'+
           '<li>'+abso.wk+' weeks</li>'+
